@@ -117,19 +117,24 @@ function formatMonthYear(mmYYYY: string): string {
 }
 
 /**
- * Total months of verifiable work history across every job — current jobs run
- * to today, past jobs span start→end. Lenders want this to add up to 2 years,
- * whether from one job or several.
+ * Months a single job spans — a current job runs to today, a past job spans
+ * start→end. 0 when the start date is missing/unparseable.
  */
-function totalHistoryMonths(items: Employment[]): number {
+function jobMonths(e: Employment): number {
+  const start = monthIndex(e.startDate);
+  if (start === null) return 0;
   const now = new Date();
   const nowIdx = now.getFullYear() * 12 + now.getMonth();
-  return items.reduce((sum, e) => {
-    const start = monthIndex(e.startDate);
-    if (start === null) return sum;
-    const end = e.current ? nowIdx : (monthIndex(e.endDate) ?? nowIdx);
-    return sum + Math.max(0, end - start);
-  }, 0);
+  const end = e.current ? nowIdx : (monthIndex(e.endDate) ?? nowIdx);
+  return Math.max(0, end - start);
+}
+
+/**
+ * Total months of verifiable work history across every job. Lenders want this
+ * to add up to 2 years, whether from one job or several.
+ */
+function totalHistoryMonths(items: Employment[]): number {
+  return items.reduce((sum, e) => sum + jobMonths(e), 0);
 }
 
 /** Compact coverage label, e.g. 14 → "1 yr 2 mo", 8 → "8 mo". */
