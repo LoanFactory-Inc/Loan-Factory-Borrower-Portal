@@ -1,34 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Loan Factory Borrower Portal
+
+The borrower-facing web portal for Loan Factory, built with the [Next.js](https://nextjs.org)
+App Router. Borrowers use it to track their loans, complete their application, manage rate
+alerts, request quotes, and chat with the AI assistant.
+
+**Stack:** Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind CSS v4 ·
+shadcn/ui · Redux Toolkit + redux-persist · react-hook-form + Zod · TanStack Table ·
+i18next · Vitest.
 
 ## Getting Started
 
-First, run the development server:
+This project uses **Yarn** (see `packageManager` in `package.json`).
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser. Editing files under
+`app/` hot-reloads the page.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Common scripts:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+yarn dev            # dev server (Turbopack)
+yarn build          # production build
+yarn start          # serve the production build
+yarn lint           # ESLint
+yarn format         # Prettier write
+yarn format:check   # Prettier check
+yarn test           # Vitest (run once)
+yarn test:watch     # Vitest (watch)
+```
 
 ## Project Structure
 
 The app is organized by **business domain** (a feature-based / vertical-slice architecture),
-not by technical layer. Each route under `app/` maps to one domain (e.g. Companies, Licenses,
-SSO, LLM Providers), and everything that domain needs — UI, logic, API calls, and types — lives
-together inside its folder. Editing a feature usually touches only that one directory. Only code
-genuinely shared across domains is lifted to the root (`components/ui`, `lib`, `store`, `hooks`,
-`i18n`, `repository`). The Next.js App Router paths line up with these domain boundaries
-(`/companies` ↔ the Companies domain).
+not by technical layer. Each route under `app/` maps to one domain (e.g. My Loans,
+Application, Rate Alerts, Quote, AI Assistant), and everything that domain needs — UI, logic,
+API calls, and types — lives together inside its folder. Editing a feature usually touches
+only that one directory. Only code genuinely shared across domains is lifted to the root
+(`components/ui`, `lib`, `store`, `hooks`, `i18n`, `repository`). The Next.js App Router paths
+line up with these domain boundaries (`/my-loans` ↔ the My Loans domain).
+
+Current domains under `app/`:
+
+```
+application      loan-purpose     my-rate-alert    quote          testimonials
+ai-assistant     loanfactory-iq   policies         rate-alerts
+get-started      my-loans         login            settings
+```
 
 Each domain folder follows a consistent shape:
 
@@ -44,6 +65,9 @@ app/<feature>/
    └─ types.ts         # API request/response types
 ```
 
+Nested routes live as subfolders of their domain (e.g. `app/my-loans/documents`,
+`app/my-loans/messages`).
+
 Conventions:
 
 - **Validation schemas** are defined **inline** in the form component that uses them
@@ -51,8 +75,9 @@ Conventions:
   separate file.
 - **Feature-specific constants and helpers** live in `helpers/index.ts`. Avoid per-feature
   `lib/` folders — keep feature code under `components / helpers / services`.
-- **Shared** code lives at the root: `components/` (with `components/ui/` for shadcn primitives),
-  `components/layouts/`, `hooks/`, `lib/`, `store/`, `i18n/`, `repository/`.
+- **Shared** code lives at the root: `components/` (with `components/ui/` for shadcn
+  primitives), `components/layouts/`, `hooks/`, `lib/`, `store/` (Redux Toolkit slices +
+  persisted auth), `i18n/`, `repository/` (the shared Axios client).
 
 ## Testing
 
@@ -67,3 +92,9 @@ Tests run with [Vitest](https://vitest.dev). They are split **by scope**:
 yarn test         # run once
 yarn test:watch   # watch mode
 ```
+
+## Continuous Integration
+
+GitHub Actions runs lint, type-check, unit tests, and a production build on every push to
+`master` and on pull requests targeting `master`. See
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml).

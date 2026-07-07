@@ -145,7 +145,14 @@
     "incomeSource": "Income source",
     "monthlyAmount": "Monthly amount ($)",
     "monthlyAmountPlaceholder": "e.g. 1,200",
-    "addIncome": "Add income"
+    "addIncome": "Add income",
+    "coverageTitle": "Add 2 years of work history",
+    "coverageDesc": "One job or several — it just needs to add up to 2 years.",
+    "coverageOf": "{{label}} of 2 yrs",
+    "coverageDone": "2 yrs covered",
+    "coverageHint": "Start with your current job, then add previous ones until this bar fills up.",
+    "currentJob": "Current job",
+    "previousJob": "Previous job"
   },
   "demographic": {
     "titlePrimary": "Government monitoring.",

@@ -145,7 +145,14 @@
     "incomeSource": "Nguồn thu nhập",
     "monthlyAmount": "Số tiền hàng tháng ($)",
     "monthlyAmountPlaceholder": "vd. 1,200",
-    "addIncome": "Thêm thu nhập"
+    "addIncome": "Thêm thu nhập",
+    "coverageTitle": "Bổ sung 2 năm lịch sử làm việc",
+    "coverageDesc": "Một hoặc nhiều công việc — chỉ cần cộng lại đủ 2 năm.",
+    "coverageOf": "{{label}} trên 2 năm",
+    "coverageDone": "Đã đủ 2 năm",
+    "coverageHint": "Bắt đầu với công việc hiện tại, rồi thêm các công việc trước đó cho đến khi thanh này đầy.",
+    "currentJob": "Công việc hiện tại",
+    "previousJob": "Công việc trước"
   },
   "demographic": {
     "titlePrimary": "Giám sát của cơ quan nhà nước.",

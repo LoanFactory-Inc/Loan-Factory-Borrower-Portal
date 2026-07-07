@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
+  BriefcaseIcon,
   CheckIcon,
   InfoIcon,
   PencilIcon,
@@ -95,12 +96,50 @@ const money = (value: string, notProvided: string) =>
 /** Lenders require a 2-year work history. */
 const REQUIRED_HISTORY_MONTHS = 24;
 
-/** Months elapsed since an "MM / YYYY" start date, or 0 if unparseable. */
-function monthsSince(mmYYYY: string): number {
-  const m = mmYYYY.match(/(\d{1,2})\s*\/\s*(\d{4})/);
-  if (!m) return 0;
+const MONTH_ABBR = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+];
+
+/** Absolute month index for an "MM / YYYY" string, or null if unparseable. */
+function monthIndex(mmYYYY: string): number | null {
+  const m = mmYYYY?.match(/(\d{1,2})\s*\/\s*(\d{4})/);
+  if (!m) return null;
+  return Number(m[2]) * 12 + (Number(m[1]) - 1);
+}
+
+/** "MM / YYYY" → "Mon YYYY" for display; falls back to the raw value. */
+function formatMonthYear(mmYYYY: string): string {
+  const m = mmYYYY?.match(/(\d{1,2})\s*\/\s*(\d{4})/);
+  if (!m) return mmYYYY ?? "";
+  const month = MONTH_ABBR[Number(m[1]) - 1];
+  return month ? `${month} ${m[2]}` : mmYYYY;
+}
+
+/**
+ * Total months of verifiable work history across every job — current jobs run
+ * to today, past jobs span start→end. Lenders want this to add up to 2 years,
+ * whether from one job or several.
+ */
+function totalHistoryMonths(items: Employment[]): number {
   const now = new Date();
-  return (now.getFullYear() - Number(m[2])) * 12 + (now.getMonth() + 1 - Number(m[1]));
+  const nowIdx = now.getFullYear() * 12 + now.getMonth();
+  return items.reduce((sum, e) => {
+    const start = monthIndex(e.startDate);
+    if (start === null) return sum;
+    const end = e.current ? nowIdx : (monthIndex(e.endDate) ?? nowIdx);
+    return sum + Math.max(0, end - start);
+  }, 0);
+}
+
+/** Compact coverage label, e.g. 14 → "1 yr 2 mo", 8 → "8 mo". */
+function coverageLabel(months: number): string {
+  const years = Math.floor(months / 12);
+  const rem = months % 12;
+  const parts: string[] = [];
+  if (years) parts.push(`${years} ${years === 1 ? "yr" : "yrs"}`);
+  if (rem || !years) parts.push(`${rem} mo`);
+  return parts.join(" ");
 }
 
 function ApplicationForm() {
@@ -341,9 +380,10 @@ function ApplicationForm() {
   };
   const activeEmployments = role === "co" ? coEmployments : employments;
   const activeOtherIncome = role === "co" ? coOtherIncome : otherIncome;
-  // Whether the current job's start date already spans the required 2 years.
-  const historyCovered =
-    monthsSince(activeEmployments.items[0]?.startDate ?? "") >= REQUIRED_HISTORY_MONTHS;
+  // Work-history coverage — summed across every job, toward the required 2 years.
+  const coveredMonths = totalHistoryMonths(activeEmployments.items);
+  const historyCovered = coveredMonths >= REQUIRED_HISTORY_MONTHS;
+  const coveragePct = Math.min(100, Math.round((coveredMonths / REQUIRED_HISTORY_MONTHS) * 100));
 
   // ── List-screen validation ────────────────────────────────────
   // Employment / assets / liabilities hold arrays of rows, so they can't ride
@@ -927,14 +967,66 @@ function ApplicationForm() {
                 title={isCo ? t("employment.titleCo") : t("employment.titlePrimary")}
                 subtitle={isCo ? t("employment.subtitleCo") : t("employment.subtitlePrimary")}
               >
+                {/* Work-history coverage — one job or several, toward 2 years. */}
+                <div className="mb-5 max-w-xl rounded-xl border bg-card p-5">
+                  <div className="flex items-center gap-3">
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-[9px] bg-accent">
+                      <BriefcaseIcon className="size-4.5 text-accent-foreground" strokeWidth={1.7} />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="text-sm font-bold text-foreground">
+                        {t("employment.coverageTitle")}
+                      </div>
+                      <div className="mt-0.5 text-[12.5px] leading-snug text-muted-foreground">
+                        {t("employment.coverageDesc")}
+                      </div>
+                    </div>
+                    {historyCovered ? (
+                      <span className="inline-flex items-center gap-1.5 text-[13px] font-bold whitespace-nowrap text-success">
+                        <CheckIcon className="size-[15px]" strokeWidth={2.4} />
+                        {t("employment.coverageDone")}
+                      </span>
+                    ) : (
+                      <span className="text-[13.5px] font-bold whitespace-nowrap text-accent-foreground">
+                        {t("employment.coverageOf", { label: coverageLabel(coveredMonths) })}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-3.5 h-2.5 overflow-hidden rounded-full bg-muted">
+                    <div
+                      className="h-full rounded-full bg-primary transition-[width] duration-300 ease-out"
+                      style={{ width: `${coveragePct}%` }}
+                    />
+                  </div>
+                  {!historyCovered && (
+                    <div className="mt-2.5 text-[12.5px] leading-relaxed text-muted-foreground">
+                      {t("employment.coverageHint")}
+                    </div>
+                  )}
+                </div>
+
                 <div className="flex flex-col gap-4">
                   {activeEmployments.items.map((row, i) => (
                     <div key={i} className="rounded-xl border p-5">
-                      <div className="mb-4 flex items-center justify-between">
-                        <div className="text-sm font-bold text-foreground">
-                          {i === 0
-                            ? t("employment.currentEmployment")
-                            : t("employment.secondaryEmployment")}
+                      <div className="mb-4 flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2.5">
+                          {row.current ? (
+                            <span className="rounded-md bg-success/12 px-2.25 py-1 text-[11px] font-bold tracking-wide text-success uppercase">
+                              {t("employment.currentJob")}
+                            </span>
+                          ) : (
+                            <span className="rounded-md bg-muted px-2.25 py-1 text-[11px] font-bold tracking-wide text-muted-foreground uppercase">
+                              {t("employment.previousJob")}
+                            </span>
+                          )}
+                          {row.startDate && (
+                            <span className="text-[13px] text-muted-foreground">
+                              {formatMonthYear(row.startDate)} –{" "}
+                              {row.current
+                                ? t("employment.present")
+                                : formatMonthYear(row.endDate) || "…"}
+                            </span>
+                          )}
                         </div>
                         {activeEmployments.items.length > 1 && (
                           <button
@@ -1091,37 +1183,17 @@ function ApplicationForm() {
                       </div>
                     </div>
                   ))}
-                  {/* Once the current job spans the required 2 years, confirm
-                      it's covered; until then, prompt for previous jobs. */}
-                  {historyCovered ? (
-                    <div className="flex items-center gap-3 rounded-xl border border-success/30 bg-success/8 px-4 py-3.5">
-                      <span className="flex size-[34px] shrink-0 items-center justify-center rounded-full bg-success/15">
-                        <CheckIcon className="size-[18px] text-success" strokeWidth={2.4} />
-                      </span>
-                      <div>
-                        <div className="text-[14px] font-bold text-foreground">
-                          {t("employment.historyCoveredTitle")}
-                        </div>
-                        <div className="mt-0.5 text-[13px] text-muted-foreground">
-                          {t("employment.historyCoveredDesc")}
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="flex items-center gap-2 text-[13px] text-muted-foreground">
-                        <InfoIcon className="size-4 shrink-0" strokeWidth={1.7} />
-                        {t("employment.historyHint")}
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => activeEmployments.add({ ...BLANK_EMPLOYMENT })}
-                        className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-dashed text-sm font-semibold text-foreground/70 transition-colors hover:border-primary hover:text-accent-foreground"
-                      >
-                        <PlusIcon className="size-[17px] shrink-0" />
-                        {t("employment.addPreviousJob")}
-                      </button>
-                    </>
+                  {/* Coverage is tracked in the card at the top; keep prompting
+                      for previous jobs until the 2-year bar is filled. */}
+                  {!historyCovered && (
+                    <button
+                      type="button"
+                      onClick={() => activeEmployments.add({ ...BLANK_EMPLOYMENT })}
+                      className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-dashed text-sm font-semibold text-foreground/70 transition-colors hover:border-primary hover:text-accent-foreground"
+                    >
+                      <PlusIcon className="size-[17px] shrink-0" />
+                      {t("employment.addPreviousJob")}
+                    </button>
                   )}
                 </div>
 
