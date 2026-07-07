@@ -1,0 +1,356 @@
+{
+  "validation": {
+    "required": "This field is required",
+    "email": "Enter a valid email address",
+    "zip": "Enter a valid ZIP code",
+    "phone": "Enter a valid phone number",
+    "amount": "Enter an amount greater than 0",
+    "date": "Enter a valid date (MM/DD/YYYY)",
+    "coBorrower": "Please choose an option",
+    "documents": "Please upload all required documents before continuing"
+  },
+  "eyebrow": {
+    "section": "Section {{current}} of {{total}} · {{group}}",
+    "sectionCoBorrower": "Section {{current}} of {{total}} · {{group}} · Co-borrower",
+    "reviewSubmit": "Review & submit"
+  },
+  "success": {
+    "changesSavedTitle": "Changes saved",
+    "submittedTitle": "Application submitted",
+    "changesSavedDescription": "Your updates have been saved. You can keep editing any time from My loans.",
+    "submittedDescription": "Your loan officer has received everything and will reach out within one business day. Track its status any time from My loans.",
+    "reference": "Reference",
+    "backToMyLoans": "Back to my loans"
+  },
+  "autofill": {
+    "button": "Auto fill",
+    "suggestedAddresses": "Suggested addresses"
+  },
+  "actions": {
+    "continue": "Continue",
+    "reviewApplication": "Review application",
+    "submitApplication": "Submit application",
+    "saveChanges": "Save changes",
+    "back": "Back",
+    "changesSaved": "Changes saved",
+    "remove": "Remove",
+    "edit": "Edit",
+    "upload": "Upload",
+    "uploaded": "Uploaded"
+  },
+  "notProvided": "Not provided",
+  "store": {
+    "yourApplication": "Your application",
+    "reviewYourChanges": "Review your changes",
+    "underReview": "Under review"
+  },
+  "subjectProperty": {
+    "title": "Where’s the property?",
+    "subtitle": "Start with the home you’re financing. Use auto fill to pull the address and property details in one tap.",
+    "streetAddress": "Street address",
+    "streetAddressPlaceholder": "123 Main Street",
+    "aptUnit": "Apt / unit",
+    "aptUnitPlaceholder": "Unit 4B",
+    "zip": "ZIP code",
+    "zipPlaceholder": "Enter ZIP code",
+    "city": "City",
+    "cityPlaceholder": "City",
+    "state": "State",
+    "propertyTypeQuestion": "What type of property is it?"
+  },
+  "loanDetails": {
+    "title": "Tell us about the loan.",
+    "subtitle": "A few numbers so we can shape the right terms for you.",
+    "loanAmount": "Loan amount",
+    "loanAmountPlaceholder": "Enter number",
+    "loanType": "Loan type",
+    "loanTypeSubtitle": "Not sure which fits? Pick the closest — or choose “I’m not sure” and your loan officer will recommend the best option.",
+    "unsureTitle": "I’m not sure yet",
+    "unsureDesc": "Recommended — we’ll suggest the best fit and your loan officer confirms it.",
+    "occupancy": "Occupancy",
+    "loanTerm": "Loan term",
+    "purchasePrice": "Purchase price",
+    "purchasePricePlaceholder": "Enter number",
+    "homeValue": "Estimated home value",
+    "homeValuePlaceholder": "Enter number",
+    "mortgageBalance": "Current mortgage balance",
+    "mortgageBalancePlaceholder": "Enter number",
+    "mortgageRate": "Current mortgage rate",
+    "mortgageRatePlaceholder": "e.g. 6.5",
+    "secondLienQuestion": "Are you aware of any second lien on the property?",
+    "yes": "Yes",
+    "no": "No",
+    "helocLimit": "What is the limit of the HELOC?",
+    "helocLimitPlaceholder": "Enter number",
+    "combineIntoNewLoan": "Combine into the new loan"
+  },
+  "personal": {
+    "titlePrimary": "A little about you.",
+    "titleCo": "About your co-borrower.",
+    "subtitlePrimary": "This should match your government-issued ID exactly.",
+    "subtitleCo": "Enter your co-borrower’s details exactly as they appear on their government-issued ID.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email address",
+    "emailPlaceholder": "you@email.com",
+    "cellPhone": "Cell phone",
+    "cellPhonePlaceholder": "(000) 000-0000",
+    "dob": "Date of birth",
+    "dobPlaceholder": "MM / DD / YYYY",
+    "maritalStatus": "Marital status",
+    "dependents": "Dependents",
+    "dependentsPlaceholder": "0",
+    "citizenship": "Citizenship",
+    "coBorrowerQuestion": "Is there a co-borrower on this loan?",
+    "yes": "Yes",
+    "noJustMe": "No, just me",
+    "coBorrowerInfo": "Your co-borrower now has their own steps under Borrower info in the progress panel — add their personal, employment and demographic details there."
+  },
+  "employment": {
+    "titlePrimary": "Where do you work?",
+    "titleCo": "Where does your co-borrower work?",
+    "subtitlePrimary": "Add each job you’ve held over the past two years. Start with your current one.",
+    "subtitleCo": "Add your co-borrower’s jobs over the past two years.",
+    "currentEmployment": "Current Employment",
+    "secondaryEmployment": "Secondary Employment",
+    "status": "Status",
+    "employerName": "Employer name",
+    "employerNamePlaceholder": "e.g. Acme Corp",
+    "position": "Position / title",
+    "positionPlaceholder": "e.g. Software Engineer",
+    "country": "Country",
+    "companyAddress": "Company address",
+    "companyAddressPlaceholder": "Enter a location",
+    "aptUnit": "Apt / Unit",
+    "aptUnitPlaceholder": "Apt / Unit",
+    "zip": "ZIP code",
+    "zipPlaceholder": "ZIP code",
+    "startDate": "Start date",
+    "startDatePlaceholder": "MM / YYYY",
+    "endDate": "End date",
+    "endDatePlaceholder": "MM / YYYY",
+    "present": "Present",
+    "monthlyIncome": "Monthly income ($)",
+    "monthlyIncomePlaceholder": "e.g. 7,500",
+    "currentlyWorksHere": "I currently work here",
+    "checkAllThatApply": "Check all that apply",
+    "relatedParty": "I’m employed by a family member, property seller, real estate agent/broker, or other party to the transaction.",
+    "foreignIncome": "This income is earned through a foreign corporation or government and paid in foreign currency.",
+    "historyHint": "Lenders need at least 2 years of work history.",
+    "historyCoveredTitle": "Work history entered",
+    "historyCoveredDesc": "Nice — you’ve covered the full 2 years.",
+    "addPreviousJob": "Add a previous job",
+    "otherIncomeTitle": "Income from other sources",
+    "otherIncomeSubtitle": "Have a second job, freelance or 1099 work, rental, retirement, or support income? Add it here so it counts toward your application. This part is optional.",
+    "incomeSource": "Income source",
+    "monthlyAmount": "Monthly amount ($)",
+    "monthlyAmountPlaceholder": "e.g. 1,200",
+    "addIncome": "Add income"
+  },
+  "demographic": {
+    "titlePrimary": "Government monitoring.",
+    "titleCo": "Co-borrower monitoring.",
+    "subtitle": "The federal government asks lenders to collect this to monitor fair lending. Providing it is optional and won’t affect the application.",
+    "ethnicity": "Ethnicity",
+    "race": "Race",
+    "sex": "Sex"
+  },
+  "assets": {
+    "title": "What do you own?",
+    "subtitle": "List the accounts and funds you’ll use toward this loan, plus any property you already own.",
+    "accountsAndFunds": "Accounts & funds",
+    "accountType": "Account type",
+    "institution": "Institution",
+    "institutionPlaceholder": "e.g. Chase",
+    "balance": "Balance ($)",
+    "balancePlaceholder": "0",
+    "addAccount": "Add account",
+    "otherRealEstateQuestion": "Do you own any other real estate?",
+    "yes": "Yes",
+    "no": "No",
+    "property": "Property {{index}}",
+    "propertyAddress": "Property address",
+    "marketValue": "Market value ($)",
+    "mortgageBalance": "Mortgage balance ($)",
+    "status": "Status",
+    "addProperty": "Add property"
+  },
+  "liabilities": {
+    "title": "What do you owe?",
+    "subtitle": "Credit cards, auto and student loans, and other monthly obligations. We use these to calculate your DTI.",
+    "type": "Type",
+    "creditor": "Creditor",
+    "balance": "Balance ($)",
+    "monthly": "Monthly ($)",
+    "addLiability": "Add liability"
+  },
+  "documents": {
+    "title": "Last step — your documents.",
+    "subtitle": "Upload what you have now. You can always add the rest from your dashboard later.",
+    "required": "Required"
+  },
+  "review": {
+    "title": "Does everything look right?",
+    "subtitle": "Take a quick look before you submit. You can jump back to any section to make changes.",
+    "sections": {
+      "loanInfo": "Loan info",
+      "borrowerInfo": "Borrower info",
+      "coBorrower": "Co-borrower",
+      "realEstateAssets": "Real estate & assets",
+      "liabilities": "Liabilities",
+      "neededDocuments": "Needed documents"
+    },
+    "rows": {
+      "property": "Property",
+      "propertyType": "Property type",
+      "occupancy": "Occupancy",
+      "loanType": "Loan type",
+      "loanTerm": "Loan term",
+      "loanAmount": "Loan amount",
+      "purchasePrice": "Purchase price",
+      "homeValue": "Estimated home value",
+      "mortgageBalance": "Current mortgage balance",
+      "name": "Name",
+      "email": "Email",
+      "cellPhone": "Cell phone",
+      "employer": "Employer",
+      "monthlyIncome": "Monthly income",
+      "accountsAndFunds": "Accounts & funds",
+      "otherRealEstate": "Other real estate",
+      "liabilities": "Liabilities",
+      "documents": "Documents"
+    },
+    "values": {
+      "monthlyIncomePerMonth": "{{amount}} / mo",
+      "accounts_one": "{{count}} account",
+      "accounts_other": "{{count}} accounts",
+      "properties_one": "{{count}} property",
+      "properties_other": "{{count}} properties",
+      "none": "None",
+      "items_one": "{{count}} item",
+      "items_other": "{{count}} items",
+      "documentsUploaded": "{{done}} of {{total}} uploaded"
+    }
+  },
+  "rail": {
+    "yourApplication": "Your application",
+    "sectionsOf": "{{done}} of {{total}}",
+    "sectionsComplete": "sections complete",
+    "you": "You",
+    "coBorrower": "Co-borrower"
+  },
+  "subs": {
+    "subjectProperty": "Subject property",
+    "loanDetails": "Loan details",
+    "personalDetails": "Personal details",
+    "employment": "Employment",
+    "demographicInfo": "Demographic info",
+    "realEstateAssets": "Real estate & assets",
+    "liabilities": "Liabilities",
+    "neededDocuments": "Needed documents"
+  },
+  "groups": {
+    "loanInfo": { "label": "Loan info", "meta": "Property & terms" },
+    "borrowerInfo": { "label": "Borrower info", "meta": "About you" },
+    "realEstateAssets": { "label": "Real estate & assets", "meta": "What you own" },
+    "liabilities": { "label": "Liabilities", "meta": "Debts you carry" },
+    "neededDocuments": { "label": "Needed documents", "meta": "Upload & finish" }
+  },
+  "options": {
+    "propertyType": {
+      "SingleFamily": "Single family",
+      "Condo": "Condo",
+      "Townhouse": "Townhouse",
+      "MultiFamily": "Multi-family (2–4 units)",
+      "Manufactured": "Manufactured / mobile",
+      "Cooperative": "Cooperative"
+    },
+    "occupancy": {
+      "PrimaryResidence": "Owner occupied",
+      "SecondHome": "Second home",
+      "Investment": "Investment"
+    },
+    "marital": {
+      "Married": "Married",
+      "Unmarried": "Unmarried",
+      "Separated": "Separated"
+    },
+    "citizen": {
+      "U.S. citizen": "U.S. citizen",
+      "Permanent resident": "Permanent resident",
+      "Non-permanent resident": "Non-permanent resident"
+    },
+    "loanType": {
+      "Conventional": "Conventional",
+      "FHA": "FHA",
+      "VA": "VA",
+      "USDA": "USDA",
+      "Jumbo": "Jumbo"
+    },
+    "loanTypeDesc": {
+      "Conventional": "Good credit and some down payment. The most common loan.",
+      "FHA": "Smaller down payment or lower credit scores welcome.",
+      "VA": "For veterans, active military & eligible spouses. Often $0 down.",
+      "USDA": "$0 down for homes in eligible rural & suburban areas.",
+      "Jumbo": "For loan amounts above conventional limits."
+    },
+    "loanTerm": {
+      "30-year fixed": "Fixed for 30 years",
+      "20-year fixed": "Fixed for 20 years",
+      "15-year fixed": "Fixed for 15 years",
+      "10-year fixed": "Fixed for 10 years",
+      "5/1 ARM": "Adjustable after 5 years (5/1 ARM)",
+      "7/1 ARM": "Adjustable after 7 years (7/1 ARM)"
+    },
+    "assetType": {
+      "Checking account": "Checking account",
+      "Savings account": "Savings account",
+      "Money market": "Money market",
+      "Retirement (401k / IRA)": "Retirement (401k / IRA)",
+      "Brokerage": "Brokerage",
+      "Gift funds": "Gift funds"
+    },
+    "liabType": {
+      "Credit card": "Credit card",
+      "Auto loan": "Auto loan",
+      "Student loan": "Student loan",
+      "Personal loan": "Personal loan",
+      "Installment loan": "Installment loan",
+      "Other": "Other"
+    },
+    "reStatus": {
+      "Retained": "Retained",
+      "Pending sale": "Pending sale",
+      "Sold": "Sold"
+    },
+    "ethnicity": {
+      "Hispanic or Latino": "Hispanic or Latino",
+      "Not Hispanic or Latino": "Not Hispanic or Latino",
+      "I do not wish to provide": "I do not wish to provide"
+    },
+    "race": {
+      "American Indian or Alaska Native": "American Indian or Alaska Native",
+      "Asian": "Asian",
+      "Black or African American": "Black or African American",
+      "Native Hawaiian or Pacific Islander": "Native Hawaiian or Pacific Islander",
+      "White": "White",
+      "I do not wish to provide": "I do not wish to provide"
+    },
+    "gender": {
+      "Female": "Female",
+      "Male": "Male",
+      "I do not wish to provide": "I do not wish to provide"
+    }
+  },
+  "docs": {
+    "id": { "label": "Government-issued ID", "desc": "Driver’s license or passport" },
+    "paystubs": { "label": "Recent pay stubs", "desc": "Covering the last 30 days" },
+    "w2": { "label": "W-2s or 1099s", "desc": "From the past two years" },
+    "bank": { "label": "Bank statements", "desc": "Last two months, all pages" },
+    "taxreturns": { "label": "Tax returns", "desc": "Past two years, if self-employed" }
+  },
+  "field": {
+    "optional": "(optional)",
+    "selectPlaceholder": "Select"
+  }
+}

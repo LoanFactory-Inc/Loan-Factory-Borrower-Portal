@@ -1,0 +1,59 @@
+{
+  "page": {
+    "title": "Cảnh báo lãi suất của tôi",
+    "subtitle": "Chúng tôi sẽ gửi email hoặc tin nhắn ngay khi lãi suất đạt mức mục tiêu của bạn.",
+    "createAlert": "Tạo cảnh báo"
+  },
+  "ticker": {
+    "heading": "Lãi suất trung bình hôm nay",
+    "updated": "Cập nhật 9:00 sáng (PT)"
+  },
+  "marketRates": {
+    "fixed30": "Cố định 30 năm",
+    "fixed15": "Cố định 15 năm",
+    "fha30": "FHA 30 năm",
+    "va30": "VA 30 năm"
+  },
+  "list": {
+    "heading": "Cảnh báo của bạn",
+    "sortedBy": "Sắp xếp theo mức gần mục tiêu nhất"
+  },
+  "empty": {
+    "title": "Chưa có cảnh báo lãi suất nào",
+    "description": "Đặt mức lãi suất mục tiêu và chúng tôi sẽ báo cho bạn ngay khi thị trường diễn biến có lợi cho bạn."
+  },
+  "card": {
+    "readyToLock": "Sẵn sàng chốt lãi suất",
+    "toGo": "Còn {{diff}}% nữa",
+    "targetMet": "Đã đạt mục tiêu",
+    "target": "Mục tiêu",
+    "now": "Hiện tại",
+    "alertsVia": "Cảnh báo qua",
+    "editAlert": "Chỉnh sửa cảnh báo",
+    "deleteAlert": "Xóa cảnh báo"
+  },
+  "channels": {
+    "email": "Email",
+    "sms": "SMS",
+    "push": "Thông báo đẩy"
+  },
+  "dialog": {
+    "title": "Tạo cảnh báo lãi suất",
+    "description": "Cho chúng tôi biết mức mục tiêu và cách liên hệ với bạn.",
+    "close": "Đóng",
+    "loanType": "Loại khoản vay",
+    "loanPurpose": "Mục đích vay",
+    "targetRate": "Lãi suất mục tiêu",
+    "targetRatePlaceholder": "6.000",
+    "loanAmount": "Số tiền vay",
+    "loanAmountOptional": "(không bắt buộc)",
+    "loanAmountPlaceholder": "400,000",
+    "notifyMeBy": "Thông báo cho tôi qua",
+    "cancel": "Hủy",
+    "submit": "Tạo cảnh báo"
+  },
+  "purpose": {
+    "purchase": "Mua nhà",
+    "refinance": "Tái cấp vốn"
+  }
+}

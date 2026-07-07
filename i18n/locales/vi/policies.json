@@ -1,0 +1,20 @@
+{
+  "sidebarHeading": "Chính sách",
+  "lastUpdated": "Cập nhật lần cuối: {{date}}",
+  "questions": "Có câu hỏi về chính sách này?",
+  "contact": "Liên hệ với chúng tôi",
+  "items": {
+    "terms": { "label": "Điều khoản & Điều kiện", "title": "Điều khoản & Điều kiện" },
+    "privacy": { "label": "Quyền riêng tư", "title": "Chính sách quyền riêng tư" },
+    "phone": { "label": "Liên lạc qua điện thoại/tin nhắn", "title": "Liên lạc qua điện thoại & tin nhắn" },
+    "email": { "label": "Liên lạc qua email", "title": "Liên lạc qua email" },
+    "ueta": { "label": "Đạo luật UETA và ESIGN", "title": "Chấp thuận theo Đạo luật UETA và ESIGN" },
+    "acceptable": { "label": "Sử dụng hợp lệ", "title": "Chính sách sử dụng hợp lệ" },
+    "cookies": { "label": "Cookie", "title": "Chính sách Cookie" },
+    "copyright": { "label": "Bản quyền", "title": "Chính sách bản quyền" },
+    "ai": {
+      "label": "Điều khoản dịch vụ và Chính sách quyền riêng tư — Sử dụng AI",
+      "title": "Sử dụng AI"
+    }
+  }
+}

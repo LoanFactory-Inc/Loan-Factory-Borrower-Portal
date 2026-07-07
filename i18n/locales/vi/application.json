@@ -1,0 +1,356 @@
+{
+  "validation": {
+    "required": "Trường này là bắt buộc",
+    "email": "Nhập địa chỉ email hợp lệ",
+    "zip": "Nhập mã ZIP hợp lệ",
+    "phone": "Nhập số điện thoại hợp lệ",
+    "amount": "Nhập số tiền lớn hơn 0",
+    "date": "Nhập ngày hợp lệ (MM/DD/YYYY)",
+    "coBorrower": "Vui lòng chọn một tùy chọn",
+    "documents": "Vui lòng tải lên tất cả tài liệu bắt buộc trước khi tiếp tục"
+  },
+  "eyebrow": {
+    "section": "Phần {{current}} / {{total}} · {{group}}",
+    "sectionCoBorrower": "Phần {{current}} / {{total}} · {{group}} · Người đồng vay",
+    "reviewSubmit": "Xem lại & gửi"
+  },
+  "success": {
+    "changesSavedTitle": "Đã lưu thay đổi",
+    "submittedTitle": "Đã gửi hồ sơ",
+    "changesSavedDescription": "Các cập nhật của bạn đã được lưu. Bạn có thể tiếp tục chỉnh sửa bất cứ lúc nào trong mục Khoản vay của tôi.",
+    "submittedDescription": "Chuyên viên tín dụng của bạn đã nhận đầy đủ hồ sơ và sẽ liên hệ trong vòng một ngày làm việc. Bạn có thể theo dõi trạng thái bất cứ lúc nào trong mục Khoản vay của tôi.",
+    "reference": "Mã tham chiếu",
+    "backToMyLoans": "Quay lại Khoản vay của tôi"
+  },
+  "autofill": {
+    "button": "Tự động điền",
+    "suggestedAddresses": "Địa chỉ gợi ý"
+  },
+  "actions": {
+    "continue": "Tiếp tục",
+    "reviewApplication": "Xem lại hồ sơ",
+    "submitApplication": "Gửi hồ sơ",
+    "saveChanges": "Lưu thay đổi",
+    "back": "Quay lại",
+    "changesSaved": "Đã lưu thay đổi",
+    "remove": "Xóa",
+    "edit": "Chỉnh sửa",
+    "upload": "Tải lên",
+    "uploaded": "Đã tải lên"
+  },
+  "notProvided": "Chưa cung cấp",
+  "store": {
+    "yourApplication": "Hồ sơ của bạn",
+    "reviewYourChanges": "Xem lại các thay đổi",
+    "underReview": "Đang xét duyệt"
+  },
+  "subjectProperty": {
+    "title": "Bất động sản ở đâu?",
+    "subtitle": "Bắt đầu với căn nhà bạn đang vay để mua. Dùng tính năng tự động điền để lấy địa chỉ và thông tin bất động sản chỉ với một chạm.",
+    "streetAddress": "Địa chỉ đường phố",
+    "streetAddressPlaceholder": "123 Main Street",
+    "aptUnit": "Căn hộ / phòng",
+    "aptUnitPlaceholder": "Phòng 4B",
+    "zip": "Mã ZIP",
+    "zipPlaceholder": "Nhập mã ZIP",
+    "city": "Thành phố",
+    "cityPlaceholder": "Thành phố",
+    "state": "Tiểu bang",
+    "propertyTypeQuestion": "Đây là loại bất động sản nào?"
+  },
+  "loanDetails": {
+    "title": "Cho chúng tôi biết về khoản vay.",
+    "subtitle": "Một vài con số để chúng tôi có thể thiết kế điều khoản phù hợp cho bạn.",
+    "loanAmount": "Số tiền vay",
+    "loanAmountPlaceholder": "Nhập số",
+    "loanType": "Loại khoản vay",
+    "loanTypeSubtitle": "Chưa chắc loại nào phù hợp? Hãy chọn loại gần nhất — hoặc chọn “Tôi chưa chắc” và chuyên viên tín dụng sẽ tư vấn lựa chọn tốt nhất.",
+    "unsureTitle": "Tôi chưa chắc",
+    "unsureDesc": "Khuyến nghị — chúng tôi sẽ gợi ý lựa chọn phù hợp nhất và chuyên viên tín dụng xác nhận lại.",
+    "occupancy": "Mục đích sử dụng",
+    "loanTerm": "Thời hạn vay",
+    "purchasePrice": "Giá mua",
+    "purchasePricePlaceholder": "Nhập số",
+    "homeValue": "Giá trị nhà ước tính",
+    "homeValuePlaceholder": "Nhập số",
+    "mortgageBalance": "Dư nợ thế chấp hiện tại",
+    "mortgageBalancePlaceholder": "Nhập số",
+    "mortgageRate": "Lãi suất thế chấp hiện tại",
+    "mortgageRatePlaceholder": "ví dụ: 6.5",
+    "secondLienQuestion": "Bạn có biết về khoản thế chấp thứ hai nào trên bất động sản không?",
+    "yes": "Có",
+    "no": "Không",
+    "helocLimit": "Hạn mức của HELOC là bao nhiêu?",
+    "helocLimitPlaceholder": "Nhập số",
+    "combineIntoNewLoan": "Gộp vào khoản vay mới"
+  },
+  "personal": {
+    "titlePrimary": "Đôi nét về bạn.",
+    "titleCo": "Về người đồng vay của bạn.",
+    "subtitlePrimary": "Thông tin này phải khớp chính xác với giấy tờ tùy thân do cơ quan nhà nước cấp của bạn.",
+    "subtitleCo": "Nhập thông tin của người đồng vay chính xác như trên giấy tờ tùy thân do cơ quan nhà nước cấp của họ.",
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "email": "Địa chỉ email",
+    "emailPlaceholder": "you@email.com",
+    "cellPhone": "Điện thoại di động",
+    "cellPhonePlaceholder": "(000) 000-0000",
+    "dob": "Ngày sinh",
+    "dobPlaceholder": "MM / DD / YYYY",
+    "maritalStatus": "Tình trạng hôn nhân",
+    "dependents": "Người phụ thuộc",
+    "dependentsPlaceholder": "0",
+    "citizenship": "Quốc tịch",
+    "coBorrowerQuestion": "Khoản vay này có người đồng vay không?",
+    "yes": "Có",
+    "noJustMe": "Không, chỉ mình tôi",
+    "coBorrowerInfo": "Người đồng vay của bạn giờ đã có các bước riêng trong mục Thông tin người vay ở bảng tiến độ — hãy thêm thông tin cá nhân, việc làm và nhân khẩu học của họ tại đó."
+  },
+  "employment": {
+    "titlePrimary": "Bạn làm việc ở đâu?",
+    "titleCo": "Người đồng vay của bạn làm việc ở đâu?",
+    "subtitlePrimary": "Thêm từng công việc bạn đã làm trong hai năm qua. Bắt đầu với công việc hiện tại.",
+    "subtitleCo": "Thêm các công việc của người đồng vay trong hai năm qua.",
+    "currentEmployment": "Công việc hiện tại",
+    "secondaryEmployment": "Công việc phụ",
+    "status": "Tình trạng việc làm",
+    "employerName": "Tên nơi làm việc",
+    "employerNamePlaceholder": "vd. Acme Corp",
+    "position": "Chức danh / vị trí",
+    "positionPlaceholder": "vd. Kỹ sư phần mềm",
+    "country": "Quốc gia",
+    "companyAddress": "Địa chỉ công ty",
+    "companyAddressPlaceholder": "Nhập địa điểm",
+    "aptUnit": "Căn hộ / Đơn vị",
+    "aptUnitPlaceholder": "Căn hộ / Đơn vị",
+    "zip": "Mã ZIP",
+    "zipPlaceholder": "Mã ZIP",
+    "startDate": "Ngày bắt đầu",
+    "startDatePlaceholder": "MM / YYYY",
+    "endDate": "Ngày kết thúc",
+    "endDatePlaceholder": "MM / YYYY",
+    "present": "Hiện tại",
+    "monthlyIncome": "Thu nhập hàng tháng ($)",
+    "monthlyIncomePlaceholder": "vd. 7,500",
+    "currentlyWorksHere": "Tôi hiện đang làm việc tại đây",
+    "checkAllThatApply": "Chọn tất cả các mục phù hợp",
+    "relatedParty": "Tôi được tuyển dụng bởi người thân, người bán bất động sản, môi giới/đại lý bất động sản, hoặc bên khác liên quan đến giao dịch.",
+    "foreignIncome": "Thu nhập này đến từ một tập đoàn hoặc chính phủ nước ngoài và được trả bằng ngoại tệ.",
+    "historyHint": "Bên cho vay cần ít nhất 2 năm lịch sử làm việc.",
+    "historyCoveredTitle": "Đã đủ lịch sử làm việc",
+    "historyCoveredDesc": "Tuyệt — bạn đã đủ 2 năm lịch sử làm việc.",
+    "addPreviousJob": "Thêm công việc trước đây",
+    "otherIncomeTitle": "Thu nhập từ nguồn khác",
+    "otherIncomeSubtitle": "Có công việc thứ hai, làm tự do hoặc 1099, cho thuê, hưu trí, hoặc thu nhập trợ cấp? Thêm vào đây để được tính vào hồ sơ của bạn. Phần này là tùy chọn.",
+    "incomeSource": "Nguồn thu nhập",
+    "monthlyAmount": "Số tiền hàng tháng ($)",
+    "monthlyAmountPlaceholder": "vd. 1,200",
+    "addIncome": "Thêm thu nhập"
+  },
+  "demographic": {
+    "titlePrimary": "Giám sát của cơ quan nhà nước.",
+    "titleCo": "Giám sát người đồng vay.",
+    "subtitle": "Chính phủ liên bang yêu cầu các tổ chức cho vay thu thập thông tin này để giám sát việc cho vay công bằng. Việc cung cấp là tùy chọn và sẽ không ảnh hưởng đến hồ sơ.",
+    "ethnicity": "Nguồn gốc dân tộc",
+    "race": "Chủng tộc",
+    "sex": "Giới tính"
+  },
+  "assets": {
+    "title": "Bạn sở hữu những gì?",
+    "subtitle": "Liệt kê các tài khoản và nguồn tiền bạn sẽ dùng cho khoản vay này, cùng với bất động sản bạn đang sở hữu.",
+    "accountsAndFunds": "Tài khoản & nguồn tiền",
+    "accountType": "Loại tài khoản",
+    "institution": "Tổ chức",
+    "institutionPlaceholder": "vd. Chase",
+    "balance": "Số dư ($)",
+    "balancePlaceholder": "0",
+    "addAccount": "Thêm tài khoản",
+    "otherRealEstateQuestion": "Bạn có sở hữu bất động sản nào khác không?",
+    "yes": "Có",
+    "no": "Không",
+    "property": "Bất động sản {{index}}",
+    "propertyAddress": "Địa chỉ bất động sản",
+    "marketValue": "Giá trị thị trường ($)",
+    "mortgageBalance": "Dư nợ thế chấp ($)",
+    "status": "Trạng thái",
+    "addProperty": "Thêm bất động sản"
+  },
+  "liabilities": {
+    "title": "Bạn đang nợ những gì?",
+    "subtitle": "Thẻ tín dụng, khoản vay mua ô tô và vay sinh viên, cùng các nghĩa vụ hàng tháng khác. Chúng tôi dùng những thông tin này để tính tỷ lệ nợ trên thu nhập (DTI) của bạn.",
+    "type": "Loại",
+    "creditor": "Chủ nợ",
+    "balance": "Số dư ($)",
+    "monthly": "Hàng tháng ($)",
+    "addLiability": "Thêm khoản nợ"
+  },
+  "documents": {
+    "title": "Bước cuối — giấy tờ của bạn.",
+    "subtitle": "Tải lên những gì bạn có ngay bây giờ. Bạn luôn có thể bổ sung phần còn lại từ bảng điều khiển sau này.",
+    "required": "Bắt buộc"
+  },
+  "review": {
+    "title": "Mọi thứ đã chính xác chưa?",
+    "subtitle": "Kiểm tra nhanh trước khi gửi. Bạn có thể quay lại bất kỳ phần nào để chỉnh sửa.",
+    "sections": {
+      "loanInfo": "Thông tin khoản vay",
+      "borrowerInfo": "Thông tin người vay",
+      "coBorrower": "Người đồng vay",
+      "realEstateAssets": "Bất động sản & tài sản",
+      "liabilities": "Khoản nợ",
+      "neededDocuments": "Giấy tờ cần thiết"
+    },
+    "rows": {
+      "property": "Bất động sản",
+      "propertyType": "Loại bất động sản",
+      "occupancy": "Mục đích sử dụng",
+      "loanType": "Loại khoản vay",
+      "loanTerm": "Thời hạn vay",
+      "loanAmount": "Số tiền vay",
+      "purchasePrice": "Giá mua",
+      "homeValue": "Giá trị nhà ước tính",
+      "mortgageBalance": "Dư nợ thế chấp hiện tại",
+      "name": "Họ tên",
+      "email": "Email",
+      "cellPhone": "Điện thoại di động",
+      "employer": "Nơi làm việc",
+      "monthlyIncome": "Thu nhập hàng tháng",
+      "accountsAndFunds": "Tài khoản & nguồn tiền",
+      "otherRealEstate": "Bất động sản khác",
+      "liabilities": "Khoản nợ",
+      "documents": "Giấy tờ"
+    },
+    "values": {
+      "monthlyIncomePerMonth": "{{amount}} / tháng",
+      "accounts_one": "{{count}} tài khoản",
+      "accounts_other": "{{count}} tài khoản",
+      "properties_one": "{{count}} bất động sản",
+      "properties_other": "{{count}} bất động sản",
+      "none": "Không có",
+      "items_one": "{{count}} mục",
+      "items_other": "{{count}} mục",
+      "documentsUploaded": "Đã tải lên {{done}} / {{total}}"
+    }
+  },
+  "rail": {
+    "yourApplication": "Hồ sơ của bạn",
+    "sectionsOf": "{{done}} / {{total}}",
+    "sectionsComplete": "phần đã hoàn thành",
+    "you": "Bạn",
+    "coBorrower": "Người đồng vay"
+  },
+  "subs": {
+    "subjectProperty": "Bất động sản",
+    "loanDetails": "Chi tiết khoản vay",
+    "personalDetails": "Thông tin cá nhân",
+    "employment": "Việc làm",
+    "demographicInfo": "Thông tin nhân khẩu học",
+    "realEstateAssets": "Bất động sản & tài sản",
+    "liabilities": "Khoản nợ",
+    "neededDocuments": "Giấy tờ cần thiết"
+  },
+  "groups": {
+    "loanInfo": { "label": "Thông tin khoản vay", "meta": "Bất động sản & điều khoản" },
+    "borrowerInfo": { "label": "Thông tin người vay", "meta": "Về bạn" },
+    "realEstateAssets": { "label": "Bất động sản & tài sản", "meta": "Những gì bạn sở hữu" },
+    "liabilities": { "label": "Khoản nợ", "meta": "Các khoản nợ bạn đang gánh" },
+    "neededDocuments": { "label": "Giấy tờ cần thiết", "meta": "Tải lên & hoàn tất" }
+  },
+  "options": {
+    "propertyType": {
+      "SingleFamily": "Nhà riêng một hộ",
+      "Condo": "Căn hộ chung cư",
+      "Townhouse": "Nhà phố",
+      "MultiFamily": "Nhà nhiều hộ (2–4 căn)",
+      "Manufactured": "Nhà lắp ghép / nhà di động",
+      "Cooperative": "Nhà hợp tác xã"
+    },
+    "occupancy": {
+      "PrimaryResidence": "Chủ sở hữu ở",
+      "SecondHome": "Nhà thứ hai",
+      "Investment": "Đầu tư"
+    },
+    "marital": {
+      "Married": "Đã kết hôn",
+      "Unmarried": "Chưa kết hôn",
+      "Separated": "Ly thân"
+    },
+    "citizen": {
+      "U.S. citizen": "Công dân Hoa Kỳ",
+      "Permanent resident": "Thường trú nhân",
+      "Non-permanent resident": "Cư trú không thường trú"
+    },
+    "loanType": {
+      "Conventional": "Thông thường (Conventional)",
+      "FHA": "FHA",
+      "VA": "VA",
+      "USDA": "USDA",
+      "Jumbo": "Jumbo"
+    },
+    "loanTypeDesc": {
+      "Conventional": "Tín dụng tốt và có một khoản trả trước. Loại vay phổ biến nhất.",
+      "FHA": "Trả trước ít hơn hoặc điểm tín dụng thấp hơn vẫn được chấp nhận.",
+      "VA": "Dành cho cựu chiến binh, quân nhân tại ngũ & vợ/chồng đủ điều kiện. Thường $0 trả trước.",
+      "USDA": "$0 trả trước cho nhà ở khu vực nông thôn & ngoại ô đủ điều kiện.",
+      "Jumbo": "Dành cho khoản vay vượt hạn mức thông thường."
+    },
+    "loanTerm": {
+      "30-year fixed": "Cố định trong 30 năm",
+      "20-year fixed": "Cố định trong 20 năm",
+      "15-year fixed": "Cố định trong 15 năm",
+      "10-year fixed": "Cố định trong 10 năm",
+      "5/1 ARM": "Điều chỉnh sau 5 năm (5/1 ARM)",
+      "7/1 ARM": "Điều chỉnh sau 7 năm (7/1 ARM)"
+    },
+    "assetType": {
+      "Checking account": "Tài khoản thanh toán",
+      "Savings account": "Tài khoản tiết kiệm",
+      "Money market": "Quỹ thị trường tiền tệ",
+      "Retirement (401k / IRA)": "Hưu trí (401k / IRA)",
+      "Brokerage": "Tài khoản môi giới",
+      "Gift funds": "Tiền được tặng"
+    },
+    "liabType": {
+      "Credit card": "Thẻ tín dụng",
+      "Auto loan": "Vay mua ô tô",
+      "Student loan": "Vay sinh viên",
+      "Personal loan": "Vay cá nhân",
+      "Installment loan": "Vay trả góp",
+      "Other": "Khác"
+    },
+    "reStatus": {
+      "Retained": "Giữ lại",
+      "Pending sale": "Đang chờ bán",
+      "Sold": "Đã bán"
+    },
+    "ethnicity": {
+      "Hispanic or Latino": "Gốc Tây Ban Nha hoặc Latinh",
+      "Not Hispanic or Latino": "Không phải gốc Tây Ban Nha hoặc Latinh",
+      "I do not wish to provide": "Tôi không muốn cung cấp"
+    },
+    "race": {
+      "American Indian or Alaska Native": "Người bản địa Mỹ hoặc Alaska",
+      "Asian": "Châu Á",
+      "Black or African American": "Người da đen hoặc gốc Phi",
+      "Native Hawaiian or Pacific Islander": "Người bản địa Hawaii hoặc đảo Thái Bình Dương",
+      "White": "Người da trắng",
+      "I do not wish to provide": "Tôi không muốn cung cấp"
+    },
+    "gender": {
+      "Female": "Nữ",
+      "Male": "Nam",
+      "I do not wish to provide": "Tôi không muốn cung cấp"
+    }
+  },
+  "docs": {
+    "id": { "label": "Giấy tờ tùy thân do nhà nước cấp", "desc": "Bằng lái xe hoặc hộ chiếu" },
+    "paystubs": { "label": "Phiếu lương gần đây", "desc": "Trong 30 ngày qua" },
+    "w2": { "label": "W-2 hoặc 1099", "desc": "Trong hai năm qua" },
+    "bank": { "label": "Sao kê ngân hàng", "desc": "Hai tháng gần nhất, đầy đủ các trang" },
+    "taxreturns": { "label": "Tờ khai thuế", "desc": "Hai năm qua, nếu tự kinh doanh" }
+  },
+  "field": {
+    "optional": "(không bắt buộc)",
+    "selectPlaceholder": "Chọn"
+  }
+}

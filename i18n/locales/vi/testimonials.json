@@ -1,0 +1,37 @@
+{
+  "badge": "Đánh giá",
+  "hero": {
+    "eyebrow": "Cứ thử so sánh mà xem",
+    "title": "Xem khách hàng hài lòng đánh giá chúng tôi thế nào",
+    "subtitle": "Những câu chuyện thật từ những người vay thật đã tin tưởng Loan Factory cho khoản mua sắm lớn nhất đời mình.",
+    "reviewsBadge": "{{count}}+ đánh giá năm sao",
+    "ratingLabel": "trên Google Reviews",
+    "quoteCta": "Nhận báo giá lãi suất",
+    "appCta": "Tải ứng dụng"
+  },
+  "customers": {
+    "title": "Khách hàng nói gì về chúng tôi",
+    "subtitle": "Những đánh giá mới nhất, trực tiếp từ Google."
+  },
+  "proof": {
+    "title": "Thêm minh chứng từ Google reviews",
+    "subtitle": "Tính trung bình trên toàn bộ đánh giá đã được xác thực.",
+    "reviewsCount": "{{count}} đánh giá trên Google",
+    "outOf": "trên 5"
+  },
+  "review": {
+    "more": "Xem thêm",
+    "less": "Thu gọn",
+    "verified": "Đánh giá đã xác thực"
+  },
+  "loadMore": "Xem thêm đánh giá",
+  "stars": {
+    "aria": "{{count}} trên 5 sao"
+  },
+  "feedback": {
+    "title": "Gửi phản hồi",
+    "description": "Hãy chia sẻ suy nghĩ của bạn qua biểu mẫu phản hồi.",
+    "cta": "Mở biểu mẫu phản hồi",
+    "phone": "Nếu bạn cần hỗ trợ ngay, vui lòng gọi cho chúng tôi theo số {{phone}}."
+  }
+}

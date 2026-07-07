@@ -1,0 +1,104 @@
+{
+  "page": {
+    "title": "Xem lãi suất vay thế chấp hôm nay",
+    "subtitle": "Trả lời vài câu hỏi và chúng tôi sẽ so sánh 232 bên cho vay để tìm mức lãi suất tốt nhất cho bạn — không ảnh hưởng đến điểm tín dụng."
+  },
+  "panel": {
+    "badge": "Cam kết giá tốt nhất",
+    "amount": "$2,000",
+    "description": "Nếu chúng tôi không thể đưa ra mức tốt hơn đề nghị của bên cho vay khác, chúng tôi sẽ gửi bạn một tấm séc $2,000. Chúng tôi tự tin đến vậy.",
+    "terms": "Điều khoản & điều kiện",
+    "lendersTitle": "Tìm kiếm trong 232 bên cho vay",
+    "lendersSubtitle": "Một biểu mẫu, toàn bộ thị trường",
+    "creditTitle": "Không ảnh hưởng tín dụng",
+    "creditSubtitle": "Chỉ kiểm tra sơ bộ",
+    "timeTitle": "Dưới 2 phút",
+    "timeSubtitle": "Lãi suất theo thời gian thực"
+  },
+  "docMode": {
+    "full": "Đầy đủ hồ sơ",
+    "noIncome": "Không chứng minh thu nhập"
+  },
+  "form": {
+    "heading": "Báo giá lãi suất vay thế chấp",
+    "loanAmount": "Số tiền vay",
+    "propertyValue": "Giá trị tài sản",
+    "downPayment": "Trả trước: {{pct}}",
+    "loanPurpose": "Mục đích vay",
+    "zip": "Mã ZIP",
+    "invalidZip": "Nhập mã ZIP hợp lệ",
+    "occupancy": "Hình thức sử dụng",
+    "loanType": "Loại vay",
+    "fico": "Điểm tín dụng FICO",
+    "submit": "Nhận báo giá",
+    "searchNote": "Chúng tôi tìm lãi suất trong <b>232 bên cho vay</b>",
+    "disclosure": "Công bố thông tin vay thế chấp"
+  },
+  "results": {
+    "heading": "Lãi suất dành riêng cho bạn",
+    "refine": "Chỉnh sửa",
+    "best": "Phù hợp nhất",
+    "rate": "Lãi suất",
+    "apr": "APR",
+    "payment": "Ước tính / tháng",
+    "continue": "Tiếp tục với lãi suất này",
+    "disclaimer": "Lãi suất là ước tính dựa trên thông tin bạn nhập và thị trường hôm nay. Lãi suất thực tế phụ thuộc vào hồ sơ đầy đủ và quá trình xác minh.",
+    "seeDisclosure": "Xem công bố thông tin"
+  },
+  "result": {
+    "yourSearch": "Tìm kiếm của bạn",
+    "editSearch": "Sửa tìm kiếm",
+    "summary": {
+      "down": "Trả trước {{pct}}",
+      "fico": "FICO {{score}}",
+      "fullDoc": "Hồ sơ đầy đủ",
+      "noDoc": "Không cần chứng minh thu nhập"
+    },
+    "searching": "Đang tìm trong {{count}} bên cho vay…",
+    "comparing": "Đang so sánh lãi suất hôm nay cho trường hợp của bạn",
+    "offerCount": "{{count}} ưu đãi",
+    "fromLenders": "từ {{count}} bên cho vay",
+    "termLabel": "Kỳ hạn",
+    "sortLabel": "Sắp xếp",
+    "term": {
+      "all": "Tất cả",
+      "y30": "30 năm",
+      "y20": "20 năm",
+      "y15": "15 năm"
+    },
+    "sort": {
+      "rate": "Lãi suất thấp nhất",
+      "payment": "Trả góp thấp nhất",
+      "apr": "APR thấp nhất"
+    },
+    "badge": {
+      "rate": "Lãi suất thấp nhất",
+      "payment": "Trả góp thấp nhất",
+      "apr": "APR thấp nhất"
+    },
+    "products": {
+      "fixed30": { "label": "Cố định 30 năm", "term": "Cố định trong 30 năm" },
+      "fixed20": { "label": "Cố định 20 năm", "term": "Cố định trong 20 năm" },
+      "fixed15": { "label": "Cố định 15 năm", "term": "Cố định trong 15 năm" },
+      "arm56": { "label": "ARM 5/6", "term": "Cố định 5 năm, sau đó điều chỉnh" },
+      "arm71": { "label": "ARM 7/6", "term": "Cố định 7 năm, sau đó điều chỉnh" }
+    },
+    "interestRate": "Lãi suất",
+    "estMonthly": "Ước tính/tháng",
+    "apr": "APR",
+    "rate": "Lãi suất",
+    "perMonth": "/ tháng",
+    "fees": "Phí",
+    "none": "Không",
+    "select": "Chọn",
+    "lockRate": "Khóa lãi suất này",
+    "points": "{{points}} điểm",
+    "zeroPoints": "0 điểm",
+    "noLenderFees": "Không phí bên cho vay",
+    "lenderFees": "{{amount}} phí bên cho vay",
+    "bestPriceEligible": "Đủ điều kiện đảm bảo giá tốt nhất",
+    "empty": "Không có ưu đãi nào khớp kỳ hạn này. Hãy thử bộ lọc kỳ hạn khác.",
+    "disclaimer": "Lãi suất hiển thị là ước tính dựa trên thông tin bạn nhập và dữ liệu thị trường hôm nay trên mạng lưới bên cho vay của chúng tôi. Đây không phải là cam kết cho vay. Lãi suất, APR và khoản trả cuối cùng phụ thuộc vào hồ sơ đầy đủ, xác minh tín dụng và thẩm định tài sản.",
+    "fullDisclosure": "Công bố thông tin thế chấp đầy đủ"
+  }
+}

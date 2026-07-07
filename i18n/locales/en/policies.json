@@ -1,0 +1,20 @@
+{
+  "sidebarHeading": "Policies",
+  "lastUpdated": "Last updated: {{date}}",
+  "questions": "Questions about this policy?",
+  "contact": "Contact us",
+  "items": {
+    "terms": { "label": "Terms & Conditions", "title": "Terms & Conditions" },
+    "privacy": { "label": "Privacy", "title": "Privacy Policy" },
+    "phone": { "label": "Phone/Text Communication", "title": "Phone & Text Communication" },
+    "email": { "label": "Email Communication", "title": "Email Communication" },
+    "ueta": { "label": "UETA and ESIGN Act", "title": "UETA and ESIGN Act Consent" },
+    "acceptable": { "label": "Acceptable Use", "title": "Acceptable Use Policy" },
+    "cookies": { "label": "Cookies", "title": "Cookie Policy" },
+    "copyright": { "label": "Copyright", "title": "Copyright Policy" },
+    "ai": {
+      "label": "Terms of Service and Privacy Policy — Use of AI",
+      "title": "Use of AI"
+    }
+  }
+}

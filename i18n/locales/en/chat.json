@@ -1,0 +1,26 @@
+{
+  "name": "Jordan Miles",
+  "status": "Your loan officer ·",
+  "online": "Online",
+  "today": "Today",
+  "placeholder": "Write a message…",
+  "greeting1": "Hi! I'm Jordan, your loan officer. I'll be helping you through your application — reach out here anytime.",
+  "greeting2": "I noticed you started the assets section. Any questions as you pull your statements together?",
+  "quick": {
+    "documents": "What documents do I need?",
+    "time": "How long does this take?",
+    "rates": "Can we talk about rates?"
+  },
+  "replies": {
+    "documents": "Great question — two months of statements for every account, all pages included. You can upload them right from the Documents tab.",
+    "rates": "Happy to walk through rates. Once your application is complete I can pull live options and we'll pick a lock window together.",
+    "time": "Most applications take about 10–15 minutes. After you submit, I typically review within one business day.",
+    "default": "Thanks — I've got that noted. I'll follow up shortly. Anything else I can help with in the meantime?"
+  },
+  "openLabel": "Open chat with your loan officer",
+  "closeLabel": "Close chat",
+  "composeLabel": "Start a new message",
+  "attachLabel": "Attach a file",
+  "sendLabel": "Send message",
+  "dismissLabel": "Dismiss"
+}

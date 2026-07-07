@@ -1,0 +1,106 @@
+{
+  "page": {
+    "title": "My loans",
+    "subtitle": "Track status, next steps, and documents in one place."
+  },
+  "filter": {
+    "active": "Current loan",
+    "closed": "Closed",
+    "all": "All",
+    "closedEmptyTitle": "No closed loans yet",
+    "closedEmptyDesc": "Once a loan funds and closes, you’ll find it here."
+  },
+  "card": {
+    "new": "New",
+    "edit": "Edit",
+    "inReview": "In review",
+    "inProgress": "In progress",
+    "purposeBuy": "Purchase",
+    "purposeRefi": "Refinance",
+    "loanNumber": "Loan #{{id}}",
+    "applicationComplete": "Application complete",
+    "applicationCompleteDesc": "Your loan officer is reviewing it and will reach out with next steps."
+  },
+  "stepper": {
+    "currentStep": "Current step",
+    "stepOf": "Step {{current}} of {{total}}",
+    "next": "Next: your loan officer reaches out",
+    "steps": {
+      "submitted": "Submitted",
+      "inReview": "In review",
+      "processing": "Processing",
+      "underwriting": "Underwriting",
+      "clearToClose": "Clear to close"
+    }
+  },
+  "summary": {
+    "loanAmount": {
+      "label": "Loan amount",
+      "hint": "The amount you’re borrowing"
+    },
+    "interestRate": {
+      "label": "Interest rate",
+      "hint": "Locked — won’t change"
+    },
+    "payment": {
+      "label": "Monthly payment",
+      "hint": "Includes taxes & insurance"
+    },
+    "rateType": {
+      "label": "Rate type",
+      "value": "Fixed for 30 years",
+      "hint": "Your payment stays the same"
+    },
+    "financing": {
+      "label": "Financing",
+      "value": "68% of home value",
+      "hint": "You keep 32% as equity"
+    },
+    "closing": {
+      "label": "Expected closing",
+      "hint": "About 6 weeks away"
+    }
+  },
+  "documents": {
+    "title": "Needed documents",
+    "description": "Upload what you have now so your loan officer can keep things moving — you can always add the rest later.",
+    "uploadedCount": "{{uploaded}} of {{total}} uploaded",
+    "tabs": {
+      "outstanding": "Outstanding ({{count}})",
+      "completed": "Completed ({{count}})"
+    },
+    "requested": "Requested {{time}}",
+    "remove": "Remove",
+    "upload": "Upload",
+    "complete": "Complete",
+    "addFile": "Add file",
+    "empty": {
+      "caughtUpTitle": "You’re all caught up",
+      "caughtUpDesc": "Every requested document has been uploaded.",
+      "emptyTitle": "Nothing uploaded yet",
+      "emptyDesc": "Documents you upload will show up here."
+    }
+  },
+  "docNames": {
+    "bankStatements": "Latest 2 months bank statements",
+    "taxForms": "W-2s or 1099s (last 2 years)",
+    "payStubs": "Recent pay stubs (last 30 days)",
+    "govId": "Government-issued ID",
+    "insurance": "Homeowners insurance declaration",
+    "mortgageStatement": "Current mortgage statement",
+    "propertyTax": "Property tax bill",
+    "borrowerAuth": "Signed borrower authorization"
+  },
+  "messages": {
+    "title": "Messages",
+    "subtitle": "Talk to your loan officer about this application.",
+    "placeholderTitle": "No messages yet",
+    "placeholderDescription": "Questions and updates from your loan officer will show up in this thread."
+  },
+  "docsPage": {
+    "title": "Documents",
+    "subtitle": "Everything you’ve uploaded and anything still outstanding.",
+    "placeholderTitle": "Your document center",
+    "placeholderDescription": "Uploaded files and requests from your loan officer will be managed here."
+  }
+}

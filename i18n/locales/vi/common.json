@@ -1,0 +1,141 @@
+{
+  "language": {
+    "label": "Ngôn ngữ",
+    "en": "English",
+    "vi": "Tiếng Việt"
+  },
+  "footer": {
+    "tagline": "Cho vay mua nhà hiện đại — dẫn dắt bởi con người, tăng tốc bằng AI. Từ lời chào đầu tiên đến khi giải ngân.",
+    "product": "Sản phẩm",
+    "company": "Công ty",
+    "legal": "Pháp lý",
+    "links": {
+      "myLoans": "Khoản vay của tôi",
+      "rateAlerts": "Cảnh báo lãi suất",
+      "aiAssistant": "Trợ lý vay mua nhà AI",
+      "loanfactoryIq": "LoanFactory IQ",
+      "about": "Về chúng tôi",
+      "testimonials": "Đánh giá",
+      "careers": "Tuyển dụng",
+      "contact": "Liên hệ",
+      "help": "Trung tâm trợ giúp",
+      "privacy": "Chính sách bảo mật",
+      "terms": "Điều khoản sử dụng",
+      "licenses": "Giấy phép",
+      "accessibility": "Khả năng tiếp cận"
+    },
+    "equalHousing": "Bên cho vay bình đẳng về nhà ở",
+    "nmls": "NMLS #339934",
+    "copyright": "© {{year}} Loan Factory, Inc. Bảo lưu mọi quyền.",
+    "disclaimer": "Loan Factory, Inc. được cấp phép hoạt động tại nhiều tiểu bang. Đây không phải là cam kết cho vay. Mọi khoản vay đều tuỳ thuộc vào phê duyệt tín dụng, thẩm định hồ sơ và định giá tài sản. Lãi suất và điều khoản có thể thay đổi mà không cần báo trước."
+  },
+  "nav": {
+    "myLoans": "Khoản vay của tôi",
+    "getQuote": "Nhận báo giá",
+    "rateAlerts": "Cảnh báo lãi suất",
+    "aiAssistant": "Trợ lý vay mua nhà AI",
+    "loanfactoryIq": "LoanFactory IQ"
+  },
+  "actions": {
+    "goBack": "Quay lại",
+    "backToHome": "Về trang chủ"
+  },
+  "notifications": {
+    "label": "Thông báo",
+    "title": "Thông báo",
+    "markAll": "Đánh dấu đã đọc",
+    "viewAll": "Xem tất cả thông báo",
+    "empty": {
+      "title": "Bạn đã xem hết rồi",
+      "subtitle": "Hiện chưa có thông báo mới nào."
+    },
+    "items": {
+      "document": {
+        "title": "Yêu cầu tài liệu",
+        "body": "Nhân viên tín dụng cần sao kê ngân hàng mới nhất của bạn.",
+        "time": "2 phút trước"
+      },
+      "review": {
+        "title": "Hồ sơ đang được xét duyệt",
+        "body": "Tái cấp vốn · Rút tiền mặt đang được nhân viên tín dụng xem xét.",
+        "time": "1 giờ trước"
+      },
+      "signature": {
+        "title": "Yêu cầu chữ ký",
+        "body": "Bản công bố ban đầu của bạn đã sẵn sàng để xem và ký.",
+        "time": "3 giờ trước"
+      },
+      "rate": {
+        "title": "Cảnh báo lãi suất",
+        "body": "Lãi suất cố định 30 năm vừa chạm mức mục tiêu 6.75% của bạn.",
+        "time": "Hôm qua"
+      }
+    }
+  },
+  "menu": {
+    "label": "Menu",
+    "open": "Mở menu"
+  },
+  "account": {
+    "label": "Tài khoản",
+    "logout": "Đăng xuất",
+    "verified": "Đã xác minh",
+    "myLoans": "Khoản vay của tôi",
+    "rateAlerts": "Cảnh báo lãi suất",
+    "settings": "Cài đặt tài khoản",
+    "notifications": "Thông báo",
+    "theme": "Giao diện",
+    "language": "Ngôn ngữ",
+    "signOut": "Đăng xuất",
+    "switchProfile": "Chuyển hồ sơ",
+    "collapse": "Thu gọn",
+    "roles": {
+      "loanOfficer": "Nhân viên tín dụng",
+      "borrower": "Người vay",
+      "realtor": "Môi giới bất động sản",
+      "accountExecutive": "Chuyên viên khách hàng"
+    }
+  },
+  "form": {
+    "select": "Chọn"
+  },
+  "validation": {
+    "usernameRequired": "Vui lòng nhập tên đăng nhập",
+    "passwordRequired": "Vui lòng nhập mật khẩu",
+    "userNameRequired": "Vui lòng nhập tên người dùng",
+    "userNameMax": "Tên người dùng tối đa 50 ký tự",
+    "emailRequired": "Vui lòng nhập email",
+    "emailInvalid": "Email không hợp lệ",
+    "passwordMin": "Mật khẩu phải có ít nhất 8 ký tự",
+    "passwordMax": "Mật khẩu tối đa 72 ký tự",
+    "confirmPasswordRequired": "Vui lòng nhập lại mật khẩu",
+    "passwordsNoMatch": "Mật khẩu nhập lại không khớp"
+  },
+  "notFound": {
+    "badge": "Lỗi 404",
+    "title": "Trang này đã đi lạc đường.",
+    "description": "Trang bạn đang tìm có thể đã được di chuyển, hoặc đường dẫn đã cũ. Các khoản vay và hồ sơ của bạn vẫn nằm nguyên ở chỗ cũ.",
+    "backToLoans": "Về khoản vay của tôi",
+    "getQuote": "Nhận báo giá",
+    "contactPrefix": "Cần hỗ trợ?",
+    "contactLink": "Liên hệ nhân viên tín dụng"
+  },
+  "aiAssistant": {
+    "title": "Trợ lý vay mua nhà AI",
+    "subtitle": "Hỏi bất cứ điều gì về khoản vay, lãi suất hoặc hồ sơ của bạn.",
+    "placeholderTitle": "Trợ lý đang khởi động",
+    "placeholderDescription": "Tính năng trò chuyện hướng dẫn xuyên suốt hồ sơ của bạn sẽ sớm có mặt tại đây."
+  },
+  "loanfactoryIq": {
+    "title": "LoanFactory IQ",
+    "subtitle": "Thông tin chuyên sâu và dữ liệu thị trường được cá nhân hoá cho khoản vay của bạn.",
+    "placeholderTitle": "Thông tin sắp ra mắt",
+    "placeholderDescription": "Dữ liệu thị trường cá nhân hoá và cơ hội tiết kiệm sẽ hiển thị tại đây."
+  },
+  "toast": {
+    "loginSuccess": "Đăng nhập thành công",
+    "accountCreated": "Đã tạo tài khoản",
+    "somethingWentWrong": "Đã có lỗi xảy ra",
+    "requestFailed": "Yêu cầu thất bại"
+  }
+}

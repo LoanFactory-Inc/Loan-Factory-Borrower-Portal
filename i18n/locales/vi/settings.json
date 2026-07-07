@@ -1,0 +1,83 @@
+{
+  "sidebarLabel": "Cài đặt",
+  "page": {
+    "title": "Cài đặt tài khoản",
+    "subtitle": "Quản lý hồ sơ, bảo mật và cách chúng tôi cập nhật cho bạn."
+  },
+  "nav": {
+    "profile": "Hồ sơ",
+    "security": "Bảo mật",
+    "notifications": "Thông báo",
+    "preferences": "Tùy chọn"
+  },
+  "meta": {
+    "profile": {
+      "title": "Hồ sơ",
+      "subtitle": "Thông tin cá nhân của bạn, dùng cho hồ sơ vay."
+    },
+    "security": {
+      "title": "Bảo mật",
+      "subtitle": "Bảo vệ tài khoản và dữ liệu khoản vay của bạn."
+    },
+    "notifications": {
+      "title": "Thông báo",
+      "subtitle": "Chọn nội dung chúng tôi gửi email và tin nhắn cho bạn."
+    },
+    "preferences": {
+      "title": "Tùy chọn",
+      "subtitle": "Ngôn ngữ, khu vực và định dạng."
+    }
+  },
+  "profile": {
+    "uploadPhoto": "Tải ảnh lên",
+    "remove": "Xóa",
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "email": "Email",
+    "phone": "Điện thoại",
+    "mailingAddress": "Địa chỉ nhận thư",
+    "cancel": "Hủy",
+    "save": "Lưu thay đổi"
+  },
+  "security": {
+    "passwordTitle": "Mật khẩu",
+    "passwordDesc": "Thay đổi lần cuối 3 tháng trước",
+    "changePassword": "Đổi mật khẩu",
+    "twoFaTitle": "Xác thực hai yếu tố",
+    "twoFaDesc": "Yêu cầu mã từ điện thoại của bạn khi đăng nhập.",
+    "sessionsTitle": "Phiên đang hoạt động",
+    "sessionsDesc": "2 thiết bị · MacBook Pro (thiết bị này), iPhone 15",
+    "signOutOthers": "Đăng xuất thiết bị khác"
+  },
+  "notifications": {
+    "loanUpdates": {
+      "label": "Cập nhật trạng thái khoản vay",
+      "desc": "Các mốc như nhận hồ sơ, đang xét duyệt và sẵn sàng đóng."
+    },
+    "docRequests": {
+      "label": "Yêu cầu tài liệu",
+      "desc": "Khi chuyên viên tín dụng cần tài liệu mới từ bạn."
+    },
+    "esign": {
+      "label": "Yêu cầu ký điện tử",
+      "desc": "Khi có tài liệu hoặc công bố cần bạn ký."
+    },
+    "rateAlerts": {
+      "label": "Cảnh báo lãi suất",
+      "desc": "Thông báo khi lãi suất đạt mục tiêu trên cảnh báo đã lưu."
+    },
+    "marketing": {
+      "label": "Tin tức & ưu đãi sản phẩm",
+      "desc": "Thỉnh thoảng cập nhật về các tính năng mới của Loan Factory."
+    }
+  },
+  "preferences": {
+    "language": "Ngôn ngữ",
+    "timeZone": "Múi giờ",
+    "currency": "Tiền tệ",
+    "dateFormat": "Định dạng ngày",
+    "closeTitle": "Đóng tài khoản",
+    "closeDesc": "Xóa vĩnh viễn tài khoản và dữ liệu cá nhân của bạn. Mọi khoản vay đang hoạt động phải được đóng trước. Không thể hoàn tác.",
+    "closeAccount": "Đóng tài khoản"
+  }
+}

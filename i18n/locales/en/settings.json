@@ -1,0 +1,83 @@
+{
+  "sidebarLabel": "Settings",
+  "page": {
+    "title": "Account settings",
+    "subtitle": "Manage your profile, security, and how we keep you updated."
+  },
+  "nav": {
+    "profile": "Profile",
+    "security": "Security",
+    "notifications": "Notifications",
+    "preferences": "Preferences"
+  },
+  "meta": {
+    "profile": {
+      "title": "Profile",
+      "subtitle": "Your personal details, used on your loan application."
+    },
+    "security": {
+      "title": "Security",
+      "subtitle": "Keep your account and loan data protected."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Choose what we email and text you about."
+    },
+    "preferences": {
+      "title": "Preferences",
+      "subtitle": "Language, region, and formatting."
+    }
+  },
+  "profile": {
+    "uploadPhoto": "Upload photo",
+    "remove": "Remove",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "mailingAddress": "Mailing address",
+    "cancel": "Cancel",
+    "save": "Save changes"
+  },
+  "security": {
+    "passwordTitle": "Password",
+    "passwordDesc": "Last changed 3 months ago",
+    "changePassword": "Change password",
+    "twoFaTitle": "Two-factor authentication",
+    "twoFaDesc": "Require a code from your phone when signing in.",
+    "sessionsTitle": "Active sessions",
+    "sessionsDesc": "2 devices · MacBook Pro (this device), iPhone 15",
+    "signOutOthers": "Sign out others"
+  },
+  "notifications": {
+    "loanUpdates": {
+      "label": "Loan status updates",
+      "desc": "Milestones like application received, in review, and clear to close."
+    },
+    "docRequests": {
+      "label": "Document requests",
+      "desc": "When your loan officer needs a new document from you."
+    },
+    "esign": {
+      "label": "E-signature requests",
+      "desc": "When a disclosure or document is ready for your signature."
+    },
+    "rateAlerts": {
+      "label": "Rate alerts",
+      "desc": "Notify me when rates hit the target on my saved alerts."
+    },
+    "marketing": {
+      "label": "Product news & offers",
+      "desc": "Occasional updates about new Loan Factory features."
+    }
+  },
+  "preferences": {
+    "language": "Language",
+    "timeZone": "Time zone",
+    "currency": "Currency",
+    "dateFormat": "Date format",
+    "closeTitle": "Close account",
+    "closeDesc": "Permanently delete your account and personal data. Any active loan must be closed first. This cannot be undone.",
+    "closeAccount": "Close account"
+  }
+}

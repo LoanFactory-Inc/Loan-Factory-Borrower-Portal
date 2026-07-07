@@ -1,0 +1,230 @@
+/* Tailwind Core */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/**
+ * Colors — Loan Factory brand palette.
+ * Tokens are mapped from the shared `Colors` design-system palette
+ * (primary #F37026 orange). See @theme inline below for exposure to utilities.
+ */
+:root {
+  --background: #ffffff; /* Colors.screenBackgroundColorV2 */
+  --foreground: #202325; /* Colors.inkDarker */
+  --card: #ffffff;
+  --card-foreground: #202325;
+  --popover: #ffffff;
+  --popover-foreground: #202325;
+  --primary: #f37026; /* Colors.primaryColor */
+  --primary-foreground: #ffffff;
+  --secondary: #f2f4f5; /* Colors.skyLighter */
+  --secondary-foreground: #202325;
+  --muted: #f7f9fa; /* Colors.skyLightest */
+  --muted-foreground: #72777a; /* Colors.inkLighter */
+  --accent: #feedd3; /* Colors.primaryLightestColor */
+  --accent-foreground: #d0511b; /* Colors.primaryDarkColor */
+  --destructive: #ff5247; /* Colors.redBase */
+  --destructive-foreground: #ffffff;
+  --success: #23c16b; /* Colors.greenBase */
+  --success-foreground: #ffffff;
+  --chart-1: #f37026;
+  --chart-2: #23c16b;
+  --chart-3: #faad14;
+  --chart-4: #ff5247;
+  --chart-5: #48a7fb;
+  --border: #e8e9f1; /* Colors.neutralLight */
+  --input: #e3e5e5; /* Colors.skyLight */
+  --ring: #f37026;
+  --radius: 0.625rem;
+  --sidebar-width: 270px;
+  --header-height: 60px;
+  --page: #f2f4f5; /* Colors.screenBackgroundColor */
+
+  /* Sidebar tokens (consumed by components/ui/sidebar.tsx) */
+  --sidebar: var(--page);
+  --sidebar-foreground: #202325;
+  --sidebar-primary: #f37026;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #feedd3;
+  --sidebar-accent-foreground: #d0511b;
+  --sidebar-border: #e8e9f1;
+  --sidebar-ring: #f37026;
+}
+
+.dark {
+  --background: #202325; /* Colors.inkDarker */
+  --foreground: #f2f4f5; /* Colors.skyLighter */
+  --card: #1a1c1e;
+  --card-foreground: #f2f4f5;
+  --popover: #1a1c1e;
+  --popover-foreground: #f2f4f5;
+  --primary: #f37026;
+  --primary-foreground: #ffffff;
+  --secondary: #303437; /* Colors.inkDark */
+  --secondary-foreground: #f2f4f5;
+  --muted: #303437;
+  --muted-foreground: #979c9e; /* Colors.skyDark */
+  --accent: #3a2a1c;
+  --accent-foreground: #fbb97c; /* Colors.primaryLighter */
+  --destructive: #ff5247;
+  --destructive-foreground: #ffffff;
+  --success: #23c16b;
+  --success-foreground: #ffffff;
+  --chart-1: #f37026;
+  --chart-2: #23c16b;
+  --chart-3: #faad14;
+  --chart-4: #ff5247;
+  --chart-5: #48a7fb;
+  --border: #303437;
+  --input: #404446; /* Colors.inkBase */
+  --ring: #f37026;
+  --page: #090a0a;
+
+  /* Sidebar tokens (dark) */
+  --sidebar: var(--page);
+  --sidebar-foreground: #f2f4f5;
+  --sidebar-primary: #f37026;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #3a2a1c;
+  --sidebar-accent-foreground: #fbb97c;
+  --sidebar-border: #303437;
+  --sidebar-ring: #f37026;
+}
+
+/** Theme Setup **/
+@theme inline {
+  /** Base Colors **/
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+
+  --color-mono: var(--mono);
+  --color-mono-foreground: var(--mono-foreground);
+
+  /** Base Styles **/
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-page: var(--page);
+
+  /** Sidebar **/
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /** Charts **/
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /** Fonts **/
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+
+  /** Radius **/
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
+  --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
+  @keyframes shimmer-slide {
+  to {
+    transform: translate(calc(100cqw - 100%), 0);
+    }
+  }
+  @keyframes spin-around {
+  0% {
+    transform: translateZ(0) rotate(0);
+    }
+  15%, 35% {
+    transform: translateZ(0) rotate(90deg);
+    }
+  65%, 85% {
+    transform: translateZ(0) rotate(270deg);
+    }
+  100% {
+    transform: translateZ(0) rotate(360deg);
+    }
+  }
+}
+
+/** Custom Font Size **/
+@theme {
+  --text-2sm: 0.8125rem;
+  --text-2sm--line-height: calc(1.075 / 0.8125);
+
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: calc(0.825 / 0.6875);
+}
+
+/** Global Styles **/
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  *:focus-visible {
+    @apply outline-ring rounded-xs shadow-none outline-2 outline-offset-3 transition-none!;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+}
+
+/** Dark/Light Theme Variant **/
+@custom-variant dark (&:is(.dark *));
+@custom-variant light (&:not(.dark *));
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/** Login brand-panel decor **/
+@keyframes lffloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}

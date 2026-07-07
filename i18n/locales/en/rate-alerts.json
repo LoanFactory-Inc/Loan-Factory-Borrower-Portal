@@ -1,0 +1,59 @@
+{
+  "page": {
+    "title": "My rate alerts",
+    "subtitle": "We’ll email or text you the moment rates hit your target.",
+    "createAlert": "Create alert"
+  },
+  "ticker": {
+    "heading": "Today’s average rates",
+    "updated": "Updated 9:00 AM PT"
+  },
+  "marketRates": {
+    "fixed30": "30-yr fixed",
+    "fixed15": "15-yr fixed",
+    "fha30": "FHA 30-yr",
+    "va30": "VA 30-yr"
+  },
+  "list": {
+    "heading": "Your alerts",
+    "sortedBy": "Sorted by closest to target"
+  },
+  "empty": {
+    "title": "No rate alerts yet",
+    "description": "Set a target rate and we’ll let you know the moment the market moves your way."
+  },
+  "card": {
+    "readyToLock": "Ready to lock",
+    "toGo": "{{diff}}% to go",
+    "targetMet": "Target met",
+    "target": "Target",
+    "now": "Now",
+    "alertsVia": "Alerts via",
+    "editAlert": "Edit alert",
+    "deleteAlert": "Delete alert"
+  },
+  "channels": {
+    "email": "Email",
+    "sms": "SMS",
+    "push": "Push"
+  },
+  "dialog": {
+    "title": "Create a rate alert",
+    "description": "Tell us your target and how to reach you.",
+    "close": "Close",
+    "loanType": "Loan type",
+    "loanPurpose": "Loan purpose",
+    "targetRate": "Target rate",
+    "targetRatePlaceholder": "6.000",
+    "loanAmount": "Loan amount",
+    "loanAmountOptional": "(optional)",
+    "loanAmountPlaceholder": "400,000",
+    "notifyMeBy": "Notify me by",
+    "cancel": "Cancel",
+    "submit": "Create alert"
+  },
+  "purpose": {
+    "purchase": "Purchase",
+    "refinance": "Refinance"
+  }
+}

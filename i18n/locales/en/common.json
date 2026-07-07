@@ -1,0 +1,141 @@
+{
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "vi": "Tiếng Việt"
+  },
+  "footer": {
+    "tagline": "Modern mortgage lending — guided by people, accelerated by AI. From first hello to funded.",
+    "product": "Product",
+    "company": "Company",
+    "legal": "Legal",
+    "links": {
+      "myLoans": "My loans",
+      "rateAlerts": "Rate alerts",
+      "aiAssistant": "AI mortgage assistant",
+      "loanfactoryIq": "LoanFactory IQ",
+      "about": "About us",
+      "testimonials": "Testimonials",
+      "careers": "Careers",
+      "contact": "Contact",
+      "help": "Help center",
+      "privacy": "Privacy policy",
+      "terms": "Terms of use",
+      "licenses": "Licenses",
+      "accessibility": "Accessibility"
+    },
+    "equalHousing": "Equal Housing Lender",
+    "nmls": "NMLS #339934",
+    "copyright": "© {{year}} Loan Factory, Inc. All rights reserved.",
+    "disclaimer": "Loan Factory, Inc. is licensed to do business in multiple states. This is not a commitment to lend. All loans are subject to credit approval, underwriting, and property appraisal. Rates and terms are subject to change without notice."
+  },
+  "nav": {
+    "myLoans": "My loans",
+    "getQuote": "Get a quote",
+    "rateAlerts": "My rate alerts",
+    "aiAssistant": "AI mortgage assistant",
+    "loanfactoryIq": "LoanFactory IQ"
+  },
+  "actions": {
+    "goBack": "Go back",
+    "backToHome": "Back to home"
+  },
+  "notifications": {
+    "label": "Notifications",
+    "title": "Notifications",
+    "markAll": "Mark all read",
+    "viewAll": "View all notifications",
+    "empty": {
+      "title": "You're all caught up",
+      "subtitle": "No new notifications right now."
+    },
+    "items": {
+      "document": {
+        "title": "Document requested",
+        "body": "Your loan officer needs your latest bank statements.",
+        "time": "2m ago"
+      },
+      "review": {
+        "title": "Application in review",
+        "body": "Refinance · Cash-out is now being reviewed by your loan officer.",
+        "time": "1h ago"
+      },
+      "signature": {
+        "title": "Signature requested",
+        "body": "Your initial disclosures are ready to review and sign.",
+        "time": "3h ago"
+      },
+      "rate": {
+        "title": "Rate alert",
+        "body": "30-year fixed just hit your 6.75% target rate.",
+        "time": "Yesterday"
+      }
+    }
+  },
+  "menu": {
+    "label": "Menu",
+    "open": "Open menu"
+  },
+  "account": {
+    "label": "Account",
+    "logout": "Log out",
+    "verified": "Verified",
+    "myLoans": "My loans",
+    "rateAlerts": "Rate alerts",
+    "settings": "Account settings",
+    "notifications": "Notifications",
+    "theme": "Theme",
+    "language": "Language",
+    "signOut": "Sign out",
+    "switchProfile": "Switch profile",
+    "collapse": "Collapse",
+    "roles": {
+      "loanOfficer": "Loan Officer",
+      "borrower": "Borrower",
+      "realtor": "Realtor",
+      "accountExecutive": "Account Executive"
+    }
+  },
+  "form": {
+    "select": "Select"
+  },
+  "validation": {
+    "usernameRequired": "Username is required",
+    "passwordRequired": "Password is required",
+    "userNameRequired": "User name is required",
+    "userNameMax": "User name must be at most 50 characters",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email address",
+    "passwordMin": "Password must be at least 8 characters",
+    "passwordMax": "Password must be at most 72 characters",
+    "confirmPasswordRequired": "Confirm password is required",
+    "passwordsNoMatch": "Passwords do not match"
+  },
+  "notFound": {
+    "badge": "Error 404",
+    "title": "This page took a wrong turn.",
+    "description": "The page you're looking for may have moved, or the link is out of date. Your loans and documents are still right where you left them.",
+    "backToLoans": "Back to my loans",
+    "getQuote": "Get a quote",
+    "contactPrefix": "Need a hand?",
+    "contactLink": "Contact your loan officer"
+  },
+  "aiAssistant": {
+    "title": "AI mortgage assistant",
+    "subtitle": "Ask anything about your loan, rates, or documents.",
+    "placeholderTitle": "Your assistant is warming up",
+    "placeholderDescription": "Chat-based guidance across your application is coming soon to this workspace."
+  },
+  "loanfactoryIq": {
+    "title": "LoanFactory IQ",
+    "subtitle": "Insights and market intelligence tailored to your loan.",
+    "placeholderTitle": "Insights on the way",
+    "placeholderDescription": "Personalized market intelligence and savings opportunities will appear here."
+  },
+  "toast": {
+    "loginSuccess": "Login success",
+    "accountCreated": "Account created",
+    "somethingWentWrong": "Something went wrong",
+    "requestFailed": "Request failed"
+  }
+}

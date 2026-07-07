@@ -1,0 +1,147 @@
+"use client";
+
+import * as React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { MenuIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
+
+import { LoanFactoryWordmark } from "@/components/loan-factory-wordmark";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { ProfileMenu } from "./profile-menu";
+import { NotificationMenu } from "./notification-menu";
+import { cn } from "@/lib/helpers";
+import { useAppSelector } from "@/store/hooks";
+
+type NavItem = { labelKey: string; href: string };
+
+const BASE_NAV_ITEMS: NavItem[] = [
+  { labelKey: "nav.myLoans", href: "/my-loans" },
+  { labelKey: "nav.rateAlerts", href: "/rate-alerts" },
+  { labelKey: "nav.aiAssistant", href: "/ai-assistant" },
+];
+
+function isActive(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+export function ApplicationHeader() {
+  const pathname = usePathname();
+  const { t } = useTranslation("common");
+  const hasApplication = useAppSelector((state) => state.application.applications.length > 0);
+  const [scrolled, setScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    // Scrolling can happen either on the window (pages that grow past the
+    // viewport) or inside an inner `overflow-y-auto` container (the portal
+    // shells). `scroll` doesn't bubble, so we listen in the capture phase to
+    // catch it from any element and read the offset from whatever scrolled.
+    const onScroll = (e: Event) => {
+      const target = e.target;
+      const top =
+        target instanceof HTMLElement ? target.scrollTop : window.scrollY;
+      setScrolled(top > 8);
+    };
+    onScroll(new Event("scroll"));
+    window.addEventListener("scroll", onScroll, { passive: true, capture: true });
+    return () =>
+      window.removeEventListener("scroll", onScroll, { capture: true });
+  }, []);
+
+  // "My loans" sends borrowers without an application to create one first.
+  const hrefFor = (href: string) =>
+    href === "/my-loans" && !hasApplication ? "/get-started" : href;
+
+  // The fourth nav slot swaps between "Get a quote" (before there's a loan) and
+  // "LoanFactory IQ" (once the borrower has an application), matching the design.
+  const navItems: NavItem[] = [
+    ...BASE_NAV_ITEMS,
+    hasApplication
+      ? { labelKey: "nav.loanfactoryIq", href: "/loanfactory-iq" }
+      : { labelKey: "nav.getQuote", href: "/quote" },
+  ];
+
+  return (
+    <header
+      className={cn(
+        "sticky top-0 z-50 shrink-0 transition-colors duration-300",
+        scrolled
+          ? "border-b border-border/50 bg-card/70 shadow-sm backdrop-blur-lg backdrop-saturate-150 supports-backdrop-filter:bg-card/45"
+          : "border-b border-transparent bg-card",
+      )}
+    >
+      <div className="mx-auto flex h-16 max-w-295 items-center gap-3 px-4 sm:gap-5 sm:px-7">
+        {/* Mobile nav */}
+        <Sheet>
+          <SheetTrigger
+            aria-label={t("menu.open")}
+            className="flex size-9 shrink-0 items-center justify-center rounded-full text-muted-foreground outline-none transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-accent md:hidden"
+          >
+            <MenuIcon className="size-5" strokeWidth={1.9} />
+          </SheetTrigger>
+          <SheetContent side="left" className="w-72 p-0">
+            <SheetTitle className="sr-only">{t("menu.label")}</SheetTitle>
+            <div className="flex h-16 items-center border-b px-5">
+              <LoanFactoryWordmark className="h-6" />
+            </div>
+            <nav className="flex flex-col gap-0.5 p-3">
+              {navItems.map((item) => {
+                const active = isActive(pathname, item.href);
+                return (
+                  <SheetClose asChild key={item.href}>
+                    <Link
+                      href={hrefFor(item.href)}
+                      className={cn(
+                        "rounded-lg px-3.5 py-3 text-sm font-semibold transition-colors",
+                        active
+                          ? "bg-accent/50 text-foreground"
+                          : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                      )}
+                    >
+                      {t(item.labelKey)}
+                    </Link>
+                  </SheetClose>
+                );
+              })}
+            </nav>
+          </SheetContent>
+        </Sheet>
+
+        <Link href={hrefFor("/my-loans")} className="shrink-0">
+          <LoanFactoryWordmark className="h-6" />
+        </Link>
+
+        {/* Desktop nav */}
+        <nav className="ml-3 hidden items-center gap-6 md:flex">
+          {navItems.map((item) => {
+            const active = isActive(pathname, item.href);
+            return (
+              <Link
+                key={item.href}
+                href={hrefFor(item.href)}
+                className={cn(
+                  "text-sm font-semibold whitespace-nowrap",
+                  active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+                )}
+              >
+                {t(item.labelKey)}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="ml-auto flex items-center gap-1 sm:gap-2">
+          <NotificationMenu />
+          <span aria-hidden className="mx-1 h-5.5 w-px bg-border" />
+          <ProfileMenu />
+        </div>
+      </div>
+    </header>
+  );
+}

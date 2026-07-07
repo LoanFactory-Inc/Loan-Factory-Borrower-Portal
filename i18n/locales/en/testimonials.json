@@ -1,0 +1,37 @@
+{
+  "badge": "Testimonials",
+  "hero": {
+    "eyebrow": "We dare you to compare",
+    "title": "See what our satisfied customers rated us",
+    "subtitle": "Real stories from real borrowers who trusted Loan Factory with the biggest purchase of their lives.",
+    "reviewsBadge": "{{count}}+ five-star reviews",
+    "ratingLabel": "on Google Reviews",
+    "quoteCta": "Get a rate quote",
+    "appCta": "Download the app"
+  },
+  "customers": {
+    "title": "What our customers say",
+    "subtitle": "The most recent reviews, straight from Google."
+  },
+  "proof": {
+    "title": "More proof from Google reviews",
+    "subtitle": "Averaged across every verified review we've received.",
+    "reviewsCount": "{{count}} Google Reviews",
+    "outOf": "out of 5"
+  },
+  "review": {
+    "more": "More",
+    "less": "Less",
+    "verified": "Verified review"
+  },
+  "loadMore": "Show more reviews",
+  "stars": {
+    "aria": "{{count}} out of 5 stars"
+  },
+  "feedback": {
+    "title": "Submit feedback",
+    "description": "Please share your thoughts through our feedback form.",
+    "cta": "Open feedback form",
+    "phone": "If you need immediate assistance, please call us at {{phone}}."
+  }
+}

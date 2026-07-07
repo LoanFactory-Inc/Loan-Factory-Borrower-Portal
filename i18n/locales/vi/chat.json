@@ -1,0 +1,26 @@
+{
+  "name": "Jordan Miles",
+  "status": "Chuyên viên tín dụng của bạn ·",
+  "online": "Trực tuyến",
+  "today": "Hôm nay",
+  "placeholder": "Nhập tin nhắn…",
+  "greeting1": "Chào bạn! Tôi là Jordan, chuyên viên tín dụng của bạn. Tôi sẽ hỗ trợ bạn suốt quá trình làm hồ sơ — cứ nhắn ở đây bất cứ lúc nào nhé.",
+  "greeting2": "Tôi thấy bạn đã bắt đầu phần tài sản. Bạn có câu hỏi nào khi chuẩn bị sao kê không?",
+  "quick": {
+    "documents": "Tôi cần những giấy tờ gì?",
+    "time": "Việc này mất bao lâu?",
+    "rates": "Mình trao đổi về lãi suất được không?"
+  },
+  "replies": {
+    "documents": "Câu hỏi hay — hai tháng sao kê cho mỗi tài khoản, đầy đủ tất cả các trang. Bạn có thể tải lên ngay ở tab Tài liệu.",
+    "rates": "Rất sẵn lòng trao đổi về lãi suất. Khi hồ sơ hoàn tất, tôi có thể lấy các phương án thực tế và cùng bạn chọn thời điểm khóa lãi suất.",
+    "time": "Hầu hết hồ sơ mất khoảng 10–15 phút. Sau khi bạn gửi, tôi thường xem xét trong vòng một ngày làm việc.",
+    "default": "Cảm ơn bạn — tôi đã ghi nhận. Tôi sẽ phản hồi sớm. Trong lúc đó tôi có thể giúp gì thêm không?"
+  },
+  "openLabel": "Mở trò chuyện với chuyên viên tín dụng",
+  "closeLabel": "Đóng trò chuyện",
+  "composeLabel": "Soạn tin nhắn mới",
+  "attachLabel": "Đính kèm tệp",
+  "sendLabel": "Gửi tin nhắn",
+  "dismissLabel": "Bỏ qua"
+}

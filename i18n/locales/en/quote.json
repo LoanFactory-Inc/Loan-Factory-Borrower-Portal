@@ -1,0 +1,104 @@
+{
+  "page": {
+    "title": "See today’s mortgage rates",
+    "subtitle": "Answer a few questions and we’ll shop 232 lenders for your best rate — no impact to your credit."
+  },
+  "panel": {
+    "badge": "Best price guarantee",
+    "amount": "$2,000",
+    "description": "If we can’t beat another lender’s offer, we’ll send you a check for $2,000. That’s how confident we are.",
+    "terms": "Terms & conditions",
+    "lendersTitle": "232 lenders searched",
+    "lendersSubtitle": "One form, the whole market",
+    "creditTitle": "No impact to credit",
+    "creditSubtitle": "Soft check only",
+    "timeTitle": "Under 2 minutes",
+    "timeSubtitle": "Rates in real time"
+  },
+  "docMode": {
+    "full": "Full doc",
+    "noIncome": "No income doc"
+  },
+  "form": {
+    "heading": "Mortgage rate quote",
+    "loanAmount": "Loan amount",
+    "propertyValue": "Property value",
+    "downPayment": "Down payment: {{pct}}",
+    "loanPurpose": "Loan purpose",
+    "zip": "ZIP code",
+    "invalidZip": "Enter a valid ZIP",
+    "occupancy": "Occupancy",
+    "loanType": "Loan type",
+    "fico": "FICO credit score",
+    "submit": "Get my quote",
+    "searchNote": "We search rates among <b>232 lenders</b>",
+    "disclosure": "Mortgage disclosure"
+  },
+  "results": {
+    "heading": "Your personalized rates",
+    "refine": "Refine",
+    "best": "Best match",
+    "rate": "Rate",
+    "apr": "APR",
+    "payment": "Est. / month",
+    "continue": "Continue with this rate",
+    "disclaimer": "Rates are estimates based on the details you entered and today’s market. Your actual rate depends on a full application and verification.",
+    "seeDisclosure": "See disclosure"
+  },
+  "result": {
+    "yourSearch": "Your search",
+    "editSearch": "Edit search",
+    "summary": {
+      "down": "{{pct}} down",
+      "fico": "{{score}} FICO",
+      "fullDoc": "Full doc",
+      "noDoc": "No income doc"
+    },
+    "searching": "Searching {{count}} lenders…",
+    "comparing": "Comparing today’s rates for your scenario",
+    "offerCount": "{{count}} offers",
+    "fromLenders": "from {{count}} lenders",
+    "termLabel": "Term",
+    "sortLabel": "Sort",
+    "term": {
+      "all": "All",
+      "y30": "30-yr",
+      "y20": "20-yr",
+      "y15": "15-yr"
+    },
+    "sort": {
+      "rate": "Lowest rate",
+      "payment": "Lowest payment",
+      "apr": "Lowest APR"
+    },
+    "badge": {
+      "rate": "Lowest rate",
+      "payment": "Lowest payment",
+      "apr": "Lowest APR"
+    },
+    "products": {
+      "fixed30": { "label": "30-year fixed", "term": "Fixed for 30 years" },
+      "fixed20": { "label": "20-year fixed", "term": "Fixed for 20 years" },
+      "fixed15": { "label": "15-year fixed", "term": "Fixed for 15 years" },
+      "arm56": { "label": "5/6 ARM", "term": "Fixed 5 yrs, then adjusts" },
+      "arm71": { "label": "7/6 ARM", "term": "Fixed 7 yrs, then adjusts" }
+    },
+    "interestRate": "Interest rate",
+    "estMonthly": "Est. monthly",
+    "apr": "APR",
+    "rate": "Rate",
+    "perMonth": "/ month",
+    "fees": "Fees",
+    "none": "None",
+    "select": "Select",
+    "lockRate": "Lock this rate",
+    "points": "{{points}} pts",
+    "zeroPoints": "0 pts",
+    "noLenderFees": "No lender fees",
+    "lenderFees": "{{amount}} in lender fees",
+    "bestPriceEligible": "Best price guarantee eligible",
+    "empty": "No offers match this term. Try a different term filter.",
+    "disclaimer": "Rates shown are estimates generated from the details you entered and today’s market data across our lender network. They are not a commitment to lend. Your final rate, APR, and payment depend on a complete application, credit verification, and property appraisal.",
+    "fullDisclosure": "Full mortgage disclosure"
+  }
+}

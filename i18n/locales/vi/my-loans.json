@@ -1,0 +1,110 @@
+{
+  "page": {
+    "title": "Khoản vay của tôi",
+    "subtitle": "Theo dõi trạng thái, bước tiếp theo và tài liệu tại một nơi."
+  },
+  "filter": {
+    "active": "Khoản vay hiện tại",
+    "closed": "Đã đóng",
+    "all": "Tất cả",
+    "closedEmptyTitle": "Chưa có khoản vay nào đã đóng",
+    "closedEmptyDesc": "Khi một khoản vay được giải ngân và đóng, bạn sẽ thấy ở đây."
+  },
+  "card": {
+    "new": "Mới",
+    "edit": "Chỉnh sửa",
+    "inReview": "Đang xét duyệt",
+    "inProgress": "Đang thực hiện",
+    "purposeBuy": "Mua nhà",
+    "purposeRefi": "Tái cấp vốn",
+    "loanNumber": "Khoản vay #{{id}}",
+    "applicationComplete": "Hồ sơ đã hoàn tất",
+    "applicationCompleteDesc": "Chuyên viên tư vấn đang xem xét hồ sơ và sẽ liên hệ về các bước tiếp theo."
+  },
+  "stepper": {
+    "currentStep": "Bước hiện tại",
+    "stepOf": "Bước {{current}} / {{total}}",
+    "next": "Tiếp theo: chuyên viên tư vấn sẽ liên hệ với bạn",
+    "steps": {
+      "submitted": "Đã nộp",
+      "inReview": "Đang xét duyệt",
+      "processing": "Đang xử lý",
+      "underwriting": "Thẩm định",
+      "clearToClose": "Sẵn sàng hoàn tất"
+    }
+  },
+  "summary": {
+    "loanAmount": {
+      "label": "Số tiền vay",
+      "hint": "Số tiền bạn đang vay"
+    },
+    "interestRate": {
+      "label": "Lãi suất",
+      "hint": "Đã khóa — sẽ không đổi"
+    },
+    "payment": {
+      "label": "Trả hàng tháng",
+      "hint": "Đã gồm thuế & bảo hiểm"
+    },
+    "rateType": {
+      "label": "Loại lãi suất",
+      "value": "Cố định trong 30 năm",
+      "hint": "Khoản trả không thay đổi"
+    },
+    "financing": {
+      "label": "Mức tài trợ",
+      "value": "68% giá trị nhà",
+      "hint": "Bạn giữ 32% là vốn sở hữu"
+    },
+    "closing": {
+      "label": "Dự kiến hoàn tất",
+      "hint": "Còn khoảng 6 tuần nữa"
+    }
+  },
+  "loanOfficer": {
+    "label": "Chuyên viên tư vấn của bạn",
+    "message": "Nhắn tin"
+  },
+  "documents": {
+    "title": "Tài liệu cần thiết",
+    "description": "Hãy tải lên những gì bạn có bây giờ để chuyên viên tư vấn tiếp tục xử lý — bạn luôn có thể bổ sung phần còn lại sau.",
+    "uploadedCount": "Đã tải lên {{uploaded}}/{{total}}",
+    "tabs": {
+      "outstanding": "Còn thiếu ({{count}})",
+      "completed": "Đã hoàn tất ({{count}})"
+    },
+    "requested": "Đã yêu cầu {{time}}",
+    "remove": "Xóa",
+    "upload": "Tải lên",
+    "complete": "Hoàn tất",
+    "addFile": "Thêm tệp",
+    "empty": {
+      "caughtUpTitle": "Bạn đã hoàn tất mọi thứ",
+      "caughtUpDesc": "Mọi tài liệu được yêu cầu đều đã được tải lên.",
+      "emptyTitle": "Chưa tải lên tài liệu nào",
+      "emptyDesc": "Các tài liệu bạn tải lên sẽ hiển thị tại đây."
+    }
+  },
+  "docNames": {
+    "bankStatements": "Sao kê ngân hàng 2 tháng gần nhất",
+    "taxForms": "Mẫu W-2 hoặc 1099 (2 năm gần nhất)",
+    "payStubs": "Phiếu lương gần đây (30 ngày gần nhất)",
+    "govId": "Giấy tờ tùy thân do cơ quan nhà nước cấp",
+    "insurance": "Giấy chứng nhận bảo hiểm nhà ở",
+    "mortgageStatement": "Sao kê khoản vay thế chấp hiện tại",
+    "propertyTax": "Hóa đơn thuế bất động sản",
+    "borrowerAuth": "Giấy ủy quyền của người vay đã ký"
+  },
+  "messages": {
+    "title": "Tin nhắn",
+    "subtitle": "Trao đổi với chuyên viên tư vấn về hồ sơ này.",
+    "placeholderTitle": "Chưa có tin nhắn nào",
+    "placeholderDescription": "Các câu hỏi và cập nhật từ chuyên viên tư vấn sẽ hiển thị trong luồng trò chuyện này."
+  },
+  "docsPage": {
+    "title": "Tài liệu",
+    "subtitle": "Mọi tài liệu bạn đã tải lên và những gì còn thiếu.",
+    "placeholderTitle": "Trung tâm tài liệu của bạn",
+    "placeholderDescription": "Các tệp đã tải lên và yêu cầu từ chuyên viên tư vấn sẽ được quản lý tại đây."
+  }
+}
