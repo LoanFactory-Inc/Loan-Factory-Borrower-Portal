@@ -389,6 +389,12 @@ function ApplicationForm() {
   const coveredMonths = totalHistoryMonths(activeEmployments.items);
   const historyCovered = coveredMonths >= REQUIRED_HISTORY_MONTHS;
   const coveragePct = Math.min(100, Math.round((coveredMonths / REQUIRED_HISTORY_MONTHS) * 100));
+  // "Add a previous job" only appears once the current job has a start date and
+  // that span alone falls short of 2 years — while it's blank, or already spans
+  // 2+ years on its own, no earlier jobs are prompted.
+  const currentJob = activeEmployments.items.find((e) => e.current) ?? activeEmployments.items[0];
+  const currentJobStarted = currentJob ? monthIndex(currentJob.startDate) !== null : false;
+  const showAddPreviousJob = currentJobStarted && jobMonths(currentJob) < REQUIRED_HISTORY_MONTHS;
 
   // ── List-screen validation ────────────────────────────────────
   // Employment / assets / liabilities hold arrays of rows, so they can't ride
@@ -582,7 +588,7 @@ function ApplicationForm() {
 
       <div className="flex flex-1 flex-col overflow-y-auto">
         <div className="mx-auto grid w-full max-w-295 grid-cols-1 items-start gap-8 px-4 sm:px-7 pt-9 pb-24 lg:grid-cols-[296px_1fr]">
-          <div className="hidden lg:block">
+          <div className="hidden lg:block lg:sticky lg:top-9 lg:self-start">
             <ProgressRail
               steps={railSteps}
               pct={pct}
@@ -973,7 +979,7 @@ function ApplicationForm() {
                 subtitle={isCo ? t("employment.subtitleCo") : t("employment.subtitlePrimary")}
               >
                 {/* Work-history coverage — one job or several, toward 2 years. */}
-                <div className="mb-5 max-w-xl rounded-xl border bg-card p-5">
+                <div className="mb-5 w-full rounded-xl border bg-card p-5">
                   <div className="flex items-center gap-3">
                     <span className="flex size-9 shrink-0 items-center justify-center rounded-[9px] bg-accent">
                       <BriefcaseIcon className="size-4.5 text-accent-foreground" strokeWidth={1.7} />
@@ -1188,9 +1194,9 @@ function ApplicationForm() {
                       </div>
                     </div>
                   ))}
-                  {/* Coverage is tracked in the card at the top; keep prompting
-                      for previous jobs until the 2-year bar is filled. */}
-                  {!historyCovered && (
+                  {/* Coverage is tracked in the card at the top; only prompt for
+                      previous jobs while the current job alone is under 2 years. */}
+                  {showAddPreviousJob && (
                     <button
                       type="button"
                       onClick={() => activeEmployments.add({ ...BLANK_EMPLOYMENT })}
