@@ -20,7 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { login } from "../services";
 import { useAppDispatch } from "@/store/hooks";
-import { setApiToken } from "@/store/slices/auth-slice";
+import { setAuthTokens } from "@/store/slices/auth-slice";
 import { setAuthCookie } from "@/store/auth-token";
 
 import { makeLoginSchema, type LoginInput } from "./auth-schema";
@@ -62,7 +62,10 @@ export function LoginForm() {
         return;
       }
 
-      dispatch(setApiToken(token));
+      // Lưu cả refresh_token để interceptor tự refresh khi access_token hết hạn (401).
+      dispatch(
+        setAuthTokens({ accessToken: token, refreshToken: response.payload?.refresh_token ?? null }),
+      );
       setAuthCookie(token);
 
       router.replace("/");

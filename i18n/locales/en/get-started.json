@@ -1,8 +1,8 @@
 {
   "badge": "Let's get started",
   "heroTitle": "Apply faster with your AI mortgage assistant.",
-  "heroDesc": "One guided application, broken into five short sections. It takes about <1>10–15 minutes</1> — and your progress saves automatically at every step.",
-  "startButton": "Start my application",
+  "heroDesc": "One guided application, broken into four short sections. It takes about <1>10–15 minutes</1> — and your progress saves automatically at every step.",
+  "startButton": "Start your application",
   "trust": {
     "encryption": "Bank-level encryption",
     "noCredit": "No impact to your credit",
@@ -11,7 +11,7 @@
   "panel": {
     "yourApplication": "Your application",
     "estimate": "~12 min",
-    "progress": "0 of 5 · Not started",
+    "progress": "0 of 4 · Not started",
     "encrypted": "Encrypted end to end · SOC 2 compliant"
   },
   "steps": {
@@ -21,7 +21,6 @@
       "hint": "Your details, employment & demographics"
     },
     "realEstate": { "title": "Real estate & assets", "hint": "Accounts and property you own" },
-    "liabilities": { "title": "Liabilities", "hint": "Debts and monthly obligations" },
-    "documents": { "title": "Needed documents", "hint": "ID, income & bank statements" }
+    "liabilities": { "title": "Liabilities", "hint": "Debts and monthly obligations" }
   }
 }

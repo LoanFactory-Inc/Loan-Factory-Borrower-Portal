@@ -1,6 +1,6 @@
 /** Form-state shapes for the loan application flow. */
 
-/** Which product the borrower is applying for — set on the loan-purpose screen. */
+/** Which product the borrower is applying for — set in the loan intake modal. */
 export type LoanPurpose = "buy" | "refi";
 
 export type PersonalInfo = {

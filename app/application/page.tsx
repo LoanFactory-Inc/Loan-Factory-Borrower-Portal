@@ -29,10 +29,24 @@ import {
   type ApplicationSnapshot,
   type LoanApplication,
 } from "@/store/slices/application-slice";
+import {
+  submitApplicationToBackend,
+  toApplicationRequest,
+  toAssetRequest,
+  toBackendPurpose,
+  toBorrowerUpdate,
+  toDemographicsRequest,
+  toEmploymentRequest,
+  toLiabilityRequest,
+  toOtherIncomeRequest,
+} from "./services/mapper";
+import * as applicationApi from "./services/borrower-application";
+import type { Application1003Response, LoanSummaryResponse } from "./services/types";
 
-import { AppFooterPortal } from "./components/app-footer-portal";
-import { ApplicationHeader } from "./components/app-header";
+import { AppFooterPortal } from "@/components/layouts/app-footer-portal";
+import { ApplicationHeader } from "@/components/layouts/app-header";
 import { ProgressRail, type RailStep } from "./components/progress-rail";
+import { sectionsDone as computeSectionsDone } from "./sections";
 import {
   ChoiceButton,
   DateField,
@@ -43,7 +57,8 @@ import {
   RadioCard,
   SelectField,
   TextField,
-} from "./components/form-primitives";
+} from "@/components/form-primitives";
+import { AddressAutocomplete } from "@/components/address-autocomplete";
 import {
   ADDRESS_SUGGESTIONS,
   ASSET_TYPE_OPTIONS,
@@ -79,6 +94,57 @@ import {
   type PersonalInfo,
   type RealEstate,
 } from "./types";
+
+/** A backend transaction id is a UUID; a locally-created loan id is `TR-#####`. */
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+/** ISO "YYYY-MM-DD" → the form's "MM/DD/YYYY"; passes anything else through. */
+const isoToUsDate = (iso: string): string => {
+  const m = iso.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  return m ? `${m[2]}/${m[3]}/${m[1]}` : iso;
+};
+
+/** ISO "YYYY-MM-DD" → the form's "MM / YYYY" month input. */
+const isoToMonthYear = (iso: string): string => {
+  const m = iso.match(/^(\d{4})-(\d{2})/);
+  return m ? `${m[2]} / ${m[1]}` : iso;
+};
+
+/** tera-be MISMO asset-type codes → the wizard's labels (inverse of ASSET_TYPE_CODE). */
+const ASSET_LABEL_FROM_CODE: Record<string, string> = {
+  CheckingAccount: "Checking account",
+  SavingsAccount: "Savings account",
+  MoneyMarketFund: "Money market",
+  RetirementFund: "Retirement (401k / IRA)",
+  MutualFund: "Brokerage",
+  Stock: "Brokerage",
+  GiftOfCash: "Gift funds",
+};
+
+/** tera-be MISMO liability-type codes → the wizard's labels (inverse of
+ *  LIABILITY_TYPE_CODE). The label→code map is lossy — Auto/Student/Personal all
+ *  collapse to "Installment" — so a resumed row shows the generic label. */
+const LIABILITY_LABEL_FROM_CODE: Record<string, string> = {
+  Revolving: "Credit card",
+  Installment: "Installment loan",
+  Other: "Other",
+};
+
+/** tera-be employment-type codes → the wizard's status labels (inverse of EMPLOYMENT_TYPE_CODE). */
+const EMPLOYMENT_STATUS_FROM_CODE: Record<string, string> = {
+  EmployedByCompany: "Employed (Permanent, Temporary) - W-2",
+  Contractor: "Employed (Contract) - 1099",
+  SelfEmployed: "Self-Employed - 1099",
+  Military: "Employed (Military service) - W-2",
+};
+
+/** ISO country codes → the wizard's country labels (inverse of COUNTRY_CODE). */
+const COUNTRY_FROM_CODE: Record<string, string> = {
+  US: "United States",
+  CA: "Canada",
+  MX: "Mexico",
+  OTHER: "Other",
+};
 
 /** Small helper for managing an editable list of rows. */
 function useList<T>(initial: T[]) {
@@ -169,11 +235,15 @@ function ApplicationForm() {
     () => editId ?? `TR-${Math.floor(10000 + Math.random() * 89999)}`,
   );
   // Which product this application is for. In edit mode it comes from the saved
-  // snapshot; otherwise it's carried through in ?purpose= from the loan-purpose
-  // screen and drives the purpose-specific loan detail fields.
+  // snapshot; otherwise it's carried through in ?purpose= from the loan intake
+  // modal and drives the purpose-specific loan detail fields.
   const purpose: LoanPurpose =
     seed?.purpose ?? (searchParams.get("purpose") === "refi" ? "refi" : "buy");
   const isRefi = purpose === "refi";
+  // The landing register step creates the prospect (transaction + borrower
+  // account) up front and hands off the id via ?tx=. When present, the submit
+  // reuses that transaction instead of creating a second prospect.
+  const seededTransactionId = searchParams.get("tx");
   // Seed the step from ?step= so a refresh keeps the borrower where they were
   // instead of dropping them back on the first screen.
   const stepParam = Number(searchParams.get("step"));
@@ -186,11 +256,24 @@ function ApplicationForm() {
   const [maxReached, setMaxReached] = React.useState(() =>
     isEdit ? Number.MAX_SAFE_INTEGER : initialStep,
   );
+  // An already-filled application (opened via edit, or resumed from a saved
+  // backend prospect): every section is unlocked and shown complete, and the
+  // borrower can jump to any step from the rail. Fresh applications unlock
+  // step-by-step. Set on resume in ensureTransaction below.
+  const [existingApp, setExistingApp] = React.useState(isEdit);
   const [autofillOpen, setAutofillOpen] = React.useState(false);
-  const [submitted, setSubmitted] = React.useState(false);
   // Whether list-screen errors (employment, assets, liabilities) have been
   // surfaced yet. Set on a failed "Continue"; the errors themselves are derived.
   const [listErrorsShown, setListErrorsShown] = React.useState(false);
+  // tera-be transaction id for this application. Seeded from ?tx= (landing
+  // created the prospect), otherwise filled once we create the application on
+  // entry. Every per-step save is keyed by it.
+  const [txId, setTxId] = React.useState<string | null>(
+    // In edit mode the loan id IS the transaction id — but only when it's a real
+    // backend tx (UUID); a locally-created loan (TR-#####) has no backend row.
+    seededTransactionId ?? (isEdit && editId && UUID_RE.test(editId) ? editId : null),
+  );
+  const didInitBackend = React.useRef(false);
 
   const [data, setData] = React.useState<ApplicationData>(
     () =>
@@ -219,6 +302,10 @@ function ApplicationForm() {
   );
   const [coData, setCoData] = React.useState<PersonalInfo>(() => seed?.coData ?? { ...BLANK_PERSONAL });
 
+  // The signed-in borrower (tera-be GET /profiles/me), loaded once by AppShell.
+  // Used to prefill the primary borrower's identity on a brand-new application.
+  const currentUser = useAppSelector((s) => s.auth.currentUser);
+
   const employments = useList<Employment>(
     seed?.employments ?? [{ ...BLANK_EMPLOYMENT, current: true }],
   );
@@ -234,6 +321,11 @@ function ApplicationForm() {
   const liabilities = useList<Liability>(
     seed?.liabilities ?? [{ liabType: "Credit card", creditor: "", balance: "", payment: "" }],
   );
+
+  // Dev-only flag — gates the per-step "Auto fill" button used while building
+  // the flow. The fill handler itself lives below, once `screen`/`role` and the
+  // active list helpers are in scope.
+  const isDev = process.env.NODE_ENV !== "production";
 
   // ── Page model ────────────────────────────────────────────────
   const pages = React.useMemo<Page[]>(() => {
@@ -252,7 +344,7 @@ function ApplicationForm() {
     }
     list.push({ group: 2, screen: "assets", sub: t("subs.realEstateAssets") });
     list.push({ group: 3, screen: "liabilities", sub: t("subs.liabilities") });
-    list.push({ group: 4, screen: "review" });
+    // No separate review step — the last section (liabilities) submits directly.
     return list;
   }, [data.hasCoBorrower, t]);
 
@@ -352,7 +444,7 @@ function ApplicationForm() {
     const n = Math.max(0, Math.min(i, pages.length - 1));
     // Block forward jumps to steps that haven't been unlocked yet — those must
     // be reached by completing the current step via "Continue" (force = true).
-    if (!force && n > maxReached) return;
+    if (!force && !existingApp && n > maxReached) return;
     if (force) setMaxReached((prev) => Math.max(prev, n));
     setPageIndex(n);
     setAutofillOpen(false);
@@ -385,6 +477,443 @@ function ApplicationForm() {
   };
   const activeEmployments = role === "co" ? coEmployments : employments;
   const activeOtherIncome = role === "co" ? coOtherIncome : otherIncome;
+
+  // ── tera-be persistence (BorrowerLoanController) ──────────────
+  // Snapshot of the whole form as it stands right now — the source for both
+  // the per-step 1003 save and the final submit.
+  const buildSnapshot = React.useCallback(
+    (): ApplicationSnapshot => ({
+      purpose,
+      data,
+      coData,
+      employments: employments.items,
+      coEmployments: coEmployments.items,
+      otherIncome: otherIncome.items,
+      coOtherIncome: coOtherIncome.items,
+      assets: assets.items,
+      realEstate: realEstate.items,
+      liabilities: liabilities.items,
+    }),
+    [
+      purpose,
+      data,
+      coData,
+      employments.items,
+      coEmployments.items,
+      otherIncome.items,
+      coOtherIncome.items,
+      assets.items,
+      realEstate.items,
+      liabilities.items,
+    ],
+  );
+
+  // Keep ?tx= in the URL so a reload resumes the same transaction (the created
+  // prospect isn't returned by GET /applications until it converts to a loan).
+  const reflectTxInUrl = (tx: string) => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    params.set("tx", tx);
+    window.history.replaceState(null, "", `?${params.toString()}`);
+  };
+
+  // Prefill from the loan summary we can read back on reload.
+  const hydrateFromSummary = (a: LoanSummaryResponse) => {
+    if (a.loan_amount != null) setField("loanAmount", groupDigits(String(Math.round(a.loan_amount))));
+  };
+
+  // Repopulate the loan/property steps from the saved 1003 (resume/reload). The
+  // inverse of `toApplicationRequest` — only the fields the 1003 persists. Null
+  // fields are left as-is, so an empty (just-created) application is a no-op.
+  const applyApplicationToForm = React.useCallback(
+    (raw: Application1003Response) => {
+      // This endpoint serializes camelCase (others are snake_case), so read both.
+      const r = raw as unknown as Record<string, unknown>;
+      const str = (snake: string, camel: string): string | undefined => {
+        const v = r[snake] ?? r[camel];
+        return typeof v === "string" && v ? v : undefined;
+      };
+      const num = (snake: string, camel: string): number | undefined => {
+        const v = r[snake] ?? r[camel];
+        return typeof v === "number" ? v : undefined;
+      };
+      const dollars = (n?: number) => (n != null ? groupDigits(String(Math.round(n))) : undefined);
+      setData((prev) => {
+        const next = { ...prev };
+        const loanType = str("loan_type", "loanType");
+        if (loanType) next.loanType = loanType;
+        const occupancy = str("occupancy", "occupancy");
+        if (occupancy) next.occupancy = occupancy;
+        const propertyType = str("property_type", "propertyType");
+        if (propertyType) next.propertyType = propertyType;
+        const city = str("city", "city");
+        if (city) next.city = city;
+        const state = str("state", "state");
+        if (state) next.state = state;
+        const zip = str("zip", "zip");
+        if (zip) next.zip = zip;
+        const fullAddress = str("full_address", "fullAddress");
+        if (fullAddress) next.addressLine1 = fullAddress.split(",")[0].trim();
+        const amount = dollars(num("loan_amount", "loanAmount"));
+        if (amount) next.loanAmount = amount;
+        if (isRefi) {
+          const hv = dollars(num("property_value", "propertyValue"));
+          if (hv) next.homeValue = hv;
+        } else {
+          const pp = dollars(num("purchase_price", "purchasePrice") ?? num("property_value", "propertyValue"));
+          if (pp) next.purchasePrice = pp;
+        }
+        // Only fixed terms round-trip cleanly (ARM years aren't stored).
+        const years = num("amortization_years", "amortizationYears");
+        if (years && str("amortization_type", "amortizationType") !== "ADJUSTABLE") {
+          next.loanTerm = `${years}-year fixed`;
+        }
+
+        // Personal details come back nested under the main borrower.
+        const borrowers = r["borrowers"];
+        if (Array.isArray(borrowers) && borrowers.length) {
+          const b = (borrowers.find(
+            (x) => (x as Record<string, unknown>).isMainBorrower ?? (x as Record<string, unknown>).is_main_borrower,
+          ) ?? borrowers[0]) as Record<string, unknown>;
+          const bstr = (snake: string, camel: string): string | undefined => {
+            const v = b[snake] ?? b[camel];
+            return typeof v === "string" && v ? v : undefined;
+          };
+          const firstName = bstr("first_name", "firstName");
+          if (firstName) next.firstName = firstName;
+          const lastName = bstr("last_name", "lastName");
+          if (lastName) next.lastName = lastName;
+          const email = bstr("email", "email");
+          if (email) next.email = email;
+          const cell = bstr("cell_phone", "cellPhone");
+          if (cell) next.cellPhone = formatUsPhone(cell);
+          const marital = bstr("marital_status", "maritalStatus");
+          if (marital) next.maritalStatus = marital;
+          const citizenship = bstr("citizenship", "citizenship");
+          if (citizenship) next.citizenship = citizenship;
+          const birth = bstr("birth_date", "birthDate");
+          if (birth) next.dob = isoToUsDate(birth);
+          const dependents = b["dependents"];
+          if (typeof dependents === "number") next.dependents = String(dependents);
+        }
+        return next;
+      });
+    },
+    [isRefi],
+  );
+
+  // Repopulate the collection steps (employment / income / assets / liabilities /
+  // demographics) from the saved sections on resume. Responses are camelCase.
+  const applySectionsToForm = React.useCallback(
+    (s: import("./services/borrower-application").ApplicationSections) => {
+      const gstr = (o: Record<string, unknown>, ...keys: string[]): string | undefined => {
+        for (const k of keys) {
+          const v = o[k];
+          if (typeof v === "string" && v) return v;
+        }
+        return undefined;
+      };
+      const gnum = (o: Record<string, unknown>, ...keys: string[]): number | undefined => {
+        for (const k of keys) {
+          const v = o[k];
+          if (typeof v === "number") return v;
+        }
+        return undefined;
+      };
+      const gbool = (o: Record<string, unknown>, ...keys: string[]): boolean =>
+        keys.some((k) => o[k] === true);
+      const money = (n?: number) => (n != null ? groupDigits(String(Math.round(n))) : "");
+
+      if (Array.isArray(s.employments) && s.employments.length) {
+        employments.setItems(
+          s.employments.map((e) => {
+            const addr = (e.businessAddress ?? e.business_address) as Record<string, unknown> | undefined;
+            const start = gstr(e, "startDate", "start_date");
+            const end = gstr(e, "endDate", "end_date");
+            const statusCode = gstr(e, "employmentType", "employment_type") ?? "";
+            const countryCode = addr ? (gstr(addr, "country") ?? "") : "";
+            return {
+              ...BLANK_EMPLOYMENT,
+              employer: gstr(e, "employerName", "employer_name") ?? "",
+              position: gstr(e, "position") ?? "",
+              status: EMPLOYMENT_STATUS_FROM_CODE[statusCode] ?? statusCode,
+              current: gbool(e, "isActive", "is_active"),
+              monthlyIncome: money(gnum(e, "incomeAmount", "income_amount")),
+              startDate: start ? isoToMonthYear(start) : "",
+              endDate: end ? isoToMonthYear(end) : "",
+              companyAddress: addr ? (gstr(addr, "line1") ?? "") : "",
+              aptUnit: addr ? (gstr(addr, "unit") ?? "") : "",
+              zip: addr ? (gstr(addr, "postalCode", "postal_code") ?? "") : "",
+              country: COUNTRY_FROM_CODE[countryCode] ?? countryCode,
+              related: gbool(e, "isSpecialEmployerRelationship", "is_special_employer_relationship"),
+              foreign: gbool(e, "isForeignIncome", "is_foreign_income"),
+            };
+          }),
+        );
+      }
+      if (Array.isArray(s.otherIncomes) && s.otherIncomes.length) {
+        otherIncome.setItems(
+          s.otherIncomes.map((o) => ({
+            ...BLANK_OTHER_INCOME,
+            source: gstr(o, "incomeType", "income_type") ?? "",
+            amount: money(gnum(o, "amount")),
+          })),
+        );
+      }
+      if (Array.isArray(s.assets) && s.assets.length) {
+        assets.setItems(
+          s.assets.map((a) => {
+            const code = gstr(a, "assetType", "asset_type") ?? "";
+            return {
+              assetType: ASSET_LABEL_FROM_CODE[code] ?? code,
+              institution: gstr(a, "financialInstitution", "financial_institution") ?? "",
+              balance: money(gnum(a, "cashMarketValue", "cash_market_value")),
+            };
+          }),
+        );
+      }
+      if (Array.isArray(s.liabilities) && s.liabilities.length) {
+        liabilities.setItems(
+          s.liabilities.map((l) => {
+            const code = gstr(l, "liabilityType", "liability_type") ?? "";
+            return {
+              liabType: LIABILITY_LABEL_FROM_CODE[code] ?? code,
+              creditor: gstr(l, "creditorName", "creditor_name") ?? "",
+              balance: money(gnum(l, "unpaidBalance", "unpaid_balance")),
+              payment: money(gnum(l, "monthlyPayment", "monthly_payment")),
+            };
+          }),
+        );
+      }
+      const demo = s.demographics;
+      if (demo) {
+        const race = (demo.race ?? []) as unknown[];
+        const gender = (demo.gender ?? []) as unknown[];
+        setData((prev) => ({
+          ...prev,
+          ethnicity: gstr(demo, "ethnicity") ?? prev.ethnicity,
+          race: typeof race[0] === "string" ? (race[0] as string) : prev.race,
+          gender: typeof gender[0] === "string" ? (gender[0] as string) : prev.gender,
+        }));
+      }
+    },
+    // setItems / setData are stable; the useList wrappers are recreated each render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
+  // Resolve the transaction id for this flow, creating the application the first
+  // time it's needed. Shared by the mount effect and every step save through a
+  // single in-flight promise, so we never create twice. Reuses an existing
+  // prospect/loan when the borrower already has one (resume), else creates a
+  // fresh prospect. Returns null only on failure (then retries next time).
+  const txPromise = React.useRef<Promise<string | null> | null>(null);
+  const ensureTransaction = React.useCallback((): Promise<string | null> => {
+    if (txId) return Promise.resolve(txId);
+    // Edit mode without a resolved backend tx (local-only loan) → nothing to save to.
+    if (isEdit) return Promise.resolve(null);
+    if (seededTransactionId) return Promise.resolve(seededTransactionId);
+    if (!txPromise.current) {
+      txPromise.current = (async () => {
+        const rows = await applicationApi.listMyApplications();
+        const existing = rows[0];
+        if (existing) {
+          hydrateFromSummary(existing);
+          setExistingApp(true); // resumed a saved application → unlock all steps
+          return existing.transaction_id;
+        }
+        const created = await applicationApi.createApplication({
+          purpose: toBackendPurpose(purpose),
+        });
+        return created.transaction_id;
+      })().catch(() => null); // toasted centrally; local state keeps the form usable
+    }
+    return txPromise.current.then((id) => {
+      if (id) {
+        setTxId(id);
+        reflectTxInUrl(id);
+      } else {
+        txPromise.current = null; // allow a retry after a failure
+      }
+      return id;
+    });
+    // hydrateFromSummary / reflectTxInUrl close over stable setters.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isEdit, txId, seededTransactionId, purpose]);
+
+  // On entry: resolve/create the application so it exists (and resumes on reload).
+  React.useEffect(() => {
+    if (isEdit || didInitBackend.current) return;
+    didInitBackend.current = true;
+    void ensureTransaction();
+  }, [isEdit, ensureTransaction]);
+
+  // Once we have a transaction id, pull the saved 1003 back into the form so
+  // navigating steps / reloading shows what was persisted (once per flow).
+  const hydratedRef = React.useRef(false);
+  React.useEffect(() => {
+    // Skip when a rich Redux snapshot already seeded the form (edit on this
+    // device); otherwise pull the saved 1003 back — covers fresh resume, reload,
+    // and editing a backend loan with no local snapshot.
+    if (!txId || hydratedRef.current || seed) return;
+    hydratedRef.current = true;
+    applicationApi
+      .getApplicationDetail(txId)
+      .then(applyApplicationToForm)
+      .catch(() => {
+        /* toasted centrally; local state stays usable */
+      });
+    applicationApi
+      .getApplicationSections(txId)
+      .then(applySectionsToForm)
+      .catch(() => {
+        /* toasted centrally */
+      });
+  }, [txId, seed, applyApplicationToForm, applySectionsToForm]);
+
+  // Prefill the primary borrower's identity from the signed-in user's profile
+  // when starting a fresh application. Only fills fields still blank, so any
+  // value loaded back from a saved 1003 (applyApplicationToForm above) or typed
+  // by the borrower always wins — the profile is just the default seed. Skipped
+  // in edit mode, where the snapshot already carries the borrower.
+  const profileSeededRef = React.useRef(false);
+  React.useEffect(() => {
+    if (profileSeededRef.current || seed || !currentUser) return;
+    profileSeededRef.current = true;
+    setData((prev) => {
+      const next = { ...prev };
+      if (!next.firstName && currentUser.first_name) next.firstName = currentUser.first_name;
+      if (!next.lastName && currentUser.last_name) next.lastName = currentUser.last_name;
+      if (!next.email && currentUser.email) next.email = currentUser.email;
+      if (!next.cellPhone && currentUser.phone) next.cellPhone = formatUsPhone(currentUser.phone);
+      return next;
+    });
+  }, [currentUser, seed]);
+
+  // Save the current step: PUT the cumulative 1003 by transaction id, ensuring
+  // the transaction exists first so "Continue" always persists. Best-effort — a
+  // failure is toasted centrally and never blocks navigation.
+  const persistStep = async () => {
+    const id = txId ?? (await ensureTransaction());
+    if (!id) return;
+    try {
+      // The 1003 (loan + property) is cheap + cumulative — always keep it fresh.
+      await applicationApi.saveApplicationStep(id, toApplicationRequest(buildSnapshot()));
+
+      // Co-borrower sections are a follow-up (they need their own borrower id).
+      if (role === "co") return;
+
+      switch (screen) {
+        case "personal":
+          await applicationApi.saveBorrowerPersonal(id, toBorrowerUpdate(data));
+          break;
+        case "employment":
+          await applicationApi.saveEmployments(
+            id,
+            employments.items.filter((e) => e.employer).map((e, i) => toEmploymentRequest(e, i)),
+          );
+          await applicationApi.saveOtherIncomes(
+            id,
+            otherIncome.items.filter((o) => o.source).map((o, i) => toOtherIncomeRequest(o, i)),
+          );
+          break;
+        case "demographic":
+          await applicationApi.saveDemographics(id, toDemographicsRequest(data));
+          break;
+        case "assets":
+          await applicationApi.saveAssets(
+            id,
+            assets.items.filter((a) => a.assetType).map((a, i) => toAssetRequest(a, [], i)),
+          );
+          break;
+        case "liabilities":
+          await applicationApi.saveLiabilities(
+            id,
+            liabilities.items.filter((l) => l.liabType).map((l, i) => toLiabilityRequest(l, [], i)),
+          );
+          break;
+      }
+    } catch {
+      // toasted by the axios interceptor
+    }
+  };
+
+  // Dev-only: fill just the CURRENT step with valid demo data. Writes to the
+  // active borrower (primary vs co-borrower) for the per-person screens.
+  const autoFillStep = () => {
+    switch (screen) {
+      case "subjectProperty":
+        setData((p) => ({
+          ...p,
+          addressLine1: "1600 Amphitheatre Pkwy",
+          unit: "4B",
+          zip: "94043",
+          city: "Mountain View",
+          state: "CA",
+          propertyType: "SingleFamily",
+        }));
+        break;
+      case "loanDetails":
+        setData((p) => ({
+          ...p,
+          loanAmount: "520,000",
+          loanType: "Conventional",
+          occupancy: "PrimaryResidence",
+          loanTerm: "30-year fixed",
+          purchasePrice: "650,000",
+          homeValue: "700,000",
+          mortgageBalance: "300,000",
+          mortgageRate: "6.5",
+          hasSecondLien: false,
+          combineIntoNewLoan: false,
+        }));
+        break;
+      case "personal": {
+        const info = {
+          firstName: role === "co" ? "Jamie" : "Alex",
+          lastName: "Vu",
+          email: role === "co" ? "jamie.vu@email.com" : "alex.vu@email.com",
+          cellPhone: "(415) 555-0142",
+          dob: "01/15/1990",
+          maritalStatus: "Married",
+          dependents: "0",
+          citizenship: "U.S. citizen",
+        };
+        if (role === "co") setCoData((p) => ({ ...p, ...info }));
+        else setData((p) => ({ ...p, ...info, hasCoBorrower: false }));
+        break;
+      }
+      case "employment":
+        activeEmployments.setItems([
+          {
+            ...BLANK_EMPLOYMENT,
+            current: true,
+            employer: "Acme Corp",
+            position: "Senior Engineer",
+            companyAddress: "500 Market St",
+            zip: "94103",
+            startDate: "01/2018",
+            monthlyIncome: "12,000",
+          },
+        ]);
+        break;
+      case "demographic": {
+        const demo = { ethnicity: "Not Hispanic or Latino", race: "Asian", gender: "Male" };
+        if (role === "co") setCoData((p) => ({ ...p, ...demo }));
+        else setData((p) => ({ ...p, ...demo }));
+        break;
+      }
+      case "assets":
+        assets.setItems([{ assetType: "Checking account", institution: "Chase", balance: "45,000" }]);
+        break;
+      case "liabilities":
+        liabilities.setItems([
+          { liabType: "Credit card", creditor: "American Express", balance: "3,200", payment: "150" },
+        ]);
+        break;
+    }
+  };
+
   // Work-history coverage — summed across every job, toward the required 2 years.
   const coveredMonths = totalHistoryMonths(activeEmployments.items);
   const historyCovered = coveredMonths >= REQUIRED_HISTORY_MONTHS;
@@ -440,6 +969,10 @@ function ApplicationForm() {
 
     if (screen === "liabilities") {
       liabilities.items.forEach((row, i) => {
+        // An untouched row (no creditor/balance/payment) counts as "no debt" —
+        // skip it so borrowers with no liabilities can still submit. Partially
+        // filled rows are still validated.
+        if (blank(row.creditor) && blank(row.balance) && blank(row.payment)) return;
         if (blank(row.creditor)) e[`liab:${i}:creditor`] = V.required;
         if (blank(row.balance)) e[`liab:${i}:balance`] = V.required;
         else if (notPositive(row.balance)) e[`liab:${i}:balance`] = V.amount;
@@ -455,17 +988,118 @@ function ApplicationForm() {
   const listErrors: Record<string, string> = listErrorsShown ? validateListScreen() : {};
 
   // ── Progress ──────────────────────────────────────────────────
-  // One step per section: each completed section is worth 100/totalGroups %.
-  const sectionsDone = submitted ? totalGroups : Math.min(curGroup, totalGroups);
+  // A section counts as done only when its data is actually filled, so a
+  // resumed/edited application that's still missing sections never reads as
+  // 100%. Groups: 0 Your loan · 1 About you · 2 What you own · 3 What you owe.
+  const hasText = (v?: string | null) => typeof v === "string" && v.trim().length > 0;
+  const hasAmount = (v?: string | null) =>
+    hasText(v) && Number(String(v).replace(/[^0-9.]/g, "")) > 0;
+
+  // A step counts toward progress only once it's been *submitted* — completed
+  // via "Continue" (which validates + persists), not merely typed into or
+  // navigated to. `maxReached` only advances on a successful "Continue", so
+  // `maxReached > i` means page i was submitted. Resumed/edited applications
+  // (existingApp) arrive fully submitted, so every step already counts.
+  const submitted = (pageIdx: number) => existingApp || maxReached > pageIdx;
+  const lastPageOfGroup = (g: number) =>
+    pages.reduce((last, p, i) => (p.group === g ? i : last), -1);
+  const groupSubmitted = (g: number) => submitted(lastPageOfGroup(g));
+
+  const g0Done =
+    groupSubmitted(0) &&
+    hasText(data.addressLine1) &&
+    hasText(data.city) &&
+    hasText(data.state) &&
+    hasText(data.zip) &&
+    hasText(data.propertyType) &&
+    hasText(data.loanType) &&
+    hasText(data.occupancy) &&
+    hasText(data.loanTerm) &&
+    hasAmount(data.loanAmount) &&
+    (isRefi ? hasAmount(data.homeValue) : hasAmount(data.purchasePrice));
+
+  const emp = employments.items[0];
+  const g1Done =
+    groupSubmitted(1) &&
+    hasText(data.firstName) &&
+    hasText(data.lastName) &&
+    hasText(data.email) &&
+    hasText(data.cellPhone) &&
+    hasText(data.dob) &&
+    hasText(data.ethnicity) &&
+    hasText(data.race) &&
+    hasText(data.gender) &&
+    !!emp &&
+    hasText(emp.employer) &&
+    hasText(emp.startDate) &&
+    hasAmount(emp.monthlyIncome) &&
+    (data.hasCoBorrower !== true ||
+      (hasText(coData.firstName) && hasText(coData.lastName) && hasText(coData.email)));
+
+  const g2Done =
+    groupSubmitted(2) && assets.items.some((a) => hasText(a.institution) && hasAmount(a.balance));
+
+  const groupDone = computeSectionsDone({
+    yourLoan: g0Done,
+    aboutYou: g1Done,
+    whatYouOwn: g2Done,
+  });
+  const sectionsDone = groupDone.filter(Boolean).length;
   const pct = Math.round((sectionsDone / totalGroups) * 100);
+
+  // Per-sub-page completeness, so a filled sub-step (e.g. Personal details)
+  // reads as done/green in the rail even while its parent group is still current.
+  const empCo = coEmployments.items[0];
+  const pageDone = (screen: string, role?: string): boolean => {
+    switch (screen) {
+      case "subjectProperty":
+        return (
+          hasText(data.addressLine1) &&
+          hasText(data.city) &&
+          hasText(data.state) &&
+          hasText(data.zip) &&
+          hasText(data.propertyType) &&
+          hasText(data.occupancy)
+        );
+      case "loanDetails":
+        return (
+          hasText(data.loanType) &&
+          hasText(data.loanTerm) &&
+          hasAmount(data.loanAmount) &&
+          (isRefi ? hasAmount(data.homeValue) : hasAmount(data.purchasePrice))
+        );
+      case "personal":
+        return role === "co"
+          ? hasText(coData.firstName) && hasText(coData.lastName) && hasText(coData.email)
+          : hasText(data.firstName) &&
+              hasText(data.lastName) &&
+              hasText(data.email) &&
+              hasText(data.cellPhone) &&
+              hasText(data.dob);
+      case "employment": {
+        const e = role === "co" ? empCo : emp;
+        return !!e && hasText(e.employer) && hasText(e.startDate) && hasAmount(e.monthlyIncome);
+      }
+      case "demographic": {
+        const d = role === "co" ? coData : data;
+        return hasText(d.ethnicity) && hasText(d.race) && hasText(d.gender);
+      }
+      case "assets":
+        return assets.items.some((a) => hasText(a.institution) && hasAmount(a.balance));
+      default:
+        return false;
+    }
+  };
 
   const railSteps: RailStep[] = GROUPS.map((_, g) => {
     const status: RailStep["status"] =
-      submitted || curGroup > g ? "done" : curGroup === g ? "current" : "todo";
+      curGroup === g ? "current" : groupDone[g] ? "done" : "todo";
     const groupPages = pages.map((p, i) => ({ p, i })).filter((x) => x.p.group === g && x.p.sub);
     const toItem = (x: { p: Page; i: number }) => ({
       label: x.p.sub as string,
       active: x.i === idx,
+      // Only a submitted (not merely filled) sub-page reads as done.
+      done: submitted(x.i) && pageDone(x.p.screen, x.p.role),
       pageIndex: x.i,
     });
     // With a co-borrower, split Borrower info into "You" / "Co-borrower" groups.
@@ -488,14 +1122,13 @@ function ApplicationForm() {
   // ── Copy ──────────────────────────────────────────────────────
   const isCo = role === "co";
 
-  const continueLabel =
-    screen === "review"
-      ? isEdit
-        ? t("actions.saveChanges")
-        : t("actions.submitApplication")
-      : screen === "liabilities"
-        ? t("actions.reviewApplication")
-        : t("actions.continue");
+  // The final section submits straight away — there is no review screen.
+  const isLastPage = idx === pages.length - 1;
+  const continueLabel = isLastPage
+    ? isEdit
+      ? t("actions.saveChanges")
+      : t("actions.submitApplication")
+    : t("actions.continue");
 
   const onContinue = async () => {
     // Validate the current screen; block navigation while it's invalid. Scalar
@@ -509,7 +1142,7 @@ function ApplicationForm() {
       return;
     }
 
-    if (screen === "review") {
+    if (isLastPage) {
       const propertyAddress = data.addressLine1
         ? `${data.addressLine1}, ${data.city} ${data.state} ${data.zip}`.trim()
         : t("store.yourApplication");
@@ -527,15 +1160,37 @@ function ApplicationForm() {
         realEstate: realEstate.items,
         liabilities: liabilities.items,
       };
+      // Drive the tera-be borrower-apply flow (check-email → prospect → 1003
+      // sub-resources → application-status). Best-effort: on failure the axios
+      // interceptor has already toasted, and we fall back to the local id so
+      // the borrower keeps their progress in "My loans".
+      let backendId = appId;
+      let backendProgress = 100;
+      if (!isEdit) {
+        try {
+          const result = await submitApplicationToBackend(snapshot, txId ?? seededTransactionId);
+          backendId = result.transactionId;
+          backendProgress = result.progress || 100;
+        } catch {
+          // handled via toast in the axios interceptor
+        }
+      } else {
+        // Edit mode skips the full submit flow above, and the last step
+        // (liabilities) is the one screen whose "Continue" never fires
+        // persistStep — so persist it here, otherwise the final section is
+        // never sent and comes back empty.
+        await persistStep();
+      }
+
       const application: LoanApplication = {
-        id: appId,
+        id: isEdit ? appId : backendId,
         purpose,
         propertyAddress,
         loanType: data.loanType,
         loanAmount: data.loanAmount,
         loanTerm: data.loanTerm,
         status: isEdit ? "in_progress" : "submitted",
-        progress: 100,
+        progress: backendProgress,
         nextSection: isEdit ? t("store.reviewYourChanges") : t("store.underReview"),
         submittedAt: new Date().toISOString(),
         form: snapshot,
@@ -543,44 +1198,16 @@ function ApplicationForm() {
       // Only one loan is active at a time: a brand-new application replaces any
       // existing one, while an edit updates the loan in place.
       dispatch(isEdit ? upsertApplication(application) : setApplications([application]));
-      setSubmitted(true);
-      scrollTop();
+      // Done — land back on My loans, which now shows the submitted loan card
+      // plus document collection, and fires a celebratory modal + confetti
+      // based on this flag.
+      router.push(`/my-loans?celebrate=${isEdit ? "edited" : "created"}`);
     } else {
+      // Save this step's data (cumulative 1003) before advancing.
+      await persistStep();
       goPage(idx + 1, true);
     }
   };
-
-  // ── Success screen ────────────────────────────────────────────
-  if (submitted) {
-    return (
-      <div className="flex h-svh flex-col bg-page">
-        <ApplicationHeader />
-        <div className="flex flex-1 flex-col overflow-y-auto">
-          <div className="mx-auto max-w-xl flex-1 px-4 sm:px-7 py-24 text-center">
-            <div className="mx-auto mb-7 flex size-20 items-center justify-center rounded-full bg-success/15">
-              <CheckIcon className="size-10 text-success" strokeWidth={2.5} />
-            </div>
-            <h2 className="text-3xl font-bold tracking-tight text-foreground">
-              {isEdit ? t("success.changesSavedTitle") : t("success.submittedTitle")}
-            </h2>
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-              {isEdit ? t("success.changesSavedDescription") : t("success.submittedDescription")}
-            </p>
-            <div className="mt-6 inline-flex items-center gap-2 rounded-full border bg-muted px-5 py-2.5 text-sm text-foreground/80">
-              {t("success.reference")} <strong className="text-foreground">#{appId}</strong>
-            </div>
-            <div className="mt-8">
-              <Button size="sm" className="px-8" onClick={() => router.push("/my-loans")}>
-                {t("success.backToMyLoans")}
-              </Button>
-            </div>
-          </div>
-
-          <AppFooterPortal />
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="flex h-svh flex-col bg-page">
@@ -600,62 +1227,89 @@ function ApplicationForm() {
           </div>
 
           <main className="relative rounded-2xl border bg-card p-7 shadow-xs sm:px-11 sm:py-10">
-            {/* Auto fill — subject property only */}
-            {screen === "subjectProperty" && (
-              <div className="absolute top-8 right-8 z-20 sm:top-10 sm:right-10">
+            {/* Auto fill controls — top-right of the form card */}
+            <div className="absolute top-8 right-8 z-20 flex items-center gap-2 sm:top-10 sm:right-10">
+              {/* Subject property: suggested-address picker */}
+              {screen === "subjectProperty" && (
+                <div className="relative">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="gap-2 rounded-md border-accent bg-accent px-4 text-[13px] text-accent-foreground hover:bg-accent/70"
+                    onClick={() => setAutofillOpen((v) => !v)}
+                  >
+                    <SparklesIcon className="size-4" />
+                    {t("autofill.button")}
+                  </Button>
+                  {autofillOpen && (
+                    <div className="absolute top-12 right-0 w-80 rounded-xl border bg-popover p-2 shadow-lg">
+                      <div className="px-3 pt-2 pb-1.5 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
+                        {t("autofill.suggestedAddresses")}
+                      </div>
+                      {ADDRESS_SUGGESTIONS.map((a) => (
+                        <button
+                          key={a.line1}
+                          type="button"
+                          onClick={() => {
+                            setData((prev) => ({
+                              ...prev,
+                              addressLine1: a.line1,
+                              city: a.city,
+                              state: a.state,
+                              zip: a.zip,
+                            }));
+                            setAutofillOpen(false);
+                          }}
+                          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left hover:bg-muted"
+                        >
+                          <MapPinIcon className="size-[18px] text-primary" />
+                          <div>
+                            <div className="text-sm font-semibold text-foreground">{a.line1}</div>
+                            <div className="text-[12.5px] text-muted-foreground">
+                              {a.city}, {a.state} {a.zip}
+                            </div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Dev only: fill just this step. Subject property already has its
+                  own autofill above, so skip it there (and on the review step). */}
+              {isDev && screen !== "subjectProperty" && screen !== "review" && (
                 <Button
                   variant="outline"
                   size="lg"
+                  title="Fill this step with demo data (dev only)"
                   className="gap-2 rounded-md border-accent bg-accent px-4 text-[13px] text-accent-foreground hover:bg-accent/70"
-                  onClick={() => setAutofillOpen((v) => !v)}
+                  onClick={autoFillStep}
                 >
                   <SparklesIcon className="size-4" />
-                  {t("autofill.button")}
+                  Auto fill
                 </Button>
-                {autofillOpen && (
-                  <div className="absolute top-12 right-0 w-80 rounded-xl border bg-popover p-2 shadow-lg">
-                    <div className="px-3 pt-2 pb-1.5 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
-                      {t("autofill.suggestedAddresses")}
-                    </div>
-                    {ADDRESS_SUGGESTIONS.map((a) => (
-                      <button
-                        key={a.line1}
-                        type="button"
-                        onClick={() => {
-                          setData((prev) => ({
-                            ...prev,
-                            addressLine1: a.line1,
-                            city: a.city,
-                            state: a.state,
-                            zip: a.zip,
-                          }));
-                          setAutofillOpen(false);
-                        }}
-                        className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left hover:bg-muted"
-                      >
-                        <MapPinIcon className="size-[18px] text-primary" />
-                        <div>
-                          <div className="text-sm font-semibold text-foreground">{a.line1}</div>
-                          <div className="text-[12.5px] text-muted-foreground">
-                            {a.city}, {a.state} {a.zip}
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
+              )}
+            </div>
 
             {/* ── Subject property ── */}
             {screen === "subjectProperty" && (
               <ScreenShell title={t("subjectProperty.title")} subtitle="">
                 <div className="mb-5">
                   <FieldLabel required>{t("subjectProperty.streetAddress")}</FieldLabel>
-                  <TextField
+                  <AddressAutocomplete
                     placeholder={t("subjectProperty.streetAddressPlaceholder")}
                     value={data.addressLine1}
-                    onChange={(e) => setField("addressLine1", e.target.value)}
+                    onChange={(v) => setField("addressLine1", v)}
+                    onSelect={(p) =>
+                      setData((prev) => ({
+                        ...prev,
+                        addressLine1: p.line1 || prev.addressLine1,
+                        city: p.city || prev.city,
+                        state: p.state || prev.state,
+                        zip: p.zip || prev.zip,
+                      }))
+                    }
                     error={err("addressLine1")}
                   />
                 </div>
@@ -1316,7 +1970,7 @@ function ApplicationForm() {
                   {assets.items.map((row, i) => (
                     <div
                       key={i}
-                      className="grid grid-cols-1 items-end gap-4 rounded-xl border p-5 sm:grid-cols-[1fr_1fr_150px_auto]"
+                      className="relative grid grid-cols-1 gap-4 rounded-xl border p-5"
                     >
                       <div>
                         <FieldLabel>{t("assets.accountType")}</FieldLabel>
@@ -1346,17 +2000,15 @@ function ApplicationForm() {
                           error={lerr(`asset:${i}:balance`)}
                         />
                       </div>
-                      {assets.items.length > 1 ? (
+                      {assets.items.length > 1 && (
                         <Button
                           variant="outline"
                           size="icon"
-                          className="size-11 text-muted-foreground hover:border-destructive/40 hover:text-destructive"
+                          className="absolute top-3 right-3 size-9 text-muted-foreground hover:border-destructive/40 hover:text-destructive"
                           onClick={() => assets.remove(i)}
                         >
                           <Trash2Icon className="size-[17px]" />
                         </Button>
-                      ) : (
-                        <div className="hidden sm:block" />
                       )}
                     </div>
                   ))}
@@ -1488,7 +2140,7 @@ function ApplicationForm() {
                   {liabilities.items.map((row, i) => (
                     <div
                       key={i}
-                      className="grid grid-cols-1 items-end gap-3.5 rounded-xl border p-5 sm:grid-cols-[1fr_1fr_130px_140px_auto]"
+                      className="grid grid-cols-1 gap-3.5 rounded-xl border p-5"
                     >
                       <div>
                         <FieldLabel>{t("liabilities.type")}</FieldLabel>
@@ -1538,9 +2190,7 @@ function ApplicationForm() {
                         >
                           <Trash2Icon className="size-[17px]" />
                         </Button>
-                      ) : (
-                        <div className="hidden sm:block" />
-                      )}
+                      ) : null}
                     </div>
                   ))}
                   <button
@@ -1620,13 +2270,9 @@ function ApplicationForm() {
                 </Button>
               )}
               <div className="ml-auto flex items-center gap-5">
-                <Button
-                  size="lg"
-                  className="gap-2 rounded-md px-8 text-[15px] shadow-lg shadow-primary/30"
-                  onClick={onContinue}
-                >
+                <Button size="lg" className="gap-2 px-6" onClick={onContinue}>
                   {continueLabel}
-                  <ArrowRightIcon className="size-4" />
+                  <ArrowRightIcon className="size-4.25" strokeWidth={2.1} />
                 </Button>
               </div>
             </div>

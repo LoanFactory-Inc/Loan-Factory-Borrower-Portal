@@ -32,6 +32,18 @@ export function formatUsPhone(value: string): string {
   return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
 }
 
+/**
+ * Format a date progressively as it's typed into an MM/DD/YYYY field:
+ * "" → "", "09" → "09", "0915" → "09/15", "09151999" → "09/15/1999". Slashes
+ * are inserted automatically and extra digits beyond 8 are dropped.
+ */
+export function formatDateInput(value: string): string {
+  const digits = value.replace(/\D/g, "").slice(0, 8);
+  if (digits.length <= 2) return digits;
+  if (digits.length <= 4) return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+  return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
+}
+
 export function formatDate(epochSeconds: number): string {
   if (!epochSeconds) return "-";
   return new Date(epochSeconds * 1000).toLocaleDateString("en-GB", {

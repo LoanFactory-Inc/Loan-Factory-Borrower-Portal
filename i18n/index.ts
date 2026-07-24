@@ -7,7 +7,6 @@ import enGetStarted from "./locales/en/get-started.json";
 import enMyLoans from "./locales/en/my-loans.json";
 import enApplication from "./locales/en/application.json";
 import enRateAlerts from "./locales/en/rate-alerts.json";
-import enLoanPurpose from "./locales/en/loan-purpose.json";
 import enTestimonials from "./locales/en/testimonials.json";
 import enPolicies from "./locales/en/policies.json";
 import enQuote from "./locales/en/quote.json";
@@ -20,7 +19,6 @@ import viGetStarted from "./locales/vi/get-started.json";
 import viMyLoans from "./locales/vi/my-loans.json";
 import viApplication from "./locales/vi/application.json";
 import viRateAlerts from "./locales/vi/rate-alerts.json";
-import viLoanPurpose from "./locales/vi/loan-purpose.json";
 import viTestimonials from "./locales/vi/testimonials.json";
 import viPolicies from "./locales/vi/policies.json";
 import viQuote from "./locales/vi/quote.json";
@@ -43,7 +41,6 @@ export const resources = {
     myLoans: enMyLoans,
     application: enApplication,
     rateAlerts: enRateAlerts,
-    loanPurpose: enLoanPurpose,
     testimonials: enTestimonials,
     policies: enPolicies,
     quote: enQuote,
@@ -57,7 +54,6 @@ export const resources = {
     myLoans: viMyLoans,
     application: viApplication,
     rateAlerts: viRateAlerts,
-    loanPurpose: viLoanPurpose,
     testimonials: viTestimonials,
     policies: viPolicies,
     quote: viQuote,

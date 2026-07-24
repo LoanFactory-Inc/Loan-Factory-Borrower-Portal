@@ -1,36 +1,53 @@
 {
   "page": {
     "title": "Cảnh báo lãi suất của tôi",
-    "subtitle": "Chúng tôi sẽ gửi email hoặc tin nhắn ngay khi lãi suất đạt mức mục tiêu của bạn.",
-    "createAlert": "Tạo cảnh báo"
+    "subtitle": "Chúng tôi theo dõi giá từ hơn 240 lender mỗi ngày làm việc và báo bạn ngay khi có mức chạm mục tiêu.",
+    "newAlert": "Cảnh báo mới"
   },
-  "ticker": {
-    "heading": "Lãi suất trung bình hôm nay",
-    "updated": "Cập nhật 9:00 sáng (PT)"
-  },
-  "marketRates": {
-    "fixed30": "Cố định 30 năm",
-    "fixed15": "Cố định 15 năm",
-    "fha30": "FHA 30 năm",
-    "va30": "VA 30 năm"
+  "summary": {
+    "watching": "đang theo dõi thị trường",
+    "ready": "sẵn sàng chốt",
+    "updated": "Lãi suất cập nhật 9:00 sáng PT hôm nay"
   },
   "list": {
     "heading": "Cảnh báo của bạn",
     "sortedBy": "Sắp xếp theo mức gần mục tiêu nhất"
   },
   "empty": {
-    "title": "Chưa có cảnh báo lãi suất nào",
-    "description": "Đặt mức lãi suất mục tiêu và chúng tôi sẽ báo cho bạn ngay khi thị trường diễn biến có lợi cho bạn."
+    "title": "Chưa có cảnh báo",
+    "description": "Đặt mức lãi suất mục tiêu, chúng tôi sẽ theo dõi thị trường giúp bạn để không bỏ lỡ thời điểm chốt.",
+    "cta": "Tạo cảnh báo đầu tiên"
   },
   "card": {
-    "readyToLock": "Sẵn sàng chốt lãi suất",
-    "toGo": "Còn {{diff}}% nữa",
-    "targetMet": "Đã đạt mục tiêu",
-    "target": "Mục tiêu",
-    "now": "Hiện tại",
-    "alertsVia": "Cảnh báo qua",
-    "editAlert": "Chỉnh sửa cảnh báo",
-    "deleteAlert": "Xóa cảnh báo"
+    "watching": "Đang theo dõi",
+    "readyToLock": "Sẵn sàng chốt",
+    "yourTarget": "Mục tiêu của bạn",
+    "rateNow": "Lãi suất hiện tại",
+    "toGo": "còn {{diff}}%",
+    "targetHit": "Lãi suất đã chạm mục tiêu",
+    "freqDaily": "Hằng ngày cho đến khi bạn dừng",
+    "freqOnce": "Một lần, khi đạt mức",
+    "via": "qua {{channels}}",
+    "editAlert": "Sửa cảnh báo",
+    "deleteAlert": "Xoá cảnh báo"
+  },
+  "scenario": {
+    "loan": "Khoản vay",
+    "value": "Giá trị",
+    "fico": "FICO",
+    "zip": "ZIP"
+  },
+  "rail": {
+    "howTitle": "Cách cảnh báo lãi suất hoạt động",
+    "step1Title": "Đặt mục tiêu",
+    "step1Body": "Chọn kịch bản khoản vay và mức lãi suất bạn đang chờ.",
+    "step2Title": "Chúng tôi theo dõi hằng ngày",
+    "step2Body": "Chúng tôi kiểm tra hơn 240 lender mỗi ngày làm việc, bạn không phải làm gì.",
+    "step3Title": "Bạn nhận cảnh báo",
+    "step3Body": "Ngay khi có lender chạm mức của bạn, chúng tôi báo cho bạn.",
+    "notSureTitle": "Chưa biết đặt mục tiêu bao nhiêu?",
+    "notSureBody": "Điểm khởi đầu tốt là thấp hơn lãi suất hôm nay 0.25–0.5%. Chuyên viên vay có thể giúp bạn chọn.",
+    "askOfficer": "Hỏi chuyên viên vay"
   },
   "channels": {
     "email": "Email",
@@ -39,17 +56,27 @@
   },
   "dialog": {
     "title": "Tạo cảnh báo lãi suất",
-    "description": "Cho chúng tôi biết mức mục tiêu và cách liên hệ với bạn.",
+    "description": "Đặt kịch bản và mục tiêu. Việc theo dõi để chúng tôi lo.",
     "close": "Đóng",
-    "loanType": "Loại khoản vay",
     "loanPurpose": "Mục đích vay",
+    "loanProgram": "Chương trình vay",
     "targetRate": "Lãi suất mục tiêu",
     "targetRatePlaceholder": "6.000",
     "loanAmount": "Số tiền vay",
-    "loanAmountOptional": "(không bắt buộc)",
     "loanAmountPlaceholder": "400,000",
-    "notifyMeBy": "Thông báo cho tôi qua",
-    "cancel": "Hủy",
+    "homeValue": "Giá trị nhà",
+    "homeValuePlaceholder": "500,000",
+    "creditScore": "Điểm tín dụng",
+    "propertyType": "Loại bất động sản",
+    "zip": "Mã ZIP",
+    "zipPlaceholder": "95111",
+    "notifyMe": "Thông báo cho tôi",
+    "freqDailyTitle": "Hằng ngày đến khi tôi dừng",
+    "freqDailySub": "Theo dõi xu hướng mỗi ngày",
+    "freqOnceTitle": "Một lần, khi đạt mức",
+    "freqOnceSub": "Chỉ báo một lần",
+    "sendBy": "Gửi qua",
+    "cancel": "Huỷ",
     "submit": "Tạo cảnh báo"
   },
   "purpose": {

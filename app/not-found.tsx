@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
-import { ApplicationHeader } from "@/app/application/components/app-header";
+import { ApplicationHeader } from "@/components/layouts/app-header";
 import illustration from "@/public/404-illustration.svg";
 
 export default function NotFound() {

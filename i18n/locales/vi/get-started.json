@@ -1,7 +1,7 @@
 {
   "badge": "Bắt đầu nào",
   "heroTitle": "Nộp hồ sơ nhanh hơn cùng trợ lý vay mua nhà AI.",
-  "heroDesc": "Một hồ sơ được hướng dẫn, chia thành năm phần ngắn. Chỉ mất khoảng <1>10–15 phút</1> — và tiến trình của bạn được tự động lưu ở mỗi bước.",
+  "heroDesc": "Một hồ sơ được hướng dẫn, chia thành bốn phần ngắn. Chỉ mất khoảng <1>10–15 phút</1> — và tiến trình của bạn được tự động lưu ở mỗi bước.",
   "startButton": "Bắt đầu hồ sơ của tôi",
   "trust": {
     "encryption": "Mã hóa cấp ngân hàng",
@@ -11,7 +11,7 @@
   "panel": {
     "yourApplication": "Hồ sơ của bạn",
     "estimate": "~12 phút",
-    "progress": "0/5 · Chưa bắt đầu",
+    "progress": "0/4 · Chưa bắt đầu",
     "encrypted": "Mã hóa đầu cuối · Tuân thủ SOC 2"
   },
   "steps": {
@@ -21,7 +21,6 @@
       "hint": "Thông tin cá nhân, việc làm & nhân khẩu học"
     },
     "realEstate": { "title": "Bất động sản & tài sản", "hint": "Tài khoản và bất động sản bạn sở hữu" },
-    "liabilities": { "title": "Khoản nợ", "hint": "Nợ và nghĩa vụ hàng tháng" },
-    "documents": { "title": "Tài liệu cần thiết", "hint": "CMND/CCCD, thu nhập & sao kê ngân hàng" }
+    "liabilities": { "title": "Khoản nợ", "hint": "Nợ và nghĩa vụ hàng tháng" }
   }
 }

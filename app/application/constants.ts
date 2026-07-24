@@ -99,8 +99,8 @@ export const ADDRESS_SUGGESTIONS: AddressSuggestion[] = [
 export type Group = { key: string; label: string; meta: string };
 
 export const GROUPS: Group[] = [
-  { key: "loanInfo", label: "Loan info", meta: "Property & terms" },
-  { key: "borrowerInfo", label: "Borrower info", meta: "About you" },
-  { key: "realEstateAssets", label: "Real estate & assets", meta: "What you own" },
-  { key: "liabilities", label: "Liabilities", meta: "Debts you carry" },
+  { key: "loanInfo", label: "Your loan", meta: "The home & terms" },
+  { key: "borrowerInfo", label: "About you", meta: "Your details" },
+  { key: "realEstateAssets", label: "What you own", meta: "Savings & property" },
+  { key: "liabilities", label: "What you owe", meta: "Debts & payments" },
 ];

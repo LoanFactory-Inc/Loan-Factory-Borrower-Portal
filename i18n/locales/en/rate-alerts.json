@@ -1,36 +1,53 @@
 {
   "page": {
     "title": "My rate alerts",
-    "subtitle": "We’ll email or text you the moment rates hit your target.",
-    "createAlert": "Create alert"
+    "subtitle": "We watch pricing from 240+ lenders every business day and tell you the moment one hits your target.",
+    "newAlert": "New rate alert"
   },
-  "ticker": {
-    "heading": "Today’s average rates",
-    "updated": "Updated 9:00 AM PT"
-  },
-  "marketRates": {
-    "fixed30": "30-yr fixed",
-    "fixed15": "15-yr fixed",
-    "fha30": "FHA 30-yr",
-    "va30": "VA 30-yr"
+  "summary": {
+    "watching": "watching the market",
+    "ready": "ready to lock",
+    "updated": "Rates updated 9:00 AM PT today"
   },
   "list": {
     "heading": "Your alerts",
     "sortedBy": "Sorted by closest to target"
   },
   "empty": {
-    "title": "No rate alerts yet",
-    "description": "Set a target rate and we’ll let you know the moment the market moves your way."
+    "title": "No alerts yet",
+    "description": "Set a target rate and we will watch the market for you, so you never miss the moment to lock.",
+    "cta": "Create your first alert"
   },
   "card": {
+    "watching": "Watching",
     "readyToLock": "Ready to lock",
+    "yourTarget": "Your target",
+    "rateNow": "Rate now",
     "toGo": "{{diff}}% to go",
-    "targetMet": "Target met",
-    "target": "Target",
-    "now": "Now",
-    "alertsVia": "Alerts via",
+    "targetHit": "Rate hit your target",
+    "freqDaily": "Daily until you stop it",
+    "freqOnce": "Once, when it hits",
+    "via": "via {{channels}}",
     "editAlert": "Edit alert",
     "deleteAlert": "Delete alert"
+  },
+  "scenario": {
+    "loan": "Loan",
+    "value": "Value",
+    "fico": "FICO",
+    "zip": "ZIP"
+  },
+  "rail": {
+    "howTitle": "How rate alerts work",
+    "step1Title": "Set your target",
+    "step1Body": "Pick a loan scenario and the rate you are waiting for.",
+    "step2Title": "We watch daily",
+    "step2Body": "We check 240+ lenders every business day, so you do not have to.",
+    "step3Title": "You get the alert",
+    "step3Body": "The moment a lender hits your number, we send it your way.",
+    "notSureTitle": "Not sure what to target?",
+    "notSureBody": "A good starting point is 0.25 to 0.5% below today’s rate. Your loan officer can help you pick.",
+    "askOfficer": "Ask your loan officer"
   },
   "channels": {
     "email": "Email",
@@ -39,16 +56,26 @@
   },
   "dialog": {
     "title": "Create a rate alert",
-    "description": "Tell us your target and how to reach you.",
+    "description": "Set the scenario and target. We will do the watching.",
     "close": "Close",
-    "loanType": "Loan type",
     "loanPurpose": "Loan purpose",
+    "loanProgram": "Loan program",
     "targetRate": "Target rate",
     "targetRatePlaceholder": "6.000",
     "loanAmount": "Loan amount",
-    "loanAmountOptional": "(optional)",
     "loanAmountPlaceholder": "400,000",
-    "notifyMeBy": "Notify me by",
+    "homeValue": "Home value",
+    "homeValuePlaceholder": "500,000",
+    "creditScore": "Credit score",
+    "propertyType": "Property type",
+    "zip": "ZIP code",
+    "zipPlaceholder": "95111",
+    "notifyMe": "Notify me",
+    "freqDailyTitle": "Daily until I stop",
+    "freqDailySub": "Track the trend every day",
+    "freqOnceTitle": "Once, when it hits",
+    "freqOnceSub": "A single heads-up",
+    "sendBy": "Send it by",
     "cancel": "Cancel",
     "submit": "Create alert"
   },

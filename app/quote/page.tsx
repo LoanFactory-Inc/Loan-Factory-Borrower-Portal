@@ -7,7 +7,7 @@ import { Trans, useTranslation } from "react-i18next";
 
 import { cn } from "@/lib/helpers";
 import { Button } from "@/components/ui/button";
-import { SelectField } from "../application/components/form-primitives";
+import { SelectField } from "@/components/form-primitives";
 import {
   FICO_OPTS,
   INITIAL_FORM,
@@ -20,7 +20,7 @@ import {
   type DocMode,
   type QuoteForm,
 } from "./quote-model";
-import { PortalPageHeader, PortalShell } from "../components/portal-page";
+import { PortalShell } from "@/components/layouts/portal-page";
 
 // ── Page ───────────────────────────────────────────────────────
 export default function QuotePage() {
@@ -46,9 +46,7 @@ export default function QuotePage() {
   return (
     <PortalShell>
       <div className="mx-auto w-full max-w-295 px-4 sm:px-7 py-11">
-        <PortalPageHeader title={t("page.title")} subtitle={t("page.subtitle")} />
-
-        <div className="grid items-start gap-5.5 lg:grid-cols-[0.82fr_1.18fr] mt-6">
+        <div className="grid items-start gap-5.5 lg:grid-cols-[0.82fr_1.18fr]">
           <ValuePanel />
 
           {/* ── Form card ── */}

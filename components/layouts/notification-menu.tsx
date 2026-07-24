@@ -35,7 +35,7 @@ const INITIAL_NOTIFICATIONS: Notification[] = [
     titleKey: "notifications.items.document.title",
     bodyKey: "notifications.items.document.body",
     timeKey: "notifications.items.document.time",
-    href: "/my-loans/documents",
+    href: "/my-loans",
     unread: true,
   },
   {
@@ -53,7 +53,7 @@ const INITIAL_NOTIFICATIONS: Notification[] = [
     titleKey: "notifications.items.signature.title",
     bodyKey: "notifications.items.signature.body",
     timeKey: "notifications.items.signature.time",
-    href: "/my-loans/documents",
+    href: "/my-loans",
     unread: false,
   },
   {

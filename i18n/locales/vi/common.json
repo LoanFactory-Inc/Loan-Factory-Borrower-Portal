@@ -13,7 +13,7 @@
       "myLoans": "Khoản vay của tôi",
       "rateAlerts": "Cảnh báo lãi suất",
       "aiAssistant": "Trợ lý vay mua nhà AI",
-      "loanfactoryIq": "LoanFactory IQ",
+      "loanfactoryIq": "Home Value",
       "about": "Về chúng tôi",
       "testimonials": "Đánh giá",
       "careers": "Tuyển dụng",
@@ -30,11 +30,12 @@
     "disclaimer": "Loan Factory, Inc. được cấp phép hoạt động tại nhiều tiểu bang. Đây không phải là cam kết cho vay. Mọi khoản vay đều tuỳ thuộc vào phê duyệt tín dụng, thẩm định hồ sơ và định giá tài sản. Lãi suất và điều khoản có thể thay đổi mà không cần báo trước."
   },
   "nav": {
+    "documents": "Tài liệu",
     "myLoans": "Khoản vay của tôi",
     "getQuote": "Nhận báo giá",
     "rateAlerts": "Cảnh báo lãi suất",
     "aiAssistant": "Trợ lý vay mua nhà AI",
-    "loanfactoryIq": "LoanFactory IQ"
+    "loanfactoryIq": "Home Value"
   },
   "actions": {
     "goBack": "Quay lại",
@@ -85,6 +86,9 @@
     "settings": "Cài đặt tài khoản",
     "notifications": "Thông báo",
     "theme": "Giao diện",
+    "loansLayout": "Bố cục khoản vay",
+    "layoutStacked": "Dạng danh sách",
+    "layoutGrid": "Xem cạnh nhau",
     "language": "Ngôn ngữ",
     "signOut": "Đăng xuất",
     "switchProfile": "Chuyển hồ sơ",
@@ -127,7 +131,7 @@
     "placeholderDescription": "Tính năng trò chuyện hướng dẫn xuyên suốt hồ sơ của bạn sẽ sớm có mặt tại đây."
   },
   "loanfactoryIq": {
-    "title": "LoanFactory IQ",
+    "title": "Home Value",
     "subtitle": "Thông tin chuyên sâu và dữ liệu thị trường được cá nhân hoá cho khoản vay của bạn.",
     "placeholderTitle": "Thông tin sắp ra mắt",
     "placeholderDescription": "Dữ liệu thị trường cá nhân hoá và cơ hội tiết kiệm sẽ hiển thị tại đây."
@@ -137,5 +141,19 @@
     "accountCreated": "Đã tạo tài khoản",
     "somethingWentWrong": "Đã có lỗi xảy ra",
     "requestFailed": "Yêu cầu thất bại"
+  },
+  "error": {
+    "network": "Không thể kết nối máy chủ. Vui lòng kiểm tra kết nối và thử lại.",
+    "timeout": "Yêu cầu mất quá nhiều thời gian. Vui lòng thử lại.",
+    "badRequest": "Có thông tin trong yêu cầu chưa hợp lệ. Vui lòng kiểm tra và thử lại.",
+    "unauthorized": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
+    "forbidden": "Bạn không có quyền thực hiện thao tác này.",
+    "notFound": "Không tìm thấy nội dung bạn đang tìm.",
+    "conflict": "Thay đổi này xung đột với trạng thái hiện tại. Vui lòng tải lại và thử lại.",
+    "validation": "Một số thông tin cần chỉnh sửa trước khi tiếp tục.",
+    "tooManyRequests": "Quá nhiều yêu cầu. Vui lòng đợi một lát rồi thử lại.",
+    "server": "Đã xảy ra lỗi từ phía chúng tôi. Vui lòng thử lại sau giây lát.",
+    "unavailable": "Dịch vụ tạm thời không khả dụng. Vui lòng thử lại sau giây lát.",
+    "unknown": "Đã có lỗi xảy ra. Vui lòng thử lại."
   }
 }

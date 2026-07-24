@@ -1,26 +1,58 @@
 {
-  "name": "Jordan Miles",
-  "status": "Chuyên viên tín dụng của bạn ·",
-  "online": "Trực tuyến",
   "today": "Hôm nay",
+  "online": "Trực tuyến",
   "placeholder": "Nhập tin nhắn…",
-  "greeting1": "Chào bạn! Tôi là Jordan, chuyên viên tín dụng của bạn. Tôi sẽ hỗ trợ bạn suốt quá trình làm hồ sơ — cứ nhắn ở đây bất cứ lúc nào nhé.",
-  "greeting2": "Tôi thấy bạn đã bắt đầu phần tài sản. Bạn có câu hỏi nào khi chuẩn bị sao kê không?",
-  "quick": {
-    "documents": "Tôi cần những giấy tờ gì?",
-    "time": "Việc này mất bao lâu?",
-    "rates": "Mình trao đổi về lãi suất được không?"
-  },
-  "replies": {
-    "documents": "Câu hỏi hay — hai tháng sao kê cho mỗi tài khoản, đầy đủ tất cả các trang. Bạn có thể tải lên ngay ở tab Tài liệu.",
-    "rates": "Rất sẵn lòng trao đổi về lãi suất. Khi hồ sơ hoàn tất, tôi có thể lấy các phương án thực tế và cùng bạn chọn thời điểm khóa lãi suất.",
-    "time": "Hầu hết hồ sơ mất khoảng 10–15 phút. Sau khi bạn gửi, tôi thường xem xét trong vòng một ngày làm việc.",
-    "default": "Cảm ơn bạn — tôi đã ghi nhận. Tôi sẽ phản hồi sớm. Trong lúc đó tôi có thể giúp gì thêm không?"
-  },
-  "openLabel": "Mở trò chuyện với chuyên viên tín dụng",
+  "openAiLabel": "Mở trợ lý khoản vay",
+  "openOfficerLabel": "Nhắn tin cho chuyên viên tín dụng",
   "closeLabel": "Đóng trò chuyện",
-  "composeLabel": "Soạn tin nhắn mới",
+  "backLabel": "Quay lại trợ lý khoản vay",
   "attachLabel": "Đính kèm tệp",
   "sendLabel": "Gửi tin nhắn",
-  "dismissLabel": "Bỏ qua"
+  "ai": {
+    "name": "Trợ lý khoản vay",
+    "status": "Đồng hành cùng khoản vay của bạn ·",
+    "greeting1": "Chào Alex! 👋 Rất vui được gặp bạn. Tôi là trợ lý khoản vay của bạn — hãy xem tôi như một người đồng hành, luôn sẵn sàng hỗ trợ bất cứ khi nào bạn cần.",
+    "greeting2": "Tin vui đây: hồ sơ tái cấp vốn của bạn đang tiến triển tốt — đang được xem xét và đúng tiến độ để hoàn tất trước ngày 15/8. Bạn làm tốt lắm khi đi được đến đây!",
+    "greeting3": "Chỉ còn 2 việc nhỏ từ phía bạn: gửi sao kê ngân hàng 2 tháng, và ký các văn bản công bố. Bạn có muốn tôi mở chúng ra giúp không?",
+    "greeting4": "À — lãi suất của bạn đã được khóa ở mức 6,75% khá đẹp đấy. Mức khóa này còn giữ thêm 6 ngày nữa, nên không vội, nhưng cứ tiếp tục nhé. 🙂",
+    "quick": {
+      "todo": "Tôi còn phải làm gì nữa?",
+      "rate": "Lãi suất của tôi thế nào rồi?",
+      "who": "Tôi đang làm việc với ai?",
+      "payment": "Mỗi tháng tôi sẽ trả bao nhiêu?"
+    },
+    "replies": {
+      "todo": "Chỉ còn 2 việc nhỏ thôi! 📄 Gửi sao kê ngân hàng 2 tháng (đầy đủ các trang), rồi ký các văn bản công bố. Làm xong là mình chuyển sang thẩm định — tôi luôn ủng hộ bạn.",
+      "rate": "Ổn lắm! 🔒 Bạn đang khóa ở 6,75% (APR 5,937%), và giữ thêm 6 ngày nữa. Còn nhiều thời gian — nếu cần thêm, cứ nói nhé, tôi sẽ nhờ Jordan.",
+      "who": "Bạn đang được Jordan Miles (NMLS #1874203) hỗ trợ — 12 năm kinh nghiệm, 4,9★ từ khách vay. Nhấn vào bong bóng JM để chào, hoặc xem hồ sơ đầy đủ bất cứ lúc nào.",
+      "status": "Bạn đang tiến triển tốt — bước 2 trên 5, đúng tiến độ hoàn tất ngày 15/8. Hoàn thành 2 việc còn lại là mình giữ được đà. 🎉",
+      "payment": "Bạn sẽ trả khoảng 2.367 USD mỗi tháng cho khoản vay 520.000 USD (gốc và lãi ở mức 6,75%). Thuế và bảo hiểm được tính thêm ngoài khoản này.",
+      "default": "Rất sẵn lòng giúp! 🙂 Tôi có thể hướng dẫn bạn những việc còn lại, lãi suất, người bạn đang làm việc cùng, hay khoản trả hằng tháng — cứ chọn ở trên hoặc nhập câu hỏi nhé."
+    }
+  },
+  "officer": {
+    "name": "Jordan Miles",
+    "status": "Chuyên viên tín dụng của bạn ·",
+    "greeting1": "Chào bạn! Tôi là Jordan, chuyên viên tín dụng của bạn. Tôi sẽ hỗ trợ bạn suốt quá trình làm hồ sơ — cứ nhắn ở đây bất cứ lúc nào nhé.",
+    "greeting2": "Tôi thấy bạn đã bắt đầu phần tài sản. Bạn có câu hỏi nào khi chuẩn bị sao kê không?",
+    "quick": {
+      "documents": "Tôi cần những giấy tờ gì?",
+      "time": "Việc này mất bao lâu?",
+      "rates": "Mình trao đổi về lãi suất được không?"
+    },
+    "replies": {
+      "documents": "Câu hỏi hay — hai tháng sao kê cho mỗi tài khoản, đầy đủ tất cả các trang. Bạn có thể tải lên ngay ở tab Tài liệu.",
+      "rates": "Rất sẵn lòng trao đổi về lãi suất. Khi hồ sơ hoàn tất, tôi có thể lấy các phương án thực tế và cùng bạn chọn thời điểm khóa lãi suất.",
+      "time": "Hầu hết hồ sơ mất khoảng 10–15 phút. Sau khi bạn gửi, tôi thường xem xét trong vòng một ngày làm việc.",
+      "default": "Cảm ơn bạn — tôi đã ghi nhận. Tôi sẽ phản hồi sớm. Trong lúc đó tôi có thể giúp gì thêm không?"
+    }
+  },
+  "peek": {
+    "greeting": "Chào bạn! Tôi là Jordan, chuyên viên tín dụng của bạn. Cứ nhắn bất cứ lúc nào — tôi luôn sẵn lòng hỗ trợ khoản vay của bạn.",
+    "call": "Gọi",
+    "mail": "Email",
+    "chat": "Nhắn tin",
+    "phone": "+14085550142",
+    "email": "jordan@loanfactory.com"
+  }
 }

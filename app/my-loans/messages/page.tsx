@@ -3,7 +3,7 @@
 import { MessageSquareIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-import { PortalPageHeader, PortalPlaceholder, PortalShell } from "../../components/portal-page";
+import { PortalPlaceholder, PortalShell } from "@/components/layouts/portal-page";
 
 export default function LoanMessagesPage() {
   const { t } = useTranslation("myLoans");
@@ -11,7 +11,6 @@ export default function LoanMessagesPage() {
   return (
     <PortalShell>
       <div className="mx-auto w-full max-w-295 px-4 sm:px-7 py-9">
-        <PortalPageHeader title={t("messages.title")} subtitle={t("messages.subtitle")} />
         <PortalPlaceholder
           icon={<MessageSquareIcon className="size-6" />}
           title={t("messages.placeholderTitle")}

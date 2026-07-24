@@ -19,7 +19,6 @@ const STEPS = [
   { num: "2", key: "borrowerInfo" },
   { num: "3", key: "realEstate" },
   { num: "4", key: "liabilities" },
-  { num: "5", key: "documents" },
 ] as const;
 
 const TRUST = [
@@ -65,7 +64,7 @@ export function GetStartedHero({ className }: { className?: string }) {
 
         <div className="mt-8 flex flex-wrap items-center gap-3.5">
           <ShimmerButton
-            onClick={() => router.push("/loan-purpose")}
+            onClick={() => router.push("/my-loans")}
             background="var(--primary)"
             borderRadius="10px"
             className="h-12 gap-2.5 px-8 text-[15px] font-semibold text-primary-foreground shadow-lg shadow-primary/30"

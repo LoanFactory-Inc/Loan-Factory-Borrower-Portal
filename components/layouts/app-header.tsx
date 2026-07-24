@@ -7,24 +7,19 @@ import { MenuIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { LoanFactoryWordmark } from "@/components/loan-factory-wordmark";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { ProfileMenu } from "./profile-menu";
-import { NotificationMenu } from "./notification-menu";
+import { LanguageMenu } from "./language-menu";
+// import { NotificationMenu } from "./notification-menu"; // temporarily hidden
 import { cn } from "@/lib/helpers";
-import { useAppSelector } from "@/store/hooks";
 
 type NavItem = { labelKey: string; href: string };
 
-const BASE_NAV_ITEMS: NavItem[] = [
+// Documents now live inside the My loans page, so "My loans" is always the
+// default lead nav — no separate Documents item, and no application-state gate.
+const NAV_ITEMS: NavItem[] = [
   { labelKey: "nav.myLoans", href: "/my-loans" },
   { labelKey: "nav.rateAlerts", href: "/rate-alerts" },
-  { labelKey: "nav.aiAssistant", href: "/ai-assistant" },
 ];
 
 function isActive(pathname: string, href: string) {
@@ -34,8 +29,10 @@ function isActive(pathname: string, href: string) {
 export function ApplicationHeader() {
   const pathname = usePathname();
   const { t } = useTranslation("common");
-  const hasApplication = useAppSelector((state) => state.application.applications.length > 0);
   const [scrolled, setScrolled] = React.useState(false);
+  // The application flow is a focused, distraction-free screen — hide the
+  // header's navigation menus while the borrower is filling it out.
+  const isApplicationFlow = pathname === "/application";
 
   React.useEffect(() => {
     // Scrolling can happen either on the window (pages that grow past the
@@ -44,28 +41,15 @@ export function ApplicationHeader() {
     // catch it from any element and read the offset from whatever scrolled.
     const onScroll = (e: Event) => {
       const target = e.target;
-      const top =
-        target instanceof HTMLElement ? target.scrollTop : window.scrollY;
+      const top = target instanceof HTMLElement ? target.scrollTop : window.scrollY;
       setScrolled(top > 8);
     };
     onScroll(new Event("scroll"));
     window.addEventListener("scroll", onScroll, { passive: true, capture: true });
-    return () =>
-      window.removeEventListener("scroll", onScroll, { capture: true });
+    return () => window.removeEventListener("scroll", onScroll, { capture: true });
   }, []);
 
-  // "My loans" sends borrowers without an application to create one first.
-  const hrefFor = (href: string) =>
-    href === "/my-loans" && !hasApplication ? "/get-started" : href;
-
-  // The fourth nav slot swaps between "Get a quote" (before there's a loan) and
-  // "LoanFactory IQ" (once the borrower has an application), matching the design.
-  const navItems: NavItem[] = [
-    ...BASE_NAV_ITEMS,
-    hasApplication
-      ? { labelKey: "nav.loanfactoryIq", href: "/loanfactory-iq" }
-      : { labelKey: "nav.getQuote", href: "/quote" },
-  ];
+  const navItems = NAV_ITEMS;
 
   return (
     <header
@@ -78,6 +62,7 @@ export function ApplicationHeader() {
     >
       <div className="mx-auto flex h-16 max-w-295 items-center gap-3 px-4 sm:gap-5 sm:px-7">
         {/* Mobile nav */}
+        {!isApplicationFlow && (
         <Sheet>
           <SheetTrigger
             aria-label={t("menu.open")}
@@ -96,11 +81,11 @@ export function ApplicationHeader() {
                 return (
                   <SheetClose asChild key={item.href}>
                     <Link
-                      href={hrefFor(item.href)}
+                      href={item.href}
                       className={cn(
                         "rounded-lg px-3.5 py-3 text-sm font-semibold transition-colors",
                         active
-                          ? "bg-accent/50 text-foreground"
+                          ? "bg-primary/10 text-primary"
                           : "text-muted-foreground hover:bg-muted hover:text-foreground",
                       )}
                     >
@@ -112,32 +97,38 @@ export function ApplicationHeader() {
             </nav>
           </SheetContent>
         </Sheet>
+        )}
 
-        <Link href={hrefFor("/my-loans")} className="shrink-0">
+        <Link href={"/my-loans"} className="shrink-0">
           <LoanFactoryWordmark className="h-6" />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="ml-3 hidden items-center gap-6 md:flex">
-          {navItems.map((item) => {
-            const active = isActive(pathname, item.href);
-            return (
-              <Link
-                key={item.href}
-                href={hrefFor(item.href)}
-                className={cn(
-                  "text-sm font-semibold whitespace-nowrap",
-                  active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {t(item.labelKey)}
-              </Link>
-            );
-          })}
-        </nav>
+        {!isApplicationFlow && (
+          <nav className="ml-3 hidden items-center gap-6 md:flex">
+            {navItems.map((item) => {
+              const active = isActive(pathname, item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "text-sm font-semibold whitespace-nowrap transition-colors",
+                    active ? "text-primary" : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {t(item.labelKey)}
+                </Link>
+              );
+            })}
+          </nav>
+        )}
 
         <div className="ml-auto flex items-center gap-1 sm:gap-2">
+          <LanguageMenu />
+          {/* Notification bell temporarily hidden
           <NotificationMenu />
+          */}
           <span aria-hidden className="mx-1 h-5.5 w-px bg-border" />
           <ProfileMenu />
         </div>

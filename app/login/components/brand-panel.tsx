@@ -35,7 +35,6 @@ export function BrandPanel() {
 
       <div className="relative z-10 flex items-center gap-3">
         <HomeIcon className="size-8 text-primary" strokeWidth={1.7} />
-        <span className="text-[19px] font-bold tracking-wide text-white">{t("brand.logo")}</span>
       </div>
 
       <div className="relative z-10">

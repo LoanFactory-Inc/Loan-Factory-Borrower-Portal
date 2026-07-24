@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { format, isValid, parse } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 
-import { cn, groupDigits } from "@/lib/helpers";
+import { cn, formatDateInput, groupDigits } from "@/lib/helpers";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type { Option } from "../constants";
+import type { Option } from "@/app/application/constants";
 
 /** Field label with optional required marker / "(optional)" hint. */
 export function FieldLabel({
@@ -196,7 +196,7 @@ export function DateField({
           placeholder={placeholder}
           aria-invalid={error ? true : undefined}
           inputMode="numeric"
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onChange(formatDateInput(e.target.value))}
           className={cn("h-13 rounded-lg border-[1.5px] pr-12 pl-4 text-[15px]", error && errorRing)}
         />
         <Popover open={open} onOpenChange={setOpen}>

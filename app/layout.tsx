@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   description:
     "Apply for loans, upload documents, track your application status, and manage your loan account securely with LoanFactory.",
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
   },
 };
 

@@ -247,20 +247,20 @@
     "coBorrower": "Co-borrower"
   },
   "subs": {
-    "subjectProperty": "Subject property",
-    "loanDetails": "Loan details",
+    "subjectProperty": "The property",
+    "loanDetails": "Loan terms",
     "personalDetails": "Personal details",
     "employment": "Employment",
     "demographicInfo": "Demographic info",
-    "realEstateAssets": "Real estate & assets",
-    "liabilities": "Liabilities",
+    "realEstateAssets": "Savings & property",
+    "liabilities": "Your debts",
     "neededDocuments": "Needed documents"
   },
   "groups": {
-    "loanInfo": { "label": "Loan info", "meta": "Property & terms" },
-    "borrowerInfo": { "label": "Borrower info", "meta": "About you" },
-    "realEstateAssets": { "label": "Real estate & assets", "meta": "What you own" },
-    "liabilities": { "label": "Liabilities", "meta": "Debts you carry" },
+    "loanInfo": { "label": "Your loan", "meta": "The home & terms" },
+    "borrowerInfo": { "label": "About you", "meta": "Your details" },
+    "realEstateAssets": { "label": "What you own", "meta": "Savings & property" },
+    "liabilities": { "label": "What you owe", "meta": "Debts & payments" },
     "neededDocuments": { "label": "Needed documents", "meta": "Upload & finish" }
   },
   "options": {

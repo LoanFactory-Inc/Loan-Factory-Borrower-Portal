@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/helpers";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { PortalShell } from "@/app/components/portal-page";
+import { PortalShell } from "@/components/layouts/portal-page";
 import {
   computeOffers,
   INITIAL_FORM,
@@ -335,7 +335,7 @@ function OfferRow({ offer, t }: { offer: Offer; t: TFn }) {
         variant="outline"
         className="h-11 rounded-full border-[1.5px] px-5 text-[13.5px] font-bold hover:border-primary"
       >
-        <Link href="/loan-purpose">{t("result.select")}</Link>
+        <Link href="/my-loans">{t("result.select")}</Link>
       </Button>
     </div>
   );

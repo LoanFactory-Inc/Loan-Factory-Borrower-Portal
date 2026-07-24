@@ -1,7 +1,50 @@
 {
   "page": {
     "title": "My loans",
-    "subtitle": "Track status, next steps, and documents in one place."
+    "subtitle": "Track status, next steps, and documents in one place.",
+    "inProgressTitle": "Welcome back, let’s keep going",
+    "inProgressSubtitle": "You’re a few steps from done — pick up right where you left off.",
+    "completeTitle": "Nice work — your application is complete",
+    "completeSubtitle": "Next up: send us a few documents so we can move your loan forward.",
+    "submittedTitle": "You’re all set — we’ve got it from here",
+    "submittedSubtitle": "Follow your loan’s progress and see what happens next, all in one place."
+  },
+  "celebrate": {
+    "created": {
+      "title": "Application submitted",
+      "description": "Your loan officer has received everything and will reach out within one business day."
+    },
+    "edited": {
+      "title": "Changes saved",
+      "description": "Your changes are saved and your application is now being processed. Your loan officer will review the updates and reach out if anything else is needed."
+    },
+    "cta": "Send your documents"
+  },
+  "intro": {
+    "title": "Let’s start your loan application",
+    "description": "Two ways to get going — most people let our AI do the heavy lifting. You can switch anytime, and your progress saves as you go.",
+    "disclaimer": "Checking your rate won’t affect your credit score.",
+    "ai": {
+      "recommended": "Recommended",
+      "title": "Start with AI",
+      "description": "Answer a few friendly questions in chat and the assistant fills your file for you — about 3 minutes.",
+      "perks": [
+        "Guided questions, no jargon",
+        "Upload docs to auto-fill",
+        "Done in about 3 minutes"
+      ],
+      "cta": "Start with AI"
+    },
+    "manual": {
+      "title": "Open full form",
+      "description": "Prefer to type it yourself? Go through the classic application at your own pace, section by section.",
+      "perks": [
+        "Full control over every field",
+        "Save and return anytime",
+        "Standard 1003 sections"
+      ],
+      "cta": "Open the form"
+    }
   },
   "filter": {
     "active": "Current loan",
@@ -13,13 +56,34 @@
   "card": {
     "new": "New",
     "edit": "Edit",
-    "inReview": "In review",
-    "inProgress": "In progress",
+    "inReview": "Application In review",
+    "inProgress": "Application In progress",
+    "complete": "Complete",
+    "completeEyebrow": "You’re all set",
+    "completeTitle": "Send us your documents",
+    "completeDesc": "Your application is complete — upload a few documents to keep things moving.",
+    "goToDocuments": "Go to documents",
     "purposeBuy": "Purchase",
     "purposeRefi": "Refinance",
     "loanNumber": "Loan #{{id}}",
+    "addressTbd": "Property address not added yet",
     "applicationComplete": "Application complete",
-    "applicationCompleteDesc": "Your loan officer is reviewing it and will reach out with next steps."
+    "applicationCompleteDesc": "Your loan officer is reviewing it and will reach out with next steps.",
+    "nextStepEyebrow": "One quick thing to finish",
+    "nextStepTitle": "Add your {{step}}",
+    "nextStepDesc": "Takes about 2 minutes · then you’re ready to submit",
+    "almostDoneTitle": "You’re almost done",
+    "almostDoneDesc": "Just a little more to finish your application — keep going.",
+    "resume": "Continue"
+  },
+  "stepTitles": {
+    "property": "property details",
+    "loanTerms": "loan details",
+    "personal": "personal details",
+    "employment": "employment & income",
+    "demographic": "demographic info",
+    "assets": "assets",
+    "liabilities": "debts"
   },
   "stepper": {
     "currentStep": "Current step",
@@ -53,26 +117,72 @@
     },
     "financing": {
       "label": "Financing",
-      "value": "68% of home value",
-      "hint": "You keep 32% as equity"
+      "value": "{{pct}}% of home value",
+      "hint": "You keep {{equity}}% as equity"
     },
     "closing": {
       "label": "Expected closing",
-      "hint": "About 6 weeks away"
+      "hint": "About {{weeks}} weeks away"
     }
+  },
+  "loanOfficer": {
+    "label": "Your loan officer",
+    "name": "Jordan Miles",
+    "initials": "JM",
+    "role": "Senior Loan Officer",
+    "online": "Online now",
+    "message": "Message",
+    "viewProfile": "View profile"
+  },
+  "loanOfficerProfile": {
+    "back": "Back to My loans",
+    "roleLine": "Your loan officer · Loan Factory",
+    "onlineBadge": "Online now · replies in minutes",
+    "message": "Send a message",
+    "call": "Call",
+    "email": "Email",
+    "phoneValue": "(408) 555-0142",
+    "emailValue": "jordan@loanfactory.com",
+    "google": {
+      "title": "Google Reviews",
+      "rating": "4.9",
+      "count": "318 reviews",
+      "view": "View on Google"
+    },
+    "reviews": [
+      {
+        "name": "Marcus T.",
+        "initials": "MT",
+        "when": "2 weeks ago",
+        "quote": "Closed my refinance in 18 days and beat my bank by half a point. Jordan answered every text, even on a Sunday."
+      },
+      {
+        "name": "Priya N.",
+        "initials": "PN",
+        "when": "1 month ago",
+        "quote": "First-time buyer and honestly terrified. Jordan made the whole thing painless and got me a rate I did not think was possible."
+      },
+      {
+        "name": "David & Lauren R.",
+        "initials": "DR",
+        "when": "2 months ago",
+        "quote": "Clear, patient, and always a step ahead. We never had to chase anyone for an update. Would recommend to anyone."
+      }
+    ]
   },
   "documents": {
     "title": "Needed documents",
     "description": "Upload what you have now so your loan officer can keep things moving — you can always add the rest later.",
     "uploadedCount": "{{uploaded}} of {{total}} uploaded",
     "tabs": {
-      "outstanding": "Outstanding ({{count}})",
-      "completed": "Completed ({{count}})"
+      "outstanding": "To upload ({{count}})",
+      "completed": "Uploaded ({{count}})"
     },
     "requested": "Requested {{time}}",
-    "remove": "Remove",
+    "view": "View",
+    "remove": "Delete",
     "upload": "Upload",
-    "complete": "Complete",
+    "complete": "Uploaded",
     "addFile": "Add file",
     "empty": {
       "caughtUpTitle": "You’re all caught up",
@@ -98,9 +208,10 @@
     "placeholderDescription": "Questions and updates from your loan officer will show up in this thread."
   },
   "docsPage": {
-    "title": "Documents",
-    "subtitle": "Everything you’ve uploaded and anything still outstanding.",
-    "placeholderTitle": "Your document center",
-    "placeholderDescription": "Uploaded files and requests from your loan officer will be managed here."
+    "title": "Let’s gather your paperwork",
+    "subtitle": "Send us a few documents so we can move your loan forward — upload at your own pace and pick up where you left off anytime.",
+    "cardTitle": "What we need from you to finish your loan",
+    "allCaughtUpTitle": "You’re all caught up",
+    "allCaughtUpDesc": "Every requested document has been uploaded."
   }
 }

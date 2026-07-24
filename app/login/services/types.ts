@@ -93,6 +93,24 @@ export interface IConfigurationRequest {
   need_admin_counter: number;
 }
 
+/**
+ * tera-be `GET /api/v1/profiles/me` payload (`ProfileResponse`) — the current
+ * user resolved from the auth context. `user_id` is the canonical id used to
+ * scope the borrower's loans.
+ */
+export interface MyProfileResponse {
+  user_id: string;
+  email: string | null;
+  first_name: string | null;
+  middle_name: string | null;
+  last_name: string | null;
+  full_name: string | null;
+  phone: string | null;
+  status: string | null;
+  profile_type: string | null;
+  available_profile_types?: string[];
+}
+
 export interface IAdminProfile {
   user_name: string;
   email_id: string;

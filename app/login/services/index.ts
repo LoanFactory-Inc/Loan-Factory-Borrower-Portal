@@ -7,6 +7,7 @@ import {
   ILoginRequest,
   ILoginResponse,
   IRegisterRequest,
+  MyProfileResponse,
 } from "./types";
 
 const ENDPOINTS = {
@@ -46,4 +47,14 @@ const getCurrentAdmin = () => {
   return apiClient.get<IApiResponse<unknown, IAdminProfile>>(ENDPOINTS.current);
 };
 
-export { login, register, getConfiguration, getCurrentAdmin };
+/**
+ * The current user (tera-be `GET /api/v1/profiles/me`), resolved from the auth
+ * context. Returns the unwrapped profile, whose `user_id` scopes the borrower's
+ * loans. Routed same-origin (→ tera-be :8088) by the axios interceptor.
+ */
+const getMe = () =>
+  apiClient
+    .get<{ payload: MyProfileResponse }>("tera-svc/api/v1/profiles/me")
+    .then((r) => r.payload);
+
+export { login, register, getConfiguration, getCurrentAdmin, getMe };

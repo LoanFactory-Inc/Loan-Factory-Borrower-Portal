@@ -8,7 +8,7 @@ import { cn } from "@/lib/helpers";
 import { AnimatedCircularProgressBar } from "@/components/ui/animated-circular-progress-bar";
 import { GROUPS } from "../constants";
 
-export type SubItem = { label: string; active: boolean; pageIndex: number };
+export type SubItem = { label: string; active: boolean; done: boolean; pageIndex: number };
 
 /** A run of sub-items, optionally headed by a role label ("You" / "Co-borrower"). */
 export type SubGroup = { heading: string | null; items: SubItem[] };
@@ -167,17 +167,25 @@ function SubButton({
       onClick={() => onGoPage(sub.pageIndex)}
       className={cn(
         "flex items-center gap-2.25 py-0.5 text-left text-[13px] transition-colors",
-        sub.active
-          ? "font-bold text-accent-foreground"
-          : "font-medium text-muted-foreground hover:text-foreground",
+        sub.done
+          ? "font-semibold text-success"
+          : sub.active
+            ? "font-bold text-accent-foreground"
+            : "font-medium text-muted-foreground hover:text-foreground",
       )}
     >
-      <span
-        className={cn(
-          "size-1.5 shrink-0 rounded-full",
-          sub.active ? "bg-primary" : "bg-input",
+      <span className="flex size-3.5 shrink-0 items-center justify-center">
+        {sub.done ? (
+          <CheckIcon className="size-3 text-success" strokeWidth={3} />
+        ) : (
+          <span
+            className={cn(
+              "size-1.5 rounded-full",
+              sub.active ? "bg-primary" : "bg-input",
+            )}
+          />
         )}
-      />
+      </span>
       {sub.label}
     </button>
   );

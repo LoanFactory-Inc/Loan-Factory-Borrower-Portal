@@ -1,26 +1,58 @@
 {
-  "name": "Jordan Miles",
-  "status": "Your loan officer ·",
-  "online": "Online",
   "today": "Today",
+  "online": "Online",
   "placeholder": "Write a message…",
-  "greeting1": "Hi! I'm Jordan, your loan officer. I'll be helping you through your application — reach out here anytime.",
-  "greeting2": "I noticed you started the assets section. Any questions as you pull your statements together?",
-  "quick": {
-    "documents": "What documents do I need?",
-    "time": "How long does this take?",
-    "rates": "Can we talk about rates?"
-  },
-  "replies": {
-    "documents": "Great question — two months of statements for every account, all pages included. You can upload them right from the Documents tab.",
-    "rates": "Happy to walk through rates. Once your application is complete I can pull live options and we'll pick a lock window together.",
-    "time": "Most applications take about 10–15 minutes. After you submit, I typically review within one business day.",
-    "default": "Thanks — I've got that noted. I'll follow up shortly. Anything else I can help with in the meantime?"
-  },
-  "openLabel": "Open chat with your loan officer",
+  "openAiLabel": "Open the loan assistant",
+  "openOfficerLabel": "Message your loan officer",
   "closeLabel": "Close chat",
-  "composeLabel": "Start a new message",
+  "backLabel": "Back to the loan assistant",
   "attachLabel": "Attach a file",
   "sendLabel": "Send message",
-  "dismissLabel": "Dismiss"
+  "ai": {
+    "name": "Loan Assistant",
+    "status": "Guiding your loan ·",
+    "greeting1": "Hi Alex! 👋 Great to see you. I'm your loan assistant — think of me as your co-pilot, here whenever you need a hand.",
+    "greeting2": "Good news: your refinance is moving right along — you're in review and on track to close by Aug 15. Nice work getting this far!",
+    "greeting3": "Just 2 quick things left on your side: pop in 2 months of bank statements, and sign your disclosures. Want me to open them for you?",
+    "greeting4": "Oh — and your rate is locked in at a nice 6.75%. That lock holds for 6 more days, so no rush, but let's keep the ball rolling. 🙂",
+    "quick": {
+      "todo": "What's left for me to do?",
+      "rate": "How is my rate looking?",
+      "who": "Who am I working with?",
+      "payment": "What will I pay each month?"
+    },
+    "replies": {
+      "todo": "Just 2 little things! 📄 Add 2 months of bank statements (all pages), then sign your disclosures. Do those and we're off to underwriting — I'll cheer you on.",
+      "rate": "Looking good! 🔒 You're locked at 6.75% (5.937% APR), and it holds for 6 more days. Plenty of time — and if you ever need more, just say the word and I'll ask Jordan.",
+      "who": "You're in great hands with Jordan Miles (NMLS #1874203) — 12 years in, 4.9★ from borrowers. Tap the JM bubble to say hi, or peek at the full profile anytime.",
+      "status": "You're cruising along — step 2 of 5, on track to close Aug 15. Wrap up your 2 tasks and we keep the momentum going. 🎉",
+      "payment": "You're looking at about $2,367 a month on your $520,000 loan (principal & interest at 6.75%). Taxes and insurance are on top of that.",
+      "default": "Happy to help! 🙂 I can walk you through what's left, your rate, who you're working with, or your payment — just pick one above or type away."
+    }
+  },
+  "officer": {
+    "name": "Jordan Miles",
+    "status": "Your loan officer ·",
+    "greeting1": "Hi! I'm Jordan, your loan officer. I'll be helping you through your application — reach out here anytime.",
+    "greeting2": "I noticed you started the assets section. Any questions as you pull your statements together?",
+    "quick": {
+      "documents": "What documents do I need?",
+      "time": "How long does this take?",
+      "rates": "Can we talk about rates?"
+    },
+    "replies": {
+      "documents": "Great question — two months of statements for every account, all pages included. You can upload them right from the Documents tab.",
+      "rates": "Happy to walk through rates. Once your application is complete I can pull live options and we'll pick a lock window together.",
+      "time": "Most applications take about 10–15 minutes. After you submit, I typically review within one business day.",
+      "default": "Thanks — I've got that noted. I'll follow up shortly. Anything else I can help with in the meantime?"
+    }
+  },
+  "peek": {
+    "greeting": "Hi! I'm Jordan, your loan officer. Reach out anytime — happy to help with your loan.",
+    "call": "Call",
+    "mail": "Mail",
+    "chat": "Chat",
+    "phone": "+14085550142",
+    "email": "jordan@loanfactory.com"
+  }
 }

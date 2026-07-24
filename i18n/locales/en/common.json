@@ -13,7 +13,7 @@
       "myLoans": "My loans",
       "rateAlerts": "Rate alerts",
       "aiAssistant": "AI mortgage assistant",
-      "loanfactoryIq": "LoanFactory IQ",
+      "loanfactoryIq": "Home Value",
       "about": "About us",
       "testimonials": "Testimonials",
       "careers": "Careers",
@@ -30,11 +30,12 @@
     "disclaimer": "Loan Factory, Inc. is licensed to do business in multiple states. This is not a commitment to lend. All loans are subject to credit approval, underwriting, and property appraisal. Rates and terms are subject to change without notice."
   },
   "nav": {
+    "documents": "Documents",
     "myLoans": "My loans",
     "getQuote": "Get a quote",
     "rateAlerts": "My rate alerts",
     "aiAssistant": "AI mortgage assistant",
-    "loanfactoryIq": "LoanFactory IQ"
+    "loanfactoryIq": "Home Value"
   },
   "actions": {
     "goBack": "Go back",
@@ -85,6 +86,9 @@
     "settings": "Account settings",
     "notifications": "Notifications",
     "theme": "Theme",
+    "loansLayout": "Loans layout",
+    "layoutStacked": "Stacked view",
+    "layoutGrid": "Side-by-side view",
     "language": "Language",
     "signOut": "Sign out",
     "switchProfile": "Switch profile",
@@ -127,7 +131,7 @@
     "placeholderDescription": "Chat-based guidance across your application is coming soon to this workspace."
   },
   "loanfactoryIq": {
-    "title": "LoanFactory IQ",
+    "title": "Home Value",
     "subtitle": "Insights and market intelligence tailored to your loan.",
     "placeholderTitle": "Insights on the way",
     "placeholderDescription": "Personalized market intelligence and savings opportunities will appear here."
@@ -137,5 +141,19 @@
     "accountCreated": "Account created",
     "somethingWentWrong": "Something went wrong",
     "requestFailed": "Request failed"
+  },
+  "error": {
+    "network": "Can’t reach the server. Check your connection and try again.",
+    "timeout": "The request took too long. Please try again.",
+    "badRequest": "Something in the request wasn’t right. Please review and try again.",
+    "unauthorized": "Your session has expired. Please sign in again.",
+    "forbidden": "You don’t have permission to do that.",
+    "notFound": "We couldn’t find what you were looking for.",
+    "conflict": "That change conflicts with the current state. Please refresh and try again.",
+    "validation": "Some details need fixing before we can continue.",
+    "tooManyRequests": "Too many requests. Please wait a moment and try again.",
+    "server": "Something went wrong on our end. Please try again shortly.",
+    "unavailable": "The service is temporarily unavailable. Please try again shortly.",
+    "unknown": "Something went wrong. Please try again."
   }
 }

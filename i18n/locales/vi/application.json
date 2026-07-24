@@ -248,19 +248,19 @@
   },
   "subs": {
     "subjectProperty": "Bất động sản",
-    "loanDetails": "Chi tiết khoản vay",
+    "loanDetails": "Điều khoản vay",
     "personalDetails": "Thông tin cá nhân",
     "employment": "Việc làm",
     "demographicInfo": "Thông tin nhân khẩu học",
-    "realEstateAssets": "Bất động sản & tài sản",
-    "liabilities": "Khoản nợ",
+    "realEstateAssets": "Tiết kiệm & tài sản",
+    "liabilities": "Khoản nợ của bạn",
     "neededDocuments": "Giấy tờ cần thiết"
   },
   "groups": {
-    "loanInfo": { "label": "Thông tin khoản vay", "meta": "Bất động sản & điều khoản" },
-    "borrowerInfo": { "label": "Thông tin người vay", "meta": "Về bạn" },
-    "realEstateAssets": { "label": "Bất động sản & tài sản", "meta": "Những gì bạn sở hữu" },
-    "liabilities": { "label": "Khoản nợ", "meta": "Các khoản nợ bạn đang gánh" },
+    "loanInfo": { "label": "Khoản vay của bạn", "meta": "Nhà & điều khoản" },
+    "borrowerInfo": { "label": "Về bạn", "meta": "Thông tin của bạn" },
+    "realEstateAssets": { "label": "Bạn sở hữu gì", "meta": "Tiết kiệm & tài sản" },
+    "liabilities": { "label": "Bạn nợ gì", "meta": "Nợ & khoản trả" },
     "neededDocuments": { "label": "Giấy tờ cần thiết", "meta": "Tải lên & hoàn tất" }
   },
   "options": {
